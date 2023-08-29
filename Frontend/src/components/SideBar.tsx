@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import logo from '../assets/logo.png' 
 import {LiaHomeSolid} from 'react-icons/lia'
 import {BiSearchAlt2, BiFolderPlus} from 'react-icons/bi'
@@ -10,13 +10,10 @@ import { NavLink } from 'react-router-dom'
 
 const SideBar = () => {
     // const navigate = useNavigate()
-    const [activeSection, setActiveSection] = useState('home')
     const [toggle, setToggle] = useState(false)
     const [appearance, setAppearance] = useState(false)
 
-    const handleSectionClick = (section: string) => {
-        setActiveSection(section)
-      };
+   
 
   return (
     <div className='min-h-screen border-r border-gray-400 border-r-1 pr-28 pl-6 pt-10 pb-4 ' id='sidebar'>
@@ -24,17 +21,17 @@ const SideBar = () => {
         <div className='text-2xl font-normal mt-[114px] w-fit m-auto'>
             <NavLink to={'/'} >
                 <div className={`flex items-center cursor-pointer` }
-                    onClick={() => handleSectionClick('home')}>
+            >
                     <LiaHomeSolid className='ml-5'/> <p className='ml-11'>Home</p>
                 </div>
             </NavLink>
             <div className={`flex items-center my-[55px] cursor-pointer`}
-                onClick={() => handleSectionClick('search')}>
+                >
                 <BiSearchAlt2 className='ml-5'/><p className='ml-11'>Search</p>
             </div>
             <NavLink to={'/create'}>
                 <div className={`flex items-center cursor-pointer`}
-                    onClick={() => handleSectionClick('create')}>
+                    >
                     <BiFolderPlus className='ml-5'/><p className='ml-11'>Create Poem</p >
                 </div>
             </NavLink>

@@ -1,4 +1,3 @@
-import React from 'react'
 import design from '../assets/header-img.png'
 
 export const CreatePoemHeader = () => {

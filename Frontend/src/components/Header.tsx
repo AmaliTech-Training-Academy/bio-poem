@@ -1,4 +1,3 @@
-import React from 'react'
 import HeaderPattern from '../assets/Rectangle 73.png'
 import HeaderBg from '../assets/Rectangle 74.png'
 
