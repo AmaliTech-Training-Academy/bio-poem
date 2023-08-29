@@ -1,17 +1,13 @@
-import React from 'react'
-import Header from '../components/Header'
-import Carousel from '../components/Carousel'
-import RecentPoems from '../components/RecentPoems'
+
 import SideBar from '../components/SideBar'
+import MainContent from '../components/MainContent'
 
 const Homepage = () => {
   return (
-    <div className='flex'>
+    <div className='flex w-full'>
         <SideBar/>
         <div>
-        <Header/>
-        <Carousel/>
-        <RecentPoems/>
+        <MainContent/>
         </div>
       </div>
     )
