@@ -2,11 +2,7 @@
 
 body{
     font-family: 'Inter', sans-serif;
-};
-/* .stepper{
-    width: 326px;
-    margin: auto;
-} */
+}
 
 .stepper .item-step .dot{
     background-color: #D1D5DB;
