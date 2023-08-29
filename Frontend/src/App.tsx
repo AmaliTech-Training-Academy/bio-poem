@@ -1,11 +1,17 @@
 import './App.css'
 import './index.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Homepage from './pages/Homepage'
 
 function App() {
 
   return (
     <>
-      <p className='text-red-600'>Hello</p>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Homepage/>}/>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
