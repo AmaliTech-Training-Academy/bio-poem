@@ -46,3 +46,13 @@ body{
 .stepper .item-step::after{
     font-weight: bold;
 }
+
+#sidebar a:hover{
+    background: gray;
+}
+
+
+#sidebar a.active div{
+    border-left: 4px solid #F06A30;    
+}
+

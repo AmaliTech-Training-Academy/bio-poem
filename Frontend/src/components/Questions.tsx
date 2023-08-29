@@ -44,7 +44,7 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
             )}
         {/* Navigation */}
         <div className="flex justify-between mt-4 mb-8">
-            <div className="flex items-center p-[10px]"
+            <div className="flex items-center p-[10px] cursor-pointer"
                 onClick={()=>{dispatch(back())}}
                 style={currentPage > 1 ? {color: '#F06A30'} : undefined}>
                 <BsArrowLeft/> 
@@ -54,7 +54,7 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
             { currentPage === 4 ? ( 
                 <button className="p-[10px] bg-customOrange text-white rounded-lg">Submit</button>
             ) :
-                <div className="flex items-center p-[10px]"
+                <div className="flex items-center p-[10px] cursor-pointer"
                     onClick={()=>{dispatch(forward())}}
                     style={{color: '#F06A30'}}>
                     <span className="mr-[10px]">Next</span>
