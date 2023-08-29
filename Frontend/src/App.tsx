@@ -1,11 +1,12 @@
 import './App.css'
 import './index.css'
+import { CreatePoem } from './pages/CreatePoem'
 
 function App() {
 
   return (
     <>
-      <p className='text-red-600'>Hello</p>
+      <CreatePoem/>
     </>
   )
 }
