@@ -12,7 +12,7 @@ const RecentPoems = () => {
                     </div>
                     <div className='text-center'>
                         <h3>Ekow Smith</h3>
-                        <p className='text-[#F06A30]'>Preview</p>
+                        <p className='text-[#F06A30] bg-[#FEF6EE] rounded-xl cursor-pointer'>Preview</p>
                     </div>
                 </div>
 
@@ -22,7 +22,7 @@ const RecentPoems = () => {
                     </div>
                     <div className='text-center'>
                         <h3>Ekow Smith</h3>
-                        <p className='text-[#F06A30]'>Preview</p>
+                        <p className='text-[#F06A30] bg-[#FEF6EE] rounded-xl cursor-pointer'>Preview</p>
                     </div>
                 </div>
 
