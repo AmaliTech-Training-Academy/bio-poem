@@ -3,3 +3,56 @@
 body{
     font-family: 'Inter', sans-serif;
 };
+/* .stepper{
+    width: 326px;
+    margin: auto;
+} */
+
+.stepper .item-step .dot{
+    background-color: #D1D5DB;
+    height: .5rem;
+    width: .5rem;
+}
+
+.stepper .item-step-current .dot{
+    background-color:  #F06A30;
+    
+}
+.stepper .item-step{
+    background: white;
+    height: 1.8rem;
+    width: 1.8rem;
+    border: 2px solid #9CA3AF;
+}
+
+.stepper .item-step-current {
+    border: 2px solid #F06A30;
+}
+
+.stepper .item-step-active{
+    background: #F06A30;
+    border: #F06A30;
+}
+
+.container-stepper .line{
+    top: 33%;
+    width: 90%;
+}
+
+.container-stepper .progress{
+    top: 33%;
+}
+
+.stepper .item-step::after{
+    font-weight: bold;
+}
+
+#sidebar a:hover{
+    background: gray;
+}
+
+
+#sidebar a.active div{
+    border-left: 4px solid #F06A30;    
+}
+
