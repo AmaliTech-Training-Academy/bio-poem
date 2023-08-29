@@ -13,7 +13,7 @@ const Homepage = () => {
         <Carousel/>
         <RecentPoems/>
         </div>
-        </div>
+      </div>
     )
 }
 export default Homepage
