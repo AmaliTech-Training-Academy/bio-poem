@@ -6,9 +6,7 @@ const Homepage = () => {
   return (
     <div className='flex w-full'>
         <SideBar/>
-        <div>
         <MainContent/>
-        </div>
       </div>
     )
 }

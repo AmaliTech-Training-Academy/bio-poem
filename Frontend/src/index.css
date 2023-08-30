@@ -9,3 +9,46 @@
         font-family: 'Inter', sans-serif;
     }
   }
+  .images{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    gap: 1rem;
+    margin: 85px auto;
+    width: 60%;
+    min-height: 20vh;
+  }
+
+  .image{
+    width: 30%;
+    height: 20%;
+  }
+
+  .image img{
+    display: block;
+    width: 100%;
+  }
+
+  .pagination{
+    /* border: 2px solid gray; */
+    border-radius: 5px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    padding: 8px 1px;
+    font-size: 1.2rem;
+}
+
+.pagination .page-num{
+    border: 0.1rem solid gray;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.pagination .page-num:hover{
+    border: 2px solid gray;
+    background-color: rgb(233, 239, 239);
+}
