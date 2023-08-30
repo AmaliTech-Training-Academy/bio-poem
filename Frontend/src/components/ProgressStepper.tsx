@@ -9,7 +9,7 @@ export const ProgressStepper: React.FC<Props> = ({currentPage}) => {
 
   
   return (
-    <div className='lg:w-3/6 xl:w-2/6 mx-auto'>
+    <div className='md:w-3/6 xl:w-2/6 mx-auto'>
     <Stepper
       steppers={["1", "2", "3", "4", "5"]}
       lineStyle	= {{background: '#D1D5DB' }}
