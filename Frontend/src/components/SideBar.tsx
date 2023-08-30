@@ -21,20 +21,20 @@ const SideBar = () => {
         <div className='text-2xl font-normal mt-[114px] w-fit m-auto'>
             <NavLink to={'/'} >
                 <div className={`flex items-center cursor-pointer` }>
-                    <LiaHomeSolid className='lg:ml-3 xl:ml-5'/>
-                {!openSearch && <p className='lg:ml-5 ml-11'>Home</p>}
+                    <LiaHomeSolid className='md:ml-3 xl:ml-5'/>
+                {!openSearch && <p className='md:ml-5 ml-11'>Home</p>}
                 
                 </div>
             </NavLink>
             <div className={`flex items-center my-[55px] cursor-pointer`}>
-                <BiSearchAlt2 className='lg:ml-3 ml-5'/>
-                {!openSearch && <p className='lg:ml-5 ml-11'>Search</p>}
+                <BiSearchAlt2 className='md:ml-3 ml-5'/>
+                {!openSearch && <p className='md:ml-5 ml-11'>Search</p>}
             </div>
             <NavLink to={'/create'}>
                 <div className={`flex items-center cursor-pointer`}
                     >
-                    <BiFolderPlus className='lg:ml-3 ml-5'/>
-                {!openSearch && <p className='lg:ml-5 ml-11'>Create Poem</p >}
+                    <BiFolderPlus className='md:ml-3 ml-5'/>
+                {!openSearch && <p className='md:ml-5 ml-11'>Create Poem</p >}
                 
                 </div>
             </NavLink>
