@@ -9,7 +9,7 @@ export const CreatePoem = () => {
         {/* <div className='w-3/12'></div> */}
         <SideBar/>
         {/* Main Content */}
-        <div className='pt-4 w-9/12 lg:px-5 xl:pl-10 xl:pr-14'>
+        <div className='pt-4 w-9/12 md:px-5 xl:pl-10 xl:pr-14'>
             <CreatePoemHeader/>
             <CreatePoemContent/>
         </div>
