@@ -4,24 +4,52 @@ body{
     font-family: 'Inter', sans-serif;
 };
 
-.pagination{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5rem;
-    font-size: 1.2rem;
-    gap: 5px;
+
+.stepper .item-step .dot{
+    background-color: #D1D5DB;
+    height: .5rem;
+    width: .5rem;
 }
 
-.pagination .page-num{
-    padding: 8px 16px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-weight: 400;
+.stepper .item-step-current .dot{
+    background-color:  #F06A30;
+    
+}
+.stepper .item-step{
+    background: white;
+    height: 1.8rem;
+    width: 1.8rem;
+    border: 2px solid #9CA3AF;
 }
 
-.pagination .page-num:hover{
-    background-color: aqua;
-    color: #fff;
+.stepper .item-step-current {
+    border: 2px solid #F06A30;
 }
+
+.stepper .item-step-active{
+    background: #F06A30;
+    border: #F06A30;
+}
+
+.container-stepper .line{
+    top: 33%;
+    width: 90%;
+}
+
+.container-stepper .progress{
+    top: 33%;
+}
+
+.stepper .item-step::after{
+    font-weight: bold;
+}
+
+#sidebar a:hover{
+    background: gray;
+}
+
+
+#sidebar a.active div{
+    border-left: 4px solid #F06A30;    
+}
+
