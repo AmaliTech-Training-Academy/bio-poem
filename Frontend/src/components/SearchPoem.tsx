@@ -1,4 +1,3 @@
-import React from 'react'
 import {BiSearchAlt2} from 'react-icons/bi'
 import {MdClose} from 'react-icons/md'
 import person from '../assets/searchImage.png'
@@ -30,6 +29,8 @@ const SearchPoem = () => {
         </div>
 
         <p className='text-[#F06A30] border-b-[1px] border-[#F06A30] cursor-pointer'>See more</p>
+
+        <p className='text-[#F06A30] mt-[207px]'>No Results...</p>
     </div>
   )
 }
