@@ -4,6 +4,7 @@ import { BsArrowRight } from "react-icons/bs"
 import { forward, back } from "../store/formSlice"
 import { useDispatch } from 'react-redux'
 import { questions } from "../questionsData"
+import { CardTheme } from "./CardTheme"
 
 type Props = {
     currentPage: number,
@@ -27,6 +28,7 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
     if(currentPage == 3){
         currentData = thirdPage;        
     } 
+    
 
     
     return (
@@ -42,6 +44,9 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
                 key={data.id}
             />
             )}
+        
+        { currentPage === 4 ? <CardTheme/> : undefined
+        }
         {/* Navigation */}
         <div className="flex justify-between mt-4 mb-8">
             <div className="flex items-center p-[10px] cursor-pointer"
