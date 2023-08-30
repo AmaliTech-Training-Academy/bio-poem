@@ -16,23 +16,23 @@ const SideBar = () => {
    
 
   return (
-    <div className='min-h-screen border-r border-gray-400 border-r-1 pr-28 pl-6 pt-10 pb-4 ' id='sidebar'>
+    <div className='min-h-screen border-r border-gray-400 border-r-1 lg:px-4 xl:pr-14 pl-6 pt-10 pb-4 w-3/12' id='sidebar'>
         <img src={logo} alt='logo' className='m-auto'/>
         <div className='text-2xl font-normal mt-[114px] w-fit m-auto'>
             <NavLink to={'/'} >
                 <div className={`flex items-center cursor-pointer` }
             >
-                    <LiaHomeSolid className='ml-5'/> <p className='ml-11'>Home</p>
+                    <LiaHomeSolid className='lg:ml-3 xl:ml-5'/> <p className='lg:ml-5 ml-11'>Home</p>
                 </div>
             </NavLink>
             <div className={`flex items-center my-[55px] cursor-pointer`}
                 >
-                <BiSearchAlt2 className='ml-5'/><p className='ml-11'>Search</p>
+                <BiSearchAlt2 className='lg:ml-3 ml-5'/><p className='lg:ml-5 ml-11'>Search</p>
             </div>
             <NavLink to={'/create'}>
                 <div className={`flex items-center cursor-pointer`}
                     >
-                    <BiFolderPlus className='ml-5'/><p className='ml-11'>Create Poem</p >
+                    <BiFolderPlus className='lg:ml-3 ml-5'/><p className='lg:ml-5 ml-11'>Create Poem</p >
                 </div>
             </NavLink>
         </div>
