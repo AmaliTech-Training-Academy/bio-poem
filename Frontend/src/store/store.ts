@@ -2,6 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, } from "redux-persist"
 import storage  from "redux-persist/lib/storage"
 import formSlice from "./formSlice"
+import themeSlice from "./themeSlice";
+
 
 const persistConfig = {
     key: 'root',
@@ -10,6 +12,7 @@ const persistConfig = {
 
     const rootReducer = combineReducers({
         form: formSlice,
+        theme: themeSlice,
     })
 
   const persistedReducer = persistReducer(persistConfig, rootReducer)
