@@ -5,15 +5,11 @@ import {BiSearchAlt2, BiFolderPlus} from 'react-icons/bi'
 import {MdOutlineLightMode,MdLightMode} from 'react-icons/md'
 import {LiaToggleOnSolid, LiaToggleOffSolid} from 'react-icons/lia'
 import { NavLink } from 'react-router-dom'
-// import { useNavigate } from 'react-router-dom'
 
 
 const SideBar = () => {
-    // const navigate = useNavigate()
     const [toggle, setToggle] = useState(false)
     const [appearance, setAppearance] = useState(false)
-
-   
 
   return (
     <div className='min-h-screen border-r border-gray-400 border-r-1 lg:px-4 xl:pr-14 pl-6 pt-10 pb-4 w-3/12' id='sidebar'>
