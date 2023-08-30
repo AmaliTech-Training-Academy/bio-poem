@@ -12,7 +12,7 @@ const SideBar = () => {
     const [openSearch, setOpenSearch] = useState(false)
 
     const handleOpenSearch = ()=>{
-
+        setOpenSearch(!openSearch)
     }
 
   return (
@@ -26,7 +26,7 @@ const SideBar = () => {
                 
                 </div>
             </NavLink>
-            <div className={`flex items-center my-[55px] cursor-pointer`}>
+            <div className={`flex items-center my-[55px] cursor-pointer`} onClick={handleOpenSearch}>
                 <BiSearchAlt2 className='lg:ml-3 ml-5'/>
                 {!openSearch && <p className='lg:ml-5 ml-11'>Search</p>}
             </div>

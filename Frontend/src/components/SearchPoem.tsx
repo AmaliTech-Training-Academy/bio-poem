@@ -1,4 +1,3 @@
-import React from 'react'
 import {BiSearchAlt2} from 'react-icons/bi'
 import {MdClose} from 'react-icons/md'
 import person from '../assets/searchImage.png'
