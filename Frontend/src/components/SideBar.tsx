@@ -41,7 +41,7 @@ const SideBar = () => {
       };
 
   return (
-    <div className='min-h-screen border-r border-gray-400 border-r-1 lg:px-4 xl:pr-14 pl-6 pt-10 pb-4 w-3/12' id='sidebar'>
+    <div className='min-h-screen border-r border-gray-400 border-r-1 md:px-4 xl:pr-14 pl-6 pt-10 pb-4 w-3/12' id='sidebar'>
         <img src={logo} alt='logo' className='m-auto'/>
         <div className='text-2xl font-normal mt-[114px] w-fit m-auto' >
 
