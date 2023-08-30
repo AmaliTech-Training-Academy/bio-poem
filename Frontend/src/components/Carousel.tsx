@@ -4,7 +4,7 @@ import GridImg from '../assets/Rectangle 36.png'
 
 const Carousel = () => {
   return (
-    <div className='mx-auto w-[1080px] mt-5'>
+    <div className='mx-auto mt-5'>
         <h1 className='text-2xl font-medium py-7'>Popular Poems</h1>
         <div className='flex items-center'>
             <button className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center mr-5'><LiaArrowLeftSolid/></button>
