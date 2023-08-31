@@ -15,7 +15,7 @@ import pattern14 from './assets/pattern-14.png'
 import pattern15 from './assets/pattern-15.png'
 import pattern16 from './assets/pattern-16.png'
 import pattern17 from './assets/pattern-17.png'
-import pattern18 from './assets/pattern-18.png'
+// import pattern18 from './assets/pattern-18.png'
 
 export const patterns = [
     {
@@ -86,8 +86,8 @@ export const patterns = [
         id: 17,
         pattern: pattern17
         },
-        {
-        id: 18,
-        pattern: pattern18
-        }
+        // {
+        // id: 18,
+        // pattern: pattern18
+        // }
 ]

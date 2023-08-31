@@ -11,7 +11,7 @@ export const CardTheme = () => {
     const currentOption = useSelector((state:RootState) => state.theme.theme)
 
     return (
-        <div className="border border-black mt-10">
+        <div className="mt-10">
             <div className="font-semibold text-xl mb-6">11. Choose a background or theme for your card</div>
             {/* Select theme */}
             <div className='flex'>

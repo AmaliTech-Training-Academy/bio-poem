@@ -1,5 +1,5 @@
-// import { getAnswers } from "../store/formSlice"
-// import {useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
+import { updateAnswers } from "../store/formSlice";
 
 
 type Props = {
@@ -18,18 +18,16 @@ export type payload = {
 }
 
 export const FormSection: React.FC<Props> = ({question, type, id, height, placeholder, bottom, value}) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handleAnswers = (e) => {
-  //   e.preventDefault()
-  //   console.log(e);
-    
-  //   const answer:payload = {
-  //     id:id,
-  //     answer:e.target.value,
-  //   }
-  //   dispatch(getAnswers(answer))
-  // }
+  const handleAnswers = (e:any) => {
+    e.preventDefault()
+    const answer:payload = {
+      id:id,
+      answer:e.target.value,
+    }
+    dispatch(updateAnswers(answer))
+  }
   
   return (
     <div className="flex flex-col" >  
@@ -42,7 +40,7 @@ export const FormSection: React.FC<Props> = ({question, type, id, height, placeh
         className="border border-[#D9D9D9] text-[#646363] rounded-lg outline-none px-3" 
         style={{height: height, paddingBottom: bottom}}
         placeholder={placeholder}
-        // onChange={handleAnswers}
+        onChange={handleAnswers}
         />    
     </div>
   )
