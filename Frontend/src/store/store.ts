@@ -2,6 +2,10 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, } from "redux-persist"
 import storage  from "redux-persist/lib/storage"
 import formSlice from "./formSlice"
+import searchSlice from "./searchSlice";
+import themeSlice from "./themeSlice";
+import darkModeSlice from "./darkModeSlice";
+
 
 const persistConfig = {
     key: 'root',
@@ -10,6 +14,9 @@ const persistConfig = {
 
     const rootReducer = combineReducers({
         form: formSlice,
+        search: searchSlice,
+        theme: themeSlice,
+        darkMode: darkModeSlice,
     })
 
   const persistedReducer = persistReducer(persistConfig, rootReducer)

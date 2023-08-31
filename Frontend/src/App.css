@@ -2,8 +2,9 @@
 
 body{
     font-family: 'Inter', sans-serif;
-};
-
+    height: 100%;
+    margin: 0;
+}
 
 .stepper .item-step .dot{
     background-color: #D1D5DB;
@@ -42,14 +43,5 @@ body{
 
 .stepper .item-step::after{
     font-weight: bold;
-}
-
-#sidebar a:hover{
-    background: gray;
-}
-
-
-#sidebar a.active div{
-    border-left: 4px solid #F06A30;    
 }
 

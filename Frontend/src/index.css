@@ -9,6 +9,9 @@
     html {
         font-family: 'Inter', sans-serif;
     }
+    #root{
+        height: 100%;
+    }
   }
   .images{
     display: grid;
