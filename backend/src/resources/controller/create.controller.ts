@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import poem from '../../resources/model/create.model';
 
-const prisma = new PrismaClient();
+console.log('poem::', poem);
+
 
 const createQuestionnaire = async (req: Request, res: Response) => {
   const {
+    _id,
     firstName,
     adjectives,
     importantRelation,
@@ -18,9 +20,18 @@ const createQuestionnaire = async (req: Request, res: Response) => {
     backgroundTheme,
     profileImage,
   } = req.body;
+  console.log('_id', _id)
 
-  const createdQuestionnaire = await prisma.questionnaire.create({
-    data: {
+  try {
+    const existingPoem = await poem.findById(_id);
+    console.log('existingPoem', existingPoem)
+
+    if (existingPoem)
+      return res
+        .status(401)
+        .json({ message: 'Poem for this user already exists' });
+
+    const createdQuestionnaire = await poem.create({
       firstName,
       adjectives,
       importantRelation,
@@ -33,10 +44,20 @@ const createQuestionnaire = async (req: Request, res: Response) => {
       lastName,
       backgroundTheme,
       profileImage,
-    },
-  });
+    });
 
-  res.status(201).json({ success: true, data: createdQuestionnaire });
+    res.status(201).json({
+      success: true,
+      message: "You've made it! Bio Poem Created Successfully",
+      data: createdQuestionnaire,
+    });
+  } catch (error) {
+    console.error('Error creating questionnaire:', error);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while creating the bio poem questionnaire',
+    });
+  }
 };
 
 export default createQuestionnaire;
