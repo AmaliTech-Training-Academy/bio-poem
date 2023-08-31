@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose';
 import createInterface from '../../utils/interfaces/create.interface';
 
 const createPoemSchema = new Schema({
+  username: String,
   firstName: String,
   adjectives: String,
   importantRelation: String,

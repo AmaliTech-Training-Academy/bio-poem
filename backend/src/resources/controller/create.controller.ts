@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
 import poem from '../../resources/model/create.model';
 
-console.log('poem::', poem);
-
+// console.log('poem::', poem);
 
 const createQuestionnaire = async (req: Request, res: Response) => {
   const {
-    _id,
+    username,
     firstName,
     adjectives,
     importantRelation,
@@ -20,11 +19,11 @@ const createQuestionnaire = async (req: Request, res: Response) => {
     backgroundTheme,
     profileImage,
   } = req.body;
-  console.log('_id', _id)
+  // console.log('_id', _id);
 
   try {
-    const existingPoem = await poem.findById(_id);
-    console.log('existingPoem', existingPoem)
+    const existingPoem = await poem.find({ username, firstName, lastName });
+    // console.log('existingPoem', existingPoem);
 
     if (existingPoem)
       return res
