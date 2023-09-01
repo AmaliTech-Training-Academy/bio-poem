@@ -11,7 +11,7 @@ interface CreatePoem {
     lastName: string;
     backgroundTheme: string;
     profileImage: string;
-    upvote: number
-    downvote: number
+    upvotes: number
+    downvotes: number
   }
 export default CreatePoem  
