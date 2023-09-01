@@ -1,11 +1,11 @@
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5'
 import {BiDownvote, BiUpvote } from 'react-icons/bi'
 import { Themes } from './Themes'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { useState } from 'react'
 import profile from '../assets/searchImage.png'
-import line from '../assets/line.png'
+// import line from '../assets/line.png'
 
 
 export type themeProps = {
@@ -14,16 +14,11 @@ export type themeProps = {
 
 export const CardPreview: React.FC<themeProps> = ({currentOption}) => {
     const [view, setView] = useState<boolean>(false)
-    const selectedTheme = useSelector((state: RootState)=> state.form.answers.backgroundTheme)
+    // const selectedTheme = useSelector((state: RootState)=> state.form.answers.backgroundTheme)
 
     const userPoem = useSelector((state:RootState)=> state.form.answers);
     const poemData = Object.values(userPoem);
     
-    const bgStyle = {
-        background: `url(${userPoem.backgroundTheme})`,
-        backgroundSize:'contain', 
-        backgroundRepeat: 'none'
-    }
     console.log(poemData);
     
 return (

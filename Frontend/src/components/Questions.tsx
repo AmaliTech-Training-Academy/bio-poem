@@ -15,7 +15,7 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
     const dispatch = useDispatch()
     
     const answers = useSelector((state:RootState)=> state.form.answers);
-    const keys = Object.keys(answers);
+    // const keys = Object.keys(answers);
     const values = Object.values(answers);
     // console.log(answers);
     // console.log(key);
@@ -31,29 +31,29 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
     const secondPageValues = values.slice(4, 7);
     const thirdPageValues = values.slice(7, 10);
 
-    const firstPageKeys = keys.slice(0, 4);
-    const secondPageKeys = keys.slice(4, 7);
-    const thirdPageKeys = keys.slice(7, 10);
+    // const firstPageKeys = keys.slice(0, 4);
+    // const secondPageKeys = keys.slice(4, 7);
+    // const thirdPageKeys = keys.slice(7, 10);
     
 
     let currentData;
     let currentValues: any;
-    let currentKeys;
+    // let currentKeys;
 
     if(currentPage == 1){
         currentData = firstPage;   
         currentValues = firstPageValues;
-        currentKeys = firstPageKeys;
+        // currentKeys = firstPageKeys;
     } 
     if(currentPage == 2){
         currentData = secondPage;
         currentValues = secondPageValues;
-        currentKeys = secondPageKeys;        
+        // currentKeys = secondPageKeys;        
     } 
     if(currentPage == 3){
         currentData = thirdPage;
         currentValues = thirdPageValues; 
-        currentKeys = thirdPageKeys;       
+        // currentKeys = thirdPageKeys;       
     } 
     
 

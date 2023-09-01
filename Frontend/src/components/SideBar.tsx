@@ -4,7 +4,7 @@ import {LiaHomeSolid} from 'react-icons/lia'
 import {BiSearchAlt2, BiFolderPlus} from 'react-icons/bi'
 import {MdOutlineLightMode,MdLightMode} from 'react-icons/md'
 import {PiToggleRightFill, PiToggleLeftFill} from 'react-icons/pi'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetSearchState, setOpenSearch } from '../store/searchSlice'
 import { RootState } from '../store/store'
@@ -74,7 +74,7 @@ const SideBar = () => {
             {!openSearch && <hr className='h-[1px] bg-[#928F8F]'/>}
             {!openSearch &&<div className='flex items-center my-[26px] justify-between'>
                  <p className=''>Dark mode</p> 
-                {toggle ?<PiToggleRightFill className='w-11 h-5 mr-23  cursor-pointer w-[50px] h-[50px]' style={{color:'#E9E9EA'}} onClick={()=>setToggle(false)}/> : <PiToggleLeftFill className='w-[50px] h-[50px] cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>setToggle(true)}/>}
+                {toggle ?<PiToggleRightFill className=' mr-23  cursor-pointer w-[50px] h-[50px]' style={{color:'#E9E9EA'}} onClick={()=>setToggle(false)}/> : <PiToggleLeftFill className='w-[50px] h-[50px] cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>setToggle(true)}/>}
                 
             </div>
             }
