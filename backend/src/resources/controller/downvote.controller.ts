@@ -9,11 +9,11 @@ const downvotes = async (req: Request, res: Response) => {
     if (!poemToDownVote)
       return res.status(404).json({ message: 'Poem not found' });
 
-    poemToDownVote.downvotes = +1;
+    poemToDownVote.downvotes += 1;
 
     poemToDownVote.save();
 
     res.status(200).json({ message: 'Poem down voted successfully' });
   } catch (error) {}
 };
-export default downvotes
+export default downvotes;
