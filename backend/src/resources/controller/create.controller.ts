@@ -1,12 +1,9 @@
 import { Request, Response } from 'express';
 import poem from '../../resources/model/create.model';
 
-console.log('poem::', poem);
-
-
 const createQuestionnaire = async (req: Request, res: Response) => {
   const {
-    _id,
+    username,
     firstName,
     adjectives,
     importantRelation,
@@ -18,20 +15,26 @@ const createQuestionnaire = async (req: Request, res: Response) => {
     residence,
     lastName,
     backgroundTheme,
-    profileImage,
   } = req.body;
-  console.log('_id', _id)
 
   try {
-    const existingPoem = await poem.findById(_id);
-    console.log('existingPoem', existingPoem)
+    // Check if the username is already taken
+    const similarUsername = await poem.findOne({ username });
+    if (similarUsername) {
+      return res.status(401).json({ message: 'Username already Taken' });
+    }
 
-    if (existingPoem)
-      return res
-        .status(401)
-        .json({ message: 'Poem for this user already exists' });
+    // Check if a poem with the same combination of firstName, and lastName exists
+    // const existingPoem = await poem.findOne({ username });
+    // if (existingPoem) {
+    //   return res
+    //     .status(401)
+    //     .json({ message: 'Poem for this user already exists' });
+    // }
 
+    // Create a new poem if all checks pass
     const createdQuestionnaire = await poem.create({
+      username,
       firstName,
       adjectives,
       importantRelation,
@@ -43,7 +46,6 @@ const createQuestionnaire = async (req: Request, res: Response) => {
       residence,
       lastName,
       backgroundTheme,
-      profileImage,
     });
 
     res.status(201).json({
