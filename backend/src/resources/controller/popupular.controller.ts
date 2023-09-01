@@ -4,7 +4,7 @@ import poem from '../model/create.model';
 const getPopularPoems = async (req: Request, res: Response) => {
   try {
     // Retrieve all poems from the database
-    const poems = await poem.find({});
+    const poems = await poem.find({}).sort({ popularity: -1 }).limit(10);
     res.status(200).json(poems);
   } catch (error) {
     console.error('Error fetching popular poems:', error);
