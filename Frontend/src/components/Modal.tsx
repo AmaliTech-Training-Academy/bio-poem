@@ -4,7 +4,7 @@ import { BiDownvote, BiUpvote, BiSolidDownvote, BiSolidUpvote } from 'react-icon
 
 
 const Modal = ({visible, onClose}) => {
-  
+
   const handleClose = (e) =>{
     if(e.target.id === 'container')
     onClose();
@@ -13,7 +13,7 @@ const Modal = ({visible, onClose}) => {
   if (!visible) return null;
 
   return (
-    <div id='container' onClick={handleClose} className='fixed w-[1118px] h-[784px] left-[49rem] top-[20%] inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
+    <div id='container' onClick={handleClose} className='fixed w-[100%] h-[784px] left-[20%] top-[20%] inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
       <div className='bg-white w-[693px] h-[358px] rounded-3xl px-10 py-5'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center'>
