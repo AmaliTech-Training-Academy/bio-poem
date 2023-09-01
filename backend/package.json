@@ -6,8 +6,7 @@
   "scripts": {
     "start": "nodemon dist/index.js",
     "dev": "tsc-watch --onSuccess \"nodemon ./dist/index.js\"",
-    "build": "tsc",
-    "postinstall": "npm run build"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
