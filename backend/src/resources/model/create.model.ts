@@ -5,6 +5,7 @@ const createPoemSchema = new Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   firstName: {
     type: String,
