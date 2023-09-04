@@ -30,12 +30,8 @@ const Modal = ({visible, onClose}) => {
                 <div className='bg-black w-[2px] h-full'></div>
                 <div className='w-2 h-2 rounded-full bg-black'></div>
             </div>
-            <p className='ml-16'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Sapiente perspiciatis accusamus molestias, 
-                ipsum ratione provident quis, 
-                repudiandae nam voluptate maiores tempora neque porro quo quibusdam perferendis, 
-                dolorem tempore cum. 
-                Libero iusto unde facilis repellat laboriosam blanditiis consequuntur commodi soluta adipisci!
+            <p className='ml-16'>
+                
               </p>
         </div>
         <div className='flex items-center gap-2 ml-24'>
