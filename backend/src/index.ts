@@ -10,6 +10,7 @@ import downvote from './resources/router/downvote.route'
 import popularPoemRouter from './resources/router/popular.router'
 import errorMiddleware from './middleware/errorMiddleware';
 import validateEnv from './utils/validateEnv';
+import fetchAllPoems from './resources/router/getAll.router';
 
 validateEnv();
 
@@ -55,6 +56,7 @@ class App {
     this.app.use('/api/v1/poems', createQuestionnaireRouter);
     this.app.use('/api/v1/poems', upvote);
     this.app.use('/api/v1/poems', downvote);
+    this.app.use('/api/v1/poems', fetchAllPoems);
     this.app.use('/api/v1/poems', popularPoemRouter);
   }
 
