@@ -7,6 +7,7 @@ const recentPoem =async (req:Request, res: Response) => {
 
         res.status(200).json({ success: true, recentPoems: recent})
     } catch (error) {
-       
+        console.error('Error fetching recent poems:', error)
+        res.status(500).json({ message: 'An error occured while fetching rencent poems'})
     }
 }
