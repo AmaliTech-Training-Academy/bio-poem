@@ -4,6 +4,7 @@ import storage  from "redux-persist/lib/storage"
 import formSlice from "./formSlice"
 import searchSlice from "./searchSlice";
 import themeSlice from "./themeSlice";
+import darkModeSlice from "./darkModeSlice";
 
 
 const persistConfig = {
@@ -15,6 +16,7 @@ const persistConfig = {
         form: formSlice,
         search: searchSlice,
         theme: themeSlice,
+        darkMode: darkModeSlice,
     })
 
   const persistedReducer = persistReducer(persistConfig, rootReducer)

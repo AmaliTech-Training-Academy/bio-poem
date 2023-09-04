@@ -1,23 +1,25 @@
 import {BiSearchAlt2} from 'react-icons/bi'
 import {MdClose} from 'react-icons/md'
 import person from '../assets/searchImage.png'
+import { useSelector } from 'react-redux'
 
 const SearchPoem = () => {
+    const darkMode  = useSelector((state)=>state.darkMode.toggle)
   return (
     <div className='border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434]'>
-        <div className='flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px]'>
+        <div className={`flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px] ${darkMode ? 'bg-[#fff]' : ''}`}>
             <BiSearchAlt2 style={{color:'#8E8D8D'}} className='mr-4 cursor-pointer'/>
             <input type='text' placeholder='Search...' className='focus:outline-none'/>
         </div>
         <div className='flex gap-x-56 w-fit px-9 py-3 border-y-[0.5px] border-[#D9D9D9] mb-[40px]'>
-            <p className='text-base'>Recent</p>
+            <p className={`text-base ${darkMode ? 'text-[#fff]' : ''}`}>Recent</p>
             <p className='text-[#F06A30] w-max cursor-pointer'>Clear all</p>
         </div>
 
         <div className='flex gap-x-28 mb-[30px]'>
             <div className='flex items-center'>
                 <img src={person} alt='person' className='rounded-[50%] w-[55px] h-[55px]'/>
-                <p className='ml-5 font-medium'>Johnson Sam</p>
+                <p className={`ml-5 font-medium ${darkMode ? 'text-[#fff]' : ''}`}>Johnson Sam</p>
             </div>
 
             <div className='flex items-center '>
