@@ -36,11 +36,5 @@
     "module-alias": "^2.2.3",
     "mongoose": "^7.5.0",
     "morgan": "^1.10.0"
-  },
-  "moduleAliases": {
-    "@/resources": "dist/resources",
-    "@utils": "dist/utils",
-    "@/service": "dist/service",
-    "@middleware": "dist/middleware"
   }
 }
