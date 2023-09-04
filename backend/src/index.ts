@@ -5,12 +5,13 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import morgan = require('morgan');
 import createQuestionnaireRouter from './resources/router/create.router';
-import upvote from './resources/router/upvote.router'
-import downvote from './resources/router/downvote.route'
-import popularPoemRouter from './resources/router/popular.router'
+import upvote from './resources/router/upvote.router';
+import downvote from './resources/router/downvote.route';
+import popularPoemRouter from './resources/router/popular.router';
 import errorMiddleware from './middleware/errorMiddleware';
 import validateEnv from './utils/validateEnv';
 import fetchAllPoems from './resources/router/getAll.router';
+import recentPoems from './resources/router/recentPoem.router';
 
 validateEnv();
 
@@ -53,11 +54,15 @@ class App {
       res.send('API is running');
     });
 
-    this.app.use('/api/v1/poems', createQuestionnaireRouter);
-    this.app.use('/api/v1/poems', upvote);
-    this.app.use('/api/v1/poems', downvote);
-    this.app.use('/api/v1/poems', fetchAllPoems);
-    this.app.use('/api/v1/poems', popularPoemRouter);
+    this.app.use(
+      '/api/v1/poems',
+      createQuestionnaireRouter,
+      popularPoemRouter,
+      upvote,
+      downvote,
+      fetchAllPoems,
+      recentPoems,
+    );
   }
 
   public startServer() {
