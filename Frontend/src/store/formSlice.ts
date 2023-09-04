@@ -1,37 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
-// import { payload } from '../components/FormSection'
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { payload } from '../components/FormSection'
 
-export type data = [
-    {
-    fname: string},
-    {
-    adjectives: string
-    },
-    {
-    relationship: string
-    },
-    {
-    ideas: string
-    },
-    {
-    feelings: string,
-    },
-    {
-    fears: string
-    },
-    {
-    accomplishments: string
-    },
-    {
-    expectations: string
-    },
-    {
-    residence: string
-    },
-    {
-    lname: string,
-    }
-]
+export type data = {
+    "firstName":string,
+    "adjectives": string,
+    "importantRelation": string,
+    "loves": string,
+    "feelings": string,
+    "fears": string,
+    "accomplishments": string,
+    "expectations": string,
+    "residence": string,
+    "lastName": string,
+    "backgroundTheme": string,
+    "profileImage": string
+    
+}
 
 export type state = {
     page: number,
@@ -50,38 +34,20 @@ export type state = {
 const initialState: state = {
     page: 1,
     total: 4,
-    answers: [
-        {
-            fname: ''
-        },
-        {
-            adjectives: ''
-        },
-        {
-            relationship: ''
-        },
-        {
-            ideas: ''
-        },
-        {
-            feelings: ''
-        },
-        {
-            fears: ''
-        },
-        {
-            accomplishments: ''
-        },
-        {
-            expectations: ''
-        },
-        {
-            residence: ''
-        },
-        {
-            lname: '',
-        }
-    ]
+    answers: {
+        "firstName":"",
+        "adjectives": "",
+        "importantRelation": "",
+        "loves": "",
+        "feelings": "",
+        "fears": "",
+        "accomplishments": "",
+        "expectations": "",
+        "residence": "",
+        "lastName": "",
+        "backgroundTheme": "",
+        "profileImage": ""
+    }
 }
 
 const formSlice = createSlice ({
@@ -98,14 +64,20 @@ const formSlice = createSlice ({
                 state.page--;
             }
         },
-        // getAnswers: (state:state, {payload}) => {
-        // const { id, value } = payload;
-        // const answerArr = state.answers.filter((answer) => Object.keys(answer)[0] === id)
-        // answerArr[0][id] = value;
-
-        // }, 
+        updateAnswers:(state: state, action: PayloadAction<payload>)=>{
+            const {id, answer} = action.payload;
+            state.answers[id as keyof data] = answer;
+        },
+        selectTheme: (state: state, action: PayloadAction<{theme:string}>)=>{
+            const {theme} = action.payload;
+            state.answers = {
+                ...state.answers,
+                backgroundTheme: theme
+            }
+        },
+        
     }
 })
 
-export const { forward, back,  } = formSlice.actions
+export const { forward, back, updateAnswers, selectTheme  } = formSlice.actions
 export default formSlice.reducer;

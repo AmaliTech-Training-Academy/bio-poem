@@ -71,4 +71,5 @@ export const colors = [
         id: 18,
         color: '#00000075'
     }
+
 ]

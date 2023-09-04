@@ -2,7 +2,7 @@ export const questions = [
     {
         question:"1. What's your first name",
         type:"text",
-        id:"fname",
+        id:"firstName",
         height:"40px",
         placeholder:"Enter first name",
         bottom:"3px",
@@ -18,7 +18,7 @@ export const questions = [
     {
         question:"3. State your most important relationship",
         type:"text",
-        id:"relationship",
+        id:"importantRelation",
         height:"130px",
         placeholder:"e.g.,daughter of ...,friend of ,....",
         bottom:"6rem",
@@ -26,7 +26,7 @@ export const questions = [
     {
         question:"4. Mention two or three things, people, or ideas that you love",
         type:"text",
-        id:"ideas",
+        id:"loves",
         height:"130px",
         placeholder:"Enter ideas you love",
         bottom:"6rem",
@@ -74,7 +74,7 @@ export const questions = [
     {
         question:"10. What's your last name",
         type:"text",
-        id:"lname",
+        id:"lastName",
         height:"130px",
         placeholder:"Enter your last name",
         bottom:"6rem",
