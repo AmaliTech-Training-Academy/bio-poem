@@ -8,12 +8,12 @@ const Homepage = () => {
   const openSearch = useSelector((state:RootState)=>state.search.openSearch)
 
   return (
-    <div className='flex w-full'>
+    <div className='overflow-hidden w-full h-full relative flex z-0'>
         <SideBar/>
         {openSearch && <SearchPoem/>}
-        <div>
+        <div className=''>
         <MainContent/>
-        </div>
+      </div>
       </div>
     )
 }
