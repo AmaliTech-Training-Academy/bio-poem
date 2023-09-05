@@ -12,6 +12,7 @@ import errorMiddleware from './middleware/errorMiddleware';
 import validateEnv from './utils/validateEnv';
 import fetchAllPoems from './resources/router/getAll.router';
 import recentPoems from './resources/router/recentPoem.router';
+import uploadImage from './resources/router/upload.router';
 
 validateEnv();
 
@@ -62,6 +63,7 @@ class App {
       downvote,
       fetchAllPoems,
       recentPoems,
+      uploadImage,
     );
   }
 
