@@ -114,9 +114,9 @@ const Carousel = () => {
         <button onClick={slideLeft} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center mr-5'>
           <LiaArrowLeftSolid />
         </button>
-        <div id='slider' className='flex w-full h-full overflow-x-hidden whitespace-nowrap scrollbar-hide'>
+        <div id='slider' className='flex w-full h-full overflow-x-hidden whitespace-nowrap scroll-snap-type-x mandatory scrollbar-hide'>
           {visibleCards.map((poem, index) => (
-            <div onClick={() => setShowModal(true)} key={index} className='inline-block border-4 border-[#F06A30] rounded-md' style={{ marginRight: cardMargin }}>
+            <div onClick={() => setShowModal(true)} key={index} className='inline-block border-4 border-[#F06A30] rounded-md' style={{ marginRight: cardMargin, scrollSnapAlign: 'start' }}>
               {/* Your card content here */}
               <img className='h-[163px]' src={poem.profilePic} alt='' style={{ width: cardWidth }} />
               <div className='text-center my-5'>
