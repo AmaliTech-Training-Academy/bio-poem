@@ -87,9 +87,9 @@ import { poems } from '../data';
 const Carousel = () => {
   const [showModal, setShowModal] = useState(false);
   const handleOnClose = () => setShowModal(false);
-  const cardWidth = 700; // Adjust this to match the width of your cards
-  const cardMargin = 50; // Adjust this to match the margin between cards
-  const cardsPerPage = 4; // Number of cards to display at once
+  const cardWidth = 700; 
+  const cardMargin = 50; 
+  const cardsPerPage = 4;
   const [currentPage, setCurrentPage] = useState(0);
 
   const slideLeft = () => {
