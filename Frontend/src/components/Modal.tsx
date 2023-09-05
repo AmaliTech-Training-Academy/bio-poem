@@ -1,11 +1,15 @@
 import GridImg from '../assets/Rectangle 36.png'
 import { VscClose } from 'react-icons/vsc'
-import { BiDownvote, BiUpvote, BiSolidDownvote, BiSolidUpvote } from 'react-icons/bi'
+import { BiDownvote, BiUpvote, } from 'react-icons/bi'
 
+type Props ={
+  visible: boolean,
+  onClose: () => void,
+}
 
-const Modal = ({visible, onClose}) => {
+const Modal: React.FC<Props> = ({visible, onClose}) => {
 
-  const handleClose = (e) =>{
+  const handleClose = (e:any) =>{
     if(e.target.id === 'container')
     onClose();
   }

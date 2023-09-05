@@ -6,7 +6,6 @@ import { questions } from "../questionsData"
 import { CardTheme } from "./CardTheme"
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
-// import { data } from "../store/formSlice"
 
 type Props = {
     currentPage: number,
@@ -15,46 +14,46 @@ type Props = {
 export const Questions: React.FC<Props> = ({currentPage}) => {
     const dispatch = useDispatch()
     
-    const answers = useSelector((state:RootState)=> state.form.answers)
-    console.log(answers);
+    const answers = useSelector((state:RootState)=> state.form.answers);
+    // const keys = Object.keys(answers);
+    const values = Object.values(answers);
+    // console.log(answers);
+    // console.log(key);
+    // console.log(values);
+    
+    
 
     const firstPage = questions.slice(0, 4);
     const secondPage = questions.slice(4, 7);
     const thirdPage = questions.slice(7);
 
-    const firstPageValues = answers.slice(0, 4);
-    const secondPageValues = answers.slice(4, 7);
-    const thirdPageValues = answers.slice(7);
+    const firstPageValues = values.slice(0, 4);
+    const secondPageValues = values.slice(4, 7);
+    const thirdPageValues = values.slice(7, 10);
 
-    // let test = answers[3]
-    // console.log(Object.keys(test)[0]);
-    // let id = 'fname';
-    // // // const answerIndex = answers.findIndex((answer)=> Object.keys(answer)[0] === id);
-    // const answerArr = answers.filter((answer) => Object.keys(answer)[0] === id)
-    // console.log(answerArr);
-    // let newb = answerArr[0][id] = 'ben';
-
-
-    // console.log(newb);
-
-    // const newAnswer = answers[answerIndex][id]
-    // console.log(answers[answerIndex][id] = 'Hello');
+    // const firstPageKeys = keys.slice(0, 4);
+    // const secondPageKeys = keys.slice(4, 7);
+    // const thirdPageKeys = keys.slice(7, 10);
     
 
     let currentData;
     let currentValues: any;
+    // let currentKeys;
 
     if(currentPage == 1){
         currentData = firstPage;   
         currentValues = firstPageValues;
+        // currentKeys = firstPageKeys;
     } 
     if(currentPage == 2){
         currentData = secondPage;
-        currentValues = secondPageValues;        
+        currentValues = secondPageValues;
+        // currentKeys = secondPageKeys;        
     } 
     if(currentPage == 3){
         currentData = thirdPage;
-        currentValues = thirdPageValues;        
+        currentValues = thirdPageValues; 
+        // currentKeys = thirdPageKeys;       
     } 
     
 
@@ -69,7 +68,7 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
                 placeholder={data.placeholder}
                 bottom={data.bottom}
                 key={data.id}
-                value={currentValues[index][data.id]}
+                value={currentValues[index]}
             />         
         )}
         

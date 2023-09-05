@@ -2,9 +2,10 @@ import {BiSearchAlt2} from 'react-icons/bi'
 import {MdClose} from 'react-icons/md'
 import person from '../assets/searchImage.png'
 import { useSelector } from 'react-redux'
+import { RootState } from '../store/store'
 
 const SearchPoem = () => {
-    const darkMode  = useSelector((state)=>state.darkMode.toggle)
+    const darkMode  = useSelector((state:RootState)=>state.darkMode.toggle)
   return (
     <div className='border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434]'>
         <div className={`flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px] ${darkMode ? 'bg-[#fff]' : ''}`}>
