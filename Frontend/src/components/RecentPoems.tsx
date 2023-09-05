@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 // import GridImg from '../assets/Rectangle 36.png'
 import Poems from '../components/Poems';
 
@@ -12,6 +12,7 @@ const RecentPoems = () => {
             })
         )
     }, [])
+    
 
   return (
     <div className='mx-auto mt-5 font-Inter'>
