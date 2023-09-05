@@ -13,8 +13,7 @@ export type data = {
     "residence": string,
     "lastName": string,
     "backgroundTheme": string,
-    "profileImage": string
-    
+    "userName": string,    
 }
 
 export type state = {
@@ -46,7 +45,7 @@ const initialState: state = {
         "residence": "",
         "lastName": "",
         "backgroundTheme": "",
-        "profileImage": ""
+        "userName": "",
     }
 }
 

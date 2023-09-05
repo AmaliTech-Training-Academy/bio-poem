@@ -7,7 +7,7 @@ type Props = {
 
 export const UserInput: React.FC<Props> = ({currentPage}) => {
   return (
-    <div className='w-4/6 my-4 mx-auto'>
+    <div className='md:w-4/6 xl:w-3/6 my-4 mx-auto'>
         {currentPage >= 4 ? undefined :  
           <img className='w-20 h-20 mx-auto' src={profile}/>
         }

@@ -16,7 +16,7 @@ export const CardTheme = () => {
             {/* Select theme */}
             <div className='flex'>
                 {/* None */}
-                <div className='flex flex-col items-center mr-8' 
+                <div className='flex flex-col items-center mr-8 cursor-pointer' 
                     onClick={()=>{dispatch(changeThemeOption('none'))}}>
                     <div className='w-16 h-14 bg-[#D9D9D98C] rounded-lg flex justify-center items-center mb-2'
                     style={currentOption === 'none' ? {border: '1px solid #F06A30'}: undefined}>
@@ -24,14 +24,16 @@ export const CardTheme = () => {
                     </div>
                     <div className="text-sm font-semibold">None</div>
                 </div>
-                <div className='flex flex-col items-center mr-8' 
+                {/* Solid */}
+                <div className='flex flex-col items-center mr-8 cursor-pointer' 
                     onClick={()=>{dispatch(changeThemeOption('solid'))}}>
                     <div className='w-16 h-14 rounded-lg bg-[#00000075] mb-2'
                     style={currentOption === 'solid' ? {border: '1px solid #F06A30'}: undefined}>
                     </div>
                     <div className="text-sm font-semibold">Solid</div>
                 </div>
-                <div className='flex flex-col items-center mr-8' 
+                {/* Pattern */}
+                <div className='flex flex-col items-center mr-8 cursor-pointer' 
                     onClick={()=>{dispatch(changeThemeOption('pattern'))}}>
                     <div className='w-16 h-14 bg-[#D9D9D98C] rounded-lg flex justify-center items-center mb-2 overflow-hidden'
                     style={currentOption === 'pattern' ? {border: '1px solid #F06A30'}: undefined}>
