@@ -1,4 +1,5 @@
 interface profileInterface {
+    username: string,
     profileImage: string
 }
 
