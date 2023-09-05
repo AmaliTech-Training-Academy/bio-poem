@@ -6,4 +6,4 @@ const profileSchema = new Schema({
     profileImage: String,
 })
 
-export default model<profileInterface>('profile-image', profileSchema)
+export default model<profileInterface>('users', profileSchema)
