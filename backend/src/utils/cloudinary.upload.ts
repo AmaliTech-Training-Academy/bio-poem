@@ -26,4 +26,4 @@ cloudinary.config({
     }
   };
   
-  module.exports = { cloudinaryUploadImage };
+  export default cloudinaryUploadImage;
