@@ -5,8 +5,8 @@ import upload from '../../middleware/multerConfig';
 const uploadProfile = (req: Request, res: Response) => {
   try {
 
-    cloudinary.uploader.upload(req.file.path, function (err: any, result: any) {
-      if (err) {
+    cloudinary.uploader.upload(req.file.path, function (uploadErr: any, result: any) {
+      if (uploadErr) {
         return res.status(500).json({
           success: false,
           message: 'Error uploading profile image',
