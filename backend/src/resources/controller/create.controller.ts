@@ -30,7 +30,6 @@ const createQuestionnaire = async (req: Request, res: Response) => {
 
     // Create a new poem if all checks pass
     const createdQuestionnaire = await poem.create({
-      username,
       firstName,
       adjectives,
       importantRelation,
