@@ -1,17 +1,21 @@
 import GridImg from '../assets/Rectangle 36.png'
 import { VscClose } from 'react-icons/vsc'
 import { BiDownvote, BiUpvote, } from 'react-icons/bi'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../store/store'
+import { setShowModal } from '../store/poemSlice'
 
-type Props ={
-  visible: boolean,
-  onClose: () => void,
-}
 
-const Modal: React.FC<Props> = ({visible, onClose}) => {
+const Modal: React.FC = () => {
+  const visible = useSelector((state:RootState)=>state.poem.showModal)
+  const dispatch = useDispatch()
+
+  // const OnClose = () => dispatch(setShowModal);
 
   const handleClose = (e:any) =>{
     if(e.target.id === 'container')
-    onClose();
+    dispatch(setShowModal())
+    // onClose();
   }
 
   if (!visible) return null;
@@ -25,7 +29,7 @@ const Modal: React.FC<Props> = ({visible, onClose}) => {
             <p className='ml-5 font-medium text-2xl text-black'>This is a modal</p>
           </div>
           
-          <VscClose className='text-xl hover:text-gray-400 cursor-pointer' onClick={onClose}/>
+          <VscClose className='text-xl hover:text-gray-400 cursor-pointer' onClick={()=>dispatch(setShowModal())}/>
         </div>
 
         <div className='flex my-5'>
@@ -34,12 +38,8 @@ const Modal: React.FC<Props> = ({visible, onClose}) => {
                 <div className='bg-black w-[2px] h-full'></div>
                 <div className='w-2 h-2 rounded-full bg-black'></div>
             </div>
-            <p className='ml-16'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Sapiente perspiciatis accusamus molestias, 
-                ipsum ratione provident quis, 
-                repudiandae nam voluptate maiores tempora neque porro quo quibusdam perferendis, 
-                dolorem tempore cum. 
-                Libero iusto unde facilis repellat laboriosam blanditiis consequuntur commodi soluta adipisci!
+            <p className='ml-16'>
+                
               </p>
         </div>
         <div className='flex items-center gap-2 ml-24'>
