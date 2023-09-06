@@ -1,17 +1,20 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 // import GridImg from '../assets/Rectangle 36.png'
 import Poems from '../components/Poems';
 
 const RecentPoems = () => {
     const [images, setImages] = useState([]);
+    const [error, setError] = useState({})
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/albums/1/photos').then(
-            response => response.json().then(data =>{
-                setImages(data);
+        fetch('https://jsonplaceholder.typicode.com/albums/1/photos')
+        .then(response => response.json()
+        .then(data =>{setImages(data);
             })
         )
+        .catch(err => setError(err))
     }, [])
+    
 
   return (
     <div className='mx-auto mt-5 font-Inter'>

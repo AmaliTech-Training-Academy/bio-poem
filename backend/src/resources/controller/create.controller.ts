@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import poem from '../../resources/model/create.model';
+import usersModel from '../../resources/model/users.model';
 
 const createQuestionnaire = async (req: Request, res: Response) => {
   const {
@@ -19,7 +20,7 @@ const createQuestionnaire = async (req: Request, res: Response) => {
 
   try {
     // Check if the username is already taken
-    const similarUsername = await poem.findOne({ username });
+    const similarUsername = await usersModel.findOne({ username });
     if (similarUsername) {
       return res.status(401).json({ message: 'Username already Taken' });
     }

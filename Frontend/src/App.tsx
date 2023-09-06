@@ -4,9 +4,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import { CreatePoem } from './pages/CreatePoem'
 import { useSelector } from 'react-redux'
+import { RootState } from './store/store'
+
 
 function App() {
-  const toggle = useSelector((state)=> state.darkMode.toggle)
+  const toggle = useSelector((state: RootState)=> state.darkMode.toggle)
 
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { MdClose } from 'react-icons/md';
 import person from '../assets/searchImage.png';
@@ -18,20 +18,20 @@ const SearchPoem = () => {
 
   useEffect(() => {
     dispatch(searchPoem());
-    setSearchResults(searchResponse.poems); // Initialize with all data
-  }, [dispatch, searchResponse.poems]);
+    // setSearchResults(searchResponse.poems); // Initialize with all data
+  }, [dispatch]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value.toLowerCase();
 
     // Filter the search results based on the current search term
-    const filteredResults = searchResponse.poems.filter((ele) => {
-      const fullName = `${ele.firstName} ${ele.lastName}`.toLowerCase();
-      return fullName.includes(searchTerm);
-    });
+    // const filteredResults = searchResponse.poems.filter((ele) => {
+    //   const fullName = `${ele.firstName} ${ele.lastName}`.toLowerCase();
+    //   return fullName.includes(searchTerm);
+    // });
 
-    setSearchedPoem(searchTerm);
-    setSearchResults(filteredResults);
+    // setSearchedPoem(searchTerm);
+    // setSearchResults(filteredResults);
   };
 
   return (

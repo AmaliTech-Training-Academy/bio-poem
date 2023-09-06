@@ -2,9 +2,20 @@ import { useEffect, useState } from "react";
 
 import ReactPaginate from 'react-paginate'
 
-const Poems = (props) => {
-    const {data} = props;
-        const [currentItems, setCurrentItems] = useState([]);
+type propsObject = {
+  albumId: number
+  id: number
+  thumbnailUrl: string 
+  title: string 
+  url: string
+}
+
+type propsArray = {
+  data: propsObject[]
+}
+const Poems: React.FC<propsArray> = ({data}) => {
+
+  const [currentItems, setCurrentItems] = useState<propsObject[]>([]);
         const [pageCount, setPageCount] = useState(0);
         const [itemOffset, setItemOffset] = useState(0);
         const itemsPerPage = 6;
@@ -18,15 +29,16 @@ const Poems = (props) => {
       }, [itemOffset,itemsPerPage,data]);
         
       
-        const handlePageClick = (event) => {
+        const handlePageClick = (event: any) => {
           const newOffset = (event.selected * itemsPerPage) % data.length;
           setItemOffset(newOffset);
         };
+      console.log(currentItems);
       
         return (
           <>
           <div className="images">
-            {currentItems.map(image => {
+            {currentItems.map((image: propsObject) => {
                 return <div>
                     <img src={image.url}/>
                 </div>

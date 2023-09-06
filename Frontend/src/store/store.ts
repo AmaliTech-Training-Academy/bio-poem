@@ -5,6 +5,7 @@ import formSlice from "./formSlice"
 import searchSlice from "./searchSlice";
 import themeSlice from "./themeSlice";
 import darkModeSlice from "./darkModeSlice";
+import poemSlice from "./poemSlice";
 
 
 const persistConfig = {
@@ -14,6 +15,7 @@ const persistConfig = {
 
     const rootReducer = combineReducers({
         form: formSlice,
+        poem: poemSlice, 
         search: searchSlice,
         theme: themeSlice,
         darkMode: darkModeSlice,
