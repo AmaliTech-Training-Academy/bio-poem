@@ -46,6 +46,10 @@ const createPoemSchema = new Schema(
     backgroundTheme: {
       type: String,
     },
+    user:{
+      type: Schema.Types.ObjectId,
+      ref: 'user'
+    },
     upvotes: {
       type: Number,
       default: 0,
