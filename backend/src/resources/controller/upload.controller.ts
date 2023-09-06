@@ -1,38 +1,37 @@
 import { Request, Response } from 'express';
-import cloudinaryUploadImage from '../../utils/cloudinary.upload';
-import fs from 'fs';
-import usersModel from '../../resources/model/users.model';
-import path from 'path';
+import cloudinary from '../../utils/cloudinary.upload';
+import upload from '../../middleware/multerConfig';
 
-const uploadImage = async (req: Request, res: Response) => {
-  const { username } = req.params;
-
+const uploadProfile = (req: Request, res: Response) => {
   try {
-    const uploader = async (filePath: string) => cloudinaryUploadImage(filePath); // Make the uploader function asynchronous
-
-    const urls = "";
-    const files = req.files; 
-
-    for (const file of files) { 
-      const newPath = await uploader(path);
-      urls.push(newPath);
-      fs.unlinkSync(path);
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'No file uploaded',
+      });
     }
 
-    // Assuming you want to update the user's profile with the image URLs
-    const user = await usersModel.findById(username);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
+    cloudinary.uploader.upload(req.file.path, function (err: any, result: any) {
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: 'Error',
+        });
+      }
 
-    user.profileImage = urls;
-    await user.save();
-
-    res.status(200).json({ success: true, message: 'Images uploaded successfully', urls });
+      res.status(200).json({
+        success: true,
+        message: 'Image Uploaded Successfully',
+        data: result,
+      });
+    });
   } catch (error) {
-    console.error('Error uploading images:', error);
-    res.status(500).json({ success: false, message: 'An error occurred while uploading images' });
+    console.error('Error uploading image:', error);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while uploading the image',
+    });
   }
 };
 
-export default uploadImage;
+export default uploadProfile;
