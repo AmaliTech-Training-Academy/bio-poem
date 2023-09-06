@@ -8,6 +8,9 @@ const recentPoems = async (req: Request, res: Response) => {
   const itemsPerPage = parseInt(req.query.limit as string, 10) || 12;
 
   try {
+
+    const user = await usersModel.find()
+
     // Find recent poems and populate the user data
     const recentPoems = await poem
       .find({})
@@ -19,7 +22,10 @@ const recentPoems = async (req: Request, res: Response) => {
       })
       .exec();
 
-    res.status(200).json({ success: true, recentPoems });
+      console.log(recentPoems);
+      
+
+    res.status(200).json({ success: true, recentPoems, user: user });
   } catch (error) {
     console.error('Error fetching recent poems:', error);
     res
