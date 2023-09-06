@@ -1,3 +1,69 @@
+import React, { useState } from 'react';
+import { LiaArrowLeftSolid, LiaArrowRightSolid } from 'react-icons/lia';
+import Modal from '../components/Modal';
+import { useDispatch } from 'react-redux';
+import { poems } from '../data';
+import { setShowModal } from '../store/poemSlice';
+
+const Carousel = () => {
+  const dispatch = useDispatch()
+
+
+  
+  const cardWidth = 700; 
+  const cardMargin = 50; 
+  const cardsPerPage = 4;
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const slideLeft = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const slideRight = () => {
+    const maxPage = Math.ceil(poems.length / cardsPerPage) - 1;
+    if (currentPage < maxPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const visibleCards = poems.slice(currentPage * cardsPerPage, (currentPage + 1) * cardsPerPage);
+
+  return (
+    <div className='mt-5 w-11/12 mr-auto'>
+      <h1 className='text-2xl font-medium py-7'>Popular Poems</h1>
+      <div className='relative flex items-center'>
+        <button onClick={slideLeft} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center mr-5'>
+          <LiaArrowLeftSolid />
+        </button>
+        <div id='slider' className='flex w-full h-full overflow-x-hidden whitespace-nowrap scroll-snap-type-x mandatory scrollbar-hide'>
+          {visibleCards.map((poem, index) => (
+            <div onClick={() => dispatch(setShowModal())} key={index} className='inline-block border-4 border-[#F06A30] rounded-md' style={{ marginRight: cardMargin, scrollSnapAlign: 'start' }}>
+              {/* Your card content here */}
+              <img className='h-[163px]' src={poem.profilePic} alt='' style={{ width: cardWidth }} />
+              <div className='text-center my-5'>
+                <h3>{poem.name}</h3>
+                <p>Bio Poem</p>
+              </div>
+            </div>
+            
+          ))}
+          <Modal />
+        </div>
+        <button onClick={slideRight} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center ml-5'>
+          <LiaArrowRightSolid />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Carousel;
+
+
+
+
 // import { LiaArrowLeftSolid } from 'react-icons/lia'
 // import { LiaArrowRightSolid } from 'react-icons/lia'
 // // import GridImg from '../assets/Rectangle 36.png'
@@ -79,61 +145,3 @@
 
 // export default Carousel
 
-import React, { useState } from 'react';
-import { LiaArrowLeftSolid, LiaArrowRightSolid } from 'react-icons/lia';
-import Modal from '../components/Modal';
-import { poems } from '../data';
-
-const Carousel = () => {
-  const [showModal, setShowModal] = useState(false);
-  const handleOnClose = () => setShowModal(false);
-  const cardWidth = 700; 
-  const cardMargin = 50; 
-  const cardsPerPage = 4;
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const slideLeft = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const slideRight = () => {
-    const maxPage = Math.ceil(poems.length / cardsPerPage) - 1;
-    if (currentPage < maxPage) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const visibleCards = poems.slice(currentPage * cardsPerPage, (currentPage + 1) * cardsPerPage);
-
-  return (
-    <div className='mt-5 w-11/12 mr-auto'>
-      <h1 className='text-2xl font-medium py-7'>Popular Poems</h1>
-      <div className='relative flex items-center'>
-        <button onClick={slideLeft} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center mr-5'>
-          <LiaArrowLeftSolid />
-        </button>
-        <div id='slider' className='flex w-full h-full overflow-x-hidden whitespace-nowrap scroll-snap-type-x mandatory scrollbar-hide'>
-          {visibleCards.map((poem, index) => (
-            <div onClick={() => setShowModal(true)} key={index} className='inline-block border-4 border-[#F06A30] rounded-md' style={{ marginRight: cardMargin, scrollSnapAlign: 'start' }}>
-              {/* Your card content here */}
-              <img className='h-[163px]' src={poem.profilePic} alt='' style={{ width: cardWidth }} />
-              <div className='text-center my-5'>
-                <h3>{poem.name}</h3>
-                <p>Bio Poem</p>
-              </div>
-            </div>
-            
-          ))}
-          <Modal onClose={handleOnClose} visible={showModal} />
-        </div>
-        <button onClick={slideRight} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center ml-5'>
-          <LiaArrowRightSolid />
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export default Carousel;
