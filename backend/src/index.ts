@@ -13,6 +13,7 @@ import validateEnv from './utils/validateEnv';
 import fetchAllPoems from './resources/router/getAll.router';
 import recentPoems from './resources/router/recentPoem.router';
 import uploadImage from './resources/router/upload.router';
+import username from './resources/router/user.router'
 
 validateEnv();
 
@@ -64,6 +65,7 @@ class App {
       fetchAllPoems,
       recentPoems,
       uploadImage,
+      username
     );
   }
 
