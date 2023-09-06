@@ -31,39 +31,38 @@ const SideBar = () => {
         if(section==='search'){
         dispatch(setOpenSearch())
 
-        }
-        else if(section==='/'){
+        }else if(section==='/'){
             navigate('/')
             dispatch(resetSearchState())
-        }
-        else if(section === '/create'){
+        }else if(section === '/create'){
             navigate('/create')
             dispatch(resetSearchState())
         }
       };
+      
 
   return (
     <div className='min-h-screen border-r border-gray-400 border-r-1 md:px-4 xl:pr-14 pl-6 pt-10 pb-4 w-3/12' id='sidebar'>
         {toggle ? <img src={darkModeLogo} alt='logo' className='m-auto'/>: <img src={logo} alt='logo' className='m-auto'/>}
         <div className='text-2xl font-normal mt-[114px] w-fit m-auto' >
 
-                <div className={`flex items-center cursor-pointer py-2.5 ${activeSection === '/' ? `border-l-4 border-${initialBorderColor}-500` : ''}`}
+                <div className={`flex items-center cursor-pointer py-2.5 ${activeSection === '/' && !openSearch ? `border-l-4 border-${initialBorderColor}-500` : ''}`}
                     onClick={() => handleSectionClick('/')}>
                     <LiaHomeSolid className='lg:ml-3 xl:ml-5'/>
                 {!openSearch && <p className='lg:ml-5 ml-11'>Home</p>}
                 
                 </div>
 
-                <div className={`flex items-center my-[55px] cursor-pointer py-2.5 ${activeSection === 'search' ? 'border-l-4 border-orange-500' : ''}`}
+                <div className={`flex items-center my-[55px] cursor-pointer py-2.5 ${activeSection === 'search' || openSearch ? 'border-l-4 border-orange-500' : ''}`}
                     onClick={() => handleSectionClick('search')}>
                     <BiSearchAlt2 className='lg:ml-3 ml-5'/>
                     {!openSearch && <p className='lg:ml-5 ml-11'>Search</p>}
                 </div>
 
-                <div className={`flex items-center cursor-pointer py-2.5 ${activeSection === '/create' ? `border-l-4 border-${initialBorderColor}-500` : ''}`}
+                <div className={`flex items-center cursor-pointer py-2.5 ${activeSection === '/create' && !openSearch? `border-l-4 border-${initialBorderColor}-500` : ''}`}
                 onClick={() => handleSectionClick('/create')}>
                     <BiFolderPlus className='lg:ml-3 ml-5'/>
-                {!openSearch && <p className='lg:ml-5 ml-11'>Create Poem</p >}
+                {!openSearch && <p className='lg:ml-5 ml-11 w-max'>Create Poem</p >}
                 </div>
         </div>
 
