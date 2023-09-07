@@ -19,7 +19,7 @@ type poem = {
   "lastName": string,
   "backgroundTheme": string,
   "userName": string,
-  "_id": string ,
+  "_id": string    
 }
 
 const SearchPoem = () => {

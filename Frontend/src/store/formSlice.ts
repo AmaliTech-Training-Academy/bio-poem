@@ -14,7 +14,6 @@ export type data = {
     "residence": string,
     "lastName": string,
     "backgroundTheme": string,
-    "userName": string,    
 }
 
 export type state = {
@@ -46,7 +45,6 @@ const initialState: state = {
         "residence": "",
         "lastName": "",
         "backgroundTheme": "",
-        "userName": "",
     }
 }
 
@@ -86,11 +84,11 @@ const formSlice = createSlice ({
     }
 })
 
-export const submitAnswers = createAsyncThunk<void, void, {}>("answers/submitAnswers", async (_, thunkAPI:any) => {
-    const poem = thunkAPI.getState().form.answers;
+export const submitAnswers = createAsyncThunk<void, data, {}>("answers/submitAnswers", async (answers:data) => {
     try {
-        const response = await submitPoem(poem);
-        console.log(response, poem);
+        const response = await submitPoem(answers);
+        console.log(response, answers);
+        return response;
     } catch (error) {
         console.error(error)
         throw error
