@@ -65,11 +65,6 @@ export const colors = [
     },
     {
         id: 17,
-        color: '#FFFFFF'
-    },
-    {
-        id: 18,
         color: '#00000075'
-    }
-
+    },
 ]

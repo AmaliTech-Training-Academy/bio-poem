@@ -1,12 +1,17 @@
 import SideBar from '../components/SideBar'
 import SearchPoem from '../components/SearchPoem'
 import MainContent from '../components/MainContent'
-import { useSelector } from 'react-redux'
-import { RootState } from '../store/store'
+import { resetState } from '../store/formSlice'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { resetTheme } from '../store/themeSlice'
 
 const Homepage = () => {
-  const openSearch = useSelector((state:RootState)=>state.search.openSearch)
+  const dispatch = useAppDispatch();
 
+  const openSearch = useAppSelector((state)=>state.search.openSearch)
+  dispatch(resetState())
+  dispatch(resetTheme())
+  
   return (
     <div className='flex w-full'>
         <SideBar/>

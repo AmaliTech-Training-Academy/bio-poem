@@ -38,10 +38,8 @@ const Poems: React.FC<propsArray> = ({data}) => {
         return (
           <>
           <div className="images">
-            {currentItems.map((image: propsObject) => {
-                return <div>
-                    <img src={image.url}/>
-                </div>
+            {currentItems.map((image: propsObject, index) => {
+                return <div key={index}><img src={image.url} /></div>
             })}
           </div>
             <ReactPaginate

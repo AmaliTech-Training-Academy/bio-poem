@@ -80,6 +80,19 @@ const formSlice = createSlice ({
         resetState: (state:state) => {
             state.page = 1;
             state.total = 4
+            state.answers = {
+                "firstName":"",
+                "adjectives": "",
+                "importantRelation": "",
+                "loves": "",
+                "feelings": "",
+                "fears": "",
+                "accomplishments": "",
+                "expectations": "",
+                "residence": "",
+                "lastName": "",
+                "backgroundTheme": "",
+            }
         }
     }
 })

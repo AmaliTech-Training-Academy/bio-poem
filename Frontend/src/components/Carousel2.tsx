@@ -7,8 +7,7 @@ import GridImg from '../assets/Rectangle 36.png'
 // import { poems } from '../data';
 import Modal from './Modal';
 import { setShowModal } from '../store/poemSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import { useState, useEffect } from 'react';
 import { searchPoem } from '../store/searchSlice';
 
@@ -32,8 +31,8 @@ function SampleNextArrow({ onClick }) {
   }
 
 const Carousel2 = () => {
-    const dispatch = useDispatch();
-    const searchResponse = useSelector((state: RootState) => state.search.response);
+    const dispatch = useAppDispatch();
+    const searchResponse = useAppSelector((state) => state.search.response);
     const [poems, setPoems] = useState([])
     console.log('response',searchResponse)
     console.log(poems);
