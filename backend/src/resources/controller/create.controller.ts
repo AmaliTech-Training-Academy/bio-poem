@@ -19,9 +19,15 @@ const createQuestionnaire = async (req: Request, res: Response) => {
 
   try {
     const { username } = req.body; // Get the username from the request body
+    const user = await usersModel.findOne({ username });
+
+    if (!user)
+      return res
+        .status(401)
+        .json({ message: 'Provide a username to create a poem' });
 
     // Check if a poem already exists for this user
-    const existingPoem = await poem.findOne({ username });
+    const existingPoem = await usersModel.findOne({ username });
 
     if (existingPoem)
       return res

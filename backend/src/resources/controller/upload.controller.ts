@@ -7,9 +7,12 @@ const uploadProfile = async (req: Request, res: Response) => {
     const { username } = req.params;
 
     // if (!req.file) return res.status(400).json({ message: 'No file provided' });
+    console.log('req.files', req.files);
     
     // Upload the image to Cloudinary
     const result = await cloudinary.uploader.upload(req.file.path);
+
+    
 
     // Check if the user exists
     const user = await usersModel.findById(username);
