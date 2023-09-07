@@ -1,5 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { payload } from '../components/FormSection'
+import { submitPoem } from "../submitPoem";
 
 export type data = {
     "firstName":string,
@@ -74,9 +75,26 @@ const formSlice = createSlice ({
                 backgroundTheme: theme
             }
         },
-        
+        submitPoemAnswers: (state: state) => {
+            state.page = 5;
+            state.total = 5;
+        },
+        resetState: (state:state) => {
+            state.page = 1;
+            state.total = 4
+        }
     }
 })
 
-export const { forward, back, updateAnswers, selectTheme  } = formSlice.actions
+export const submitAnswers = createAsyncThunk<void, void, {}>("answers/submitAnswers", async (_, thunkAPI:any) => {
+    const poem = thunkAPI.getState().form.answers;
+    try {
+        const response = await submitPoem(poem);
+        console.log(response, poem);
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+})
+export const { forward, back, updateAnswers, selectTheme, submitPoemAnswers, resetState } = formSlice.actions
 export default formSlice.reducer;

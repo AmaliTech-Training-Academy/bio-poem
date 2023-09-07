@@ -12,7 +12,6 @@ const RecentPoems = () => {
         .then(data =>{setImages(data);
             })
         )
-        .catch(err => setError(err))
     }, [])
     
 
