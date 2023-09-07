@@ -9,7 +9,6 @@ import poemSlice from "./poemSlice";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
 
-
 const persistConfig = {
     key: 'root',
     storage,
@@ -30,7 +29,6 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof rootReducer>; 
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
 type DispatchFunc = () => AppDispatch
 export const useAppDispatch: DispatchFunc = useDispatch

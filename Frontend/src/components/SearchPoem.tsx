@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { MdClose } from 'react-icons/md';
 import person from '../assets/searchImage.png';
-import { useDispatch, useSelector } from 'react-redux';
 import { searchPoem } from '../store/searchSlice';
-import { RootState } from '../store/store';
+import { useAppDispatch, useAppSelector  } from '../store/store';
 import { setShowModal } from '../store/poemSlice';
 
 type poem = {
@@ -24,16 +23,16 @@ type poem = {
 }
 
 const SearchPoem = () => {
+  const [searchedPoem, setSearchedPoem] = useState<string>('')
+  const [searchResults, setSearchResults] = useState([])
   const [fetchPoems, setFetchPoems] = useState([])
   const [displayedDivs, setDisplayedDivs] = useState(5);
   const [showMore, setShowMore] = useState<boolean>(true)
-  const [searchedPoem, setSearchedPoem] = useState<string>('');
-  const [searchResults, setSearchResults] = useState([]); // Store filtered results
 
-  const searchResponse = useSelector((state: RootState) => state.search.response);
-  const darkMode = useSelector((state: RootState) => state.darkMode.toggle)
+  const searchResponse = useAppSelector((state) => state.search.response);
+  const darkMode = useAppSelector((state) => state.darkMode.toggle)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(searchPoem())
@@ -44,7 +43,7 @@ const SearchPoem = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedPoem( e.target.value.toLowerCase()) 
-    const filteredResults = fetchPoems.filter((ele: poem)=>{
+    const filteredResults = fetchPoems.filter((ele:poem)=>{
     const fullName = `${ele.firstName} ${ele.lastName}`.toLowerCase()
     return fullName.includes(searchedPoem)      
   })   
@@ -58,7 +57,7 @@ const SearchPoem = () => {
   };
 
   const removeSearchItem = (id:string) => {
-    const updatedPoems = searchResults.filter((poem: poem)=>poem._id !==id)
+    const updatedPoems = searchResults.filter((poem:poem)=>poem._id !==id)
     setSearchResults(updatedPoems)
     setDisplayedDivs(displayedDivs - 1)
   };
@@ -126,7 +125,7 @@ const SearchPoem = () => {
           </>
           ):(
             <>
-              {searchResults.slice(0,displayedDivs).map((ele: poem) => (
+              {searchResults.slice(0,displayedDivs).map((ele:poem) => (
             <div className="flex gap-x-28 mb-[30px]" key={ele._id}>
               <div className="flex items-center">
                 <img src={person} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
