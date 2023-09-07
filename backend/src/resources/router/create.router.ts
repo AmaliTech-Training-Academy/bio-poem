@@ -1,9 +1,8 @@
-import express from 'express'
-import createQuestionnaire from '../controller/create.controller'
+import express from 'express';
+import createQuestionnaire from '../controller/create.controller';
 
-const router = express.Router()
+const router = express.Router();
 
-router.post('/create-poem', createQuestionnaire)
+router.post('/:id/create-poem', createQuestionnaire);
 
-export default router
-
+export default router;

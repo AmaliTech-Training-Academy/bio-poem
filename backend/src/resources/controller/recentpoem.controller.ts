@@ -25,7 +25,7 @@ const recentPoems = async (req: Request, res: Response) => {
       console.log(recentPoems);
       
 
-    res.status(200).json({ success: true, recentPoems, user: user });
+    res.status(200).json({ success: true, recentPoems });
   } catch (error) {
     console.error('Error fetching recent poems:', error);
     res
