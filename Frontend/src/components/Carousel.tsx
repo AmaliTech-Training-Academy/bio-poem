@@ -13,7 +13,7 @@ const Carousel = () => {
                     <div className='group h-[163px] w-[183px] [perspective:1000px] '>
                         <div className='relative h-full w-full rounded-xl shadow-xl transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]'>
                             <div className='absolute inset-0'>
-                              <img className='h-full w-full rounded-xl' src={GridImg} />
+                              {/* <img className='h-full w-full rounded-xl' src={GridImg} /> */}
                                 <div className='text-center [backface-visibility:hidden]'>
                                     <h3>Mat redman</h3>
                                     <p className='text-[#F06A30] cursor-pointer'>Bio Poem</p>
