@@ -3,16 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 interface poemState {
     poems: []
     status: string
-    showModal:boolean
+    enableModal:boolean
     poemData: []
 }
 
 const initialState:poemState = {
     poems: [],
     status: 'idle',
-    showModal: false,
+    enableModal: false,
     poemData: [],
-
 }
 
 const poemSlice = createSlice({
@@ -20,7 +19,7 @@ const poemSlice = createSlice({
     initialState,
     reducers:{
         setShowModal: (state)=>{
-            state.showModal = !state.showModal
+            state.enableModal = !state.enableModal
         },
         setPoemData: (state, action) => {
             state.poemData = action.payload;

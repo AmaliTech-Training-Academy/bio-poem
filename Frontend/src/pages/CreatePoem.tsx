@@ -8,7 +8,7 @@ import SearchPoem from '../components/SearchPoem'
 export const CreatePoem = () => {
   const openSearch = useSelector((state:RootState)=>state.search.openSearch)
   return (
-    <div className='flex w-full '>
+    <div className='flex overflow-x-hidden'>
         <SideBar/>
         {openSearch && <SearchPoem/>}
         {/* Main Content */}

@@ -11,10 +11,11 @@ import { RootState } from './store/store'
 
 function App() {
   const toggle = useSelector((state: RootState)=> state.darkMode.toggle)
+  const showModal = useSelector((state:RootState)=>state.poem.enableModal)
 
 
   return (
-    <div className={`${toggle ? 'bg-black text-[#fff]': ''}`}>
+    <div className={`${toggle ? 'bg-black text-[#fff]': ''} ${showModal ? 'overflow-y-hidden' : ''}`}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Homepage/>}/>
