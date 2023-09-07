@@ -1,14 +1,10 @@
-
-import { LiaArrowLeftSolid } from 'react-icons/lia'
-import { LiaArrowRightSolid } from 'react-icons/lia'
+import { useState } from 'react';
+import { LiaArrowLeftSolid, LiaArrowRightSolid } from 'react-icons/lia';
+import Modal from '../components/Modal';
+import { useDispatch } from 'react-redux';
+import { poems } from '../data';
 import { setShowModal } from '../store/poemSlice';
 // import GridImg from '../assets/Rectangle 36.png'
-import Modal from '../components/Modal'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { poems } from '../data'
-
-
 
 const Carousel = () => {
   const [displays, setDisplay] = useState(4)
