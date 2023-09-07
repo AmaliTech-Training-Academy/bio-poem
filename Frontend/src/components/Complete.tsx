@@ -1,12 +1,12 @@
 import medal from '../assets/star-tick.png'
 import { useNavigate } from "react-router"
 import { resetState } from '../store/formSlice'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../store/store'
 
 
 export const Complete = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const handleCompletion = (): void => {
         dispatch(resetState())
