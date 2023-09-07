@@ -1,52 +1,10 @@
-import { useState } from 'react';
-import { LiaArrowLeftSolid, LiaArrowRightSolid } from 'react-icons/lia';
-import Modal from '../components/Modal';
-import { useDispatch } from 'react-redux';
-import { poems } from '../data';
-import { setShowModal } from '../store/poemSlice';
-// import GridImg from '../assets/Rectangle 36.png'
 
 const Carousel = () => {
-  const [displays, setDisplay] = useState(4)
-  const dispatch = useDispatch()
-
-    const slideLeft = () => {
-        var slider = document.getElementById('slider')
-        slider.scrollLeft = slider.scrollLeft - 500;
-    }
-
-    const slideright = () => {
-        var slider = document.getElementById('slider')
-        slider.scrollLeft = slider.scrollLeft + 500;
-    }
+  
 
   return (
     <div className='mt-5 w-11/12 mr-auto'>
         <h1 className='text-2xl font-medium py-7'>Popular Poems</h1>
-        <div className='relative flex items-center '>
-        <button onClick={slideLeft} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center mr-5'><LiaArrowLeftSolid/></button>
-            {/* <div id='slider' className='flex w-full  h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide'> */}
-            {poems.slice(0,displays).map((poem) => (
-              
-                <div id='slider' className=' w-full  h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide mx-9' key={poem.id}>
-                  <img src={poem.profilePic} alt="" />
-                  <p>{poem.name}</p>
-
-                </div> 
-                
-                    
-            ))}
-                <Modal/>
-            {/* </div> */}
-            <button onClick={slideright} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center ml-5'><LiaArrowRightSolid/></button>
-        </div>
-
-        {/* <div className='relative flex items-center'> */}
-            {/* <button className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center mr-5'><LiaArrowLeftSolid/></button> */}
-                
-                {/* <div onClick={() => dispatch(setShowModal())} key={index} className=''> */}
-                    {/* Your card content here */}
-                {/* </div> */}
                 
 
                 
