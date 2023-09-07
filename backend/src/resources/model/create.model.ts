@@ -48,7 +48,7 @@ const createPoemSchema = new Schema(
     },
     user:{
       type: Schema.Types.ObjectId,
-      ref: 'user',
+      ref: 'users',
       required: true
     },
     upvotes: {

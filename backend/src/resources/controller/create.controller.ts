@@ -18,24 +18,32 @@ const createQuestionnaire = async (req: Request, res: Response) => {
   } = req.body;
 
   try {
-    const { username } = req.body; // Get the username from the request body
-    const user = await usersModel.findOne({ username });
+    // const { username } = req.body; // Get the username from the request body
+    // // console.log('username', username);
+    const { id } = req.params;
+    // Check if a user with this username exists
+    const user = await usersModel.findById(id);
+    console.log('user1', user);
 
-    if (!user)
+    if (!user) {
       return res
         .status(401)
-        .json({ message: 'Provide a username to create a poem' });
+        .json({ message: 'User does not exist. Provide a valid username.' });
+    }
 
     // Check if a poem already exists for this user
-    const existingPoem = await usersModel.findOne({ username });
+    const existingPoem = await poem.findOne({ user: user._id });
 
-    if (existingPoem)
-      return res
-        .status(401)
-        .json({ message: 'Poem for this user already exists' });
+    if (existingPoem) {
+      return res.status(401).json({
+        message:
+          'A poem for this user already exists. You cannot create another.',
+      });
+    }
 
-    // Create a new poem if all checks pass
+    // Create a new poem associated with the user
     const createdQuestionnaire = await poem.create({
+      user: user._id, // Associate the poem with the user
       firstName,
       adjectives,
       importantRelation,
