@@ -3,8 +3,9 @@ import cloudinary from '../../utils/cloudinary.upload';
 import usersModel from '../../resources/model/users.model';
 
 const uploadProfile = async (req: Request, res: Response) => {
+
   try {
-    const file = req.files.image;
+    const file = req.files?.image as any;
 
     if (!file) {
       return res.status(400).json({ message: 'No file provided' });
