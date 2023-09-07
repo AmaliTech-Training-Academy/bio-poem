@@ -4,6 +4,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import morgan = require('morgan');
+import fileUpload from 'express-fileupload';
 import createQuestionnaireRouter from './resources/router/create.router';
 import upvote from './resources/router/upvote.router';
 import downvote from './resources/router/downvote.route';
@@ -13,7 +14,7 @@ import validateEnv from './utils/validateEnv';
 import fetchAllPoems from './resources/router/getAll.router';
 import recentPoems from './resources/router/recentPoem.router';
 import uploadImage from './resources/router/upload.router';
-import username from './resources/router/user.router'
+import username from './resources/router/user.router';
 
 validateEnv();
 
@@ -46,6 +47,12 @@ class App {
   private configureMiddleware(): void {
     this.app.use(cors());
     this.app.use(express.json());
+    this.app.use(
+      fileUpload({
+        useTempFiles: true,
+        limits: { fileSize: 50 * 2024 * 1024 },
+      }),
+    );
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(morgan('dev'));
     this.app.use(errorMiddleware);
@@ -65,7 +72,7 @@ class App {
       fetchAllPoems,
       recentPoems,
       uploadImage,
-      username
+      username,
     );
   }
 
