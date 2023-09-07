@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { LiaArrowLeftSolid, LiaArrowRightSolid } from 'react-icons/lia';
 import Modal from '../components/Modal';
 import { useDispatch } from 'react-redux';

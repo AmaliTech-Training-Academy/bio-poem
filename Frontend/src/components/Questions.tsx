@@ -1,11 +1,10 @@
 import { FormSection } from "./FormSection"
 import { BsArrowLeft } from "react-icons/bs"
 import { BsArrowRight } from "react-icons/bs"
-import { forward, back, submitPoemAnswers } from "../store/formSlice"
+import { forward, back, submitPoemAnswers, submitAnswers } from "../store/formSlice"
 import { questions } from "../questionsData"
 import { CardTheme } from "./CardTheme"
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store/store'
+import { useAppDispatch, useAppSelector } from '../store/store'
 import { Complete } from "./Complete"
 
 
@@ -14,18 +13,20 @@ type Props = {
     }
 
 export const Questions: React.FC<Props> = ({currentPage}) => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     
-    const answers = useSelector((state:RootState)=> state.form.answers);
+    const answers = useAppSelector((state)=> state.form.answers);
     // const currentStep = useSelector((state:RootState)=> state.form.total);
-
     // const keys = Object.keys(answers);
     const values = Object.values(answers);
     // console.log(answers);
     // console.log(key);
     // const current = document.querySelector(".container-stepper")
     // console.log(current);
-    
+    const handleSubmit = () => {
+        dispatch(submitPoemAnswers())
+        dispatch(submitAnswers(answers))
+    }
     
 
     const firstPage = questions.slice(0, 4);
@@ -94,7 +95,7 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
             { currentPage === 4 ? ( 
                 <button 
                 className="p-[10px] bg-customOrange text-white rounded-lg"
-                onClick={()=>dispatch(submitPoemAnswers())}>Submit</button>
+                onClick={handleSubmit}>Submit</button>
             ) :
                 <div className="flex items-center p-[10px] cursor-pointer"
                     onClick={()=>{dispatch(forward())}}

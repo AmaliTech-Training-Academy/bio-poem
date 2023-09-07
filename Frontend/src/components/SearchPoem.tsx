@@ -7,15 +7,31 @@ import { searchPoem } from '../store/searchSlice';
 import { RootState } from '../store/store';
 import { setShowModal } from '../store/poemSlice';
 
+type poem = {
+  "firstName":string,
+  "adjectives": string,
+  "importantRelation": string,
+  "loves": string,
+  "feelings": string,
+  "fears": string,
+  "accomplishments": string,
+  "expectations": string,
+  "residence": string,
+  "lastName": string,
+  "backgroundTheme": string,
+  "userName": string,
+  "_id": string    
+}
+
 const SearchPoem = () => {
-  const [searchedPoem, setSearchedPoem] = useState<string>('')
-  const [searchResults, setSearchResults] = useState([])
   const [fetchPoems, setFetchPoems] = useState([])
   const [displayedDivs, setDisplayedDivs] = useState(5);
   const [showMore, setShowMore] = useState<boolean>(true)
+  const [searchedPoem, setSearchedPoem] = useState<string>('');
+  const [searchResults, setSearchResults] = useState([]); // Store filtered results
 
+  const searchResponse = useSelector((state: RootState) => state.search.response);
   const darkMode = useSelector((state: RootState) => state.darkMode.toggle)
-  const searchResponse = useSelector((state: RootState) => state.search.response)
 
   const dispatch = useDispatch()
 
@@ -28,7 +44,7 @@ const SearchPoem = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedPoem( e.target.value.toLowerCase()) 
-    const filteredResults = fetchPoems.filter((ele)=>{
+    const filteredResults = fetchPoems.filter((ele: poem)=>{
     const fullName = `${ele.firstName} ${ele.lastName}`.toLowerCase()
     return fullName.includes(searchedPoem)      
   })   
@@ -36,13 +52,13 @@ const SearchPoem = () => {
   };
   
   const removeItem = (id:string) =>{
-    const updatedPoems = fetchPoems.filter((poem)=>poem._id !==id)
+    const updatedPoems = fetchPoems.filter((poem: poem)=>poem._id !==id)
     setFetchPoems(updatedPoems)
     setDisplayedDivs(displayedDivs - 1)
   };
 
   const removeSearchItem = (id:string) => {
-    const updatedPoems = searchResults.filter((poem)=>poem._id !==id)
+    const updatedPoems = searchResults.filter((poem: poem)=>poem._id !==id)
     setSearchResults(updatedPoems)
     setDisplayedDivs(displayedDivs - 1)
   };
@@ -87,8 +103,8 @@ const SearchPoem = () => {
       ) : (
         <>
           {searchResults.length === 0 ? (<>
-            {fetchPoems.slice(0,displayedDivs).map((ele) => (
-            <div className="flex gap-x-28 mb-[30px]" key={ele.id}>
+            {fetchPoems.slice(0,displayedDivs).map((ele:poem) => (
+            <div className="flex gap-x-28 mb-[30px]" key={ele._id}>
               <div className="flex items-center">
                 <img src={person} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
                 <p className={`ml-5 font-medium ${darkMode ? 'text-[#fff]' : ''}`}>
@@ -110,8 +126,8 @@ const SearchPoem = () => {
           </>
           ):(
             <>
-              {searchResults.slice(0,displayedDivs).map((ele) => (
-            <div className="flex gap-x-28 mb-[30px]" key={ele.id}>
+              {searchResults.slice(0,displayedDivs).map((ele: poem) => (
+            <div className="flex gap-x-28 mb-[30px]" key={ele._id}>
               <div className="flex items-center">
                 <img src={person} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
                 <p className={`ml-5 font-medium ${darkMode ? 'text-[#fff]' : ''}`}>

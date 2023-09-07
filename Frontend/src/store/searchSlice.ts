@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
+import { data } from "./formSlice"
 
 interface SearchState {
     openSearch: boolean,
@@ -15,7 +16,12 @@ const initialState: SearchState = {
     response: null,
 }
 
-export const searchPoem = createAsyncThunk('search/get', async () => {
+type PoemData = {
+    success: boolean;
+    poems: data[]
+}
+
+export const searchPoem = createAsyncThunk<PoemData, void, {}>('search/get', async () => {
     try {
         const response = await axios.get('https://bio-poem.onrender.com/api/v1/poems/all-poems')
         return response.data
