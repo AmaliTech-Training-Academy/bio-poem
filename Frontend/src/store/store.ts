@@ -6,6 +6,7 @@ import searchSlice from "./searchSlice";
 import themeSlice from "./themeSlice";
 import darkModeSlice from "./darkModeSlice";
 import poemSlice from "./poemSlice";
+import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
 
 const persistConfig = {
@@ -28,3 +29,7 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof rootReducer>; 
+export type AppDispatch = typeof store.dispatch
+type DispatchFunc = () => AppDispatch
+export const useAppDispatch: DispatchFunc = useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

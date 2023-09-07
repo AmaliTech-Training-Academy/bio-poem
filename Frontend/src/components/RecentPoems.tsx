@@ -4,7 +4,7 @@ import Poems from '../components/Poems';
 
 const RecentPoems = () => {
     const [images, setImages] = useState([]);
-
+    const [error, setError] = useState({})
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/albums/1/photos')

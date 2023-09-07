@@ -1,26 +1,32 @@
 import { FormSection } from "./FormSection"
 import { BsArrowLeft } from "react-icons/bs"
 import { BsArrowRight } from "react-icons/bs"
-import { forward, back } from "../store/formSlice"
+import { forward, back, submitPoemAnswers, submitAnswers } from "../store/formSlice"
 import { questions } from "../questionsData"
 import { CardTheme } from "./CardTheme"
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store/store'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { Complete } from "./Complete"
+
 
 type Props = {
     currentPage: number,
     }
 
 export const Questions: React.FC<Props> = ({currentPage}) => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     
-    const answers = useSelector((state:RootState)=> state.form.answers);
+    const answers = useAppSelector((state)=> state.form.answers);
+    // const currentStep = useSelector((state:RootState)=> state.form.total);
     // const keys = Object.keys(answers);
     const values = Object.values(answers);
     // console.log(answers);
     // console.log(key);
-    // console.log(values);
-    
+    // const current = document.querySelector(".container-stepper")
+    // console.log(current);
+    const handleSubmit = () => {
+        dispatch(submitPoemAnswers())
+        dispatch(submitAnswers(answers))
+    }
     
 
     const firstPage = questions.slice(0, 4);
@@ -38,22 +44,22 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
 
     let currentData;
     let currentValues: any;
-    // let currentKeys;
+
+    // if(currentPage === 5){
+    //     return <></>
+    // }
 
     if(currentPage == 1){
         currentData = firstPage;   
         currentValues = firstPageValues;
-        // currentKeys = firstPageKeys;
     } 
     if(currentPage == 2){
         currentData = secondPage;
         currentValues = secondPageValues;
-        // currentKeys = secondPageKeys;        
     } 
     if(currentPage == 3){
         currentData = thirdPage;
         currentValues = thirdPageValues; 
-        // currentKeys = thirdPageKeys;       
     } 
     
 
@@ -71,9 +77,13 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
                 value={currentValues[index]}
             />         
         )}
-        
+
         { currentPage === 4 ? <CardTheme/> : undefined }
+
+        { currentPage === 5 ? <Complete/> : undefined}
+
         {/* Navigation */}
+        { currentPage === 5 ? undefined : 
         <div className="flex justify-between mt-4 mb-8">
             <div className="flex items-center p-[10px] cursor-pointer"
                 onClick={()=>{dispatch(back())}}
@@ -83,7 +93,9 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
             </div>
 
             { currentPage === 4 ? ( 
-                <button className="p-[10px] bg-customOrange text-white rounded-lg">Submit</button>
+                <button 
+                className="p-[10px] bg-customOrange text-white rounded-lg"
+                onClick={handleSubmit}>Submit</button>
             ) :
                 <div className="flex items-center p-[10px] cursor-pointer"
                     onClick={()=>{dispatch(forward())}}
@@ -92,7 +104,9 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
                     <BsArrowRight/>
                 </div>
             }
-        </div>
+            </div>
+        }
+        
     </form>
     )
 }
