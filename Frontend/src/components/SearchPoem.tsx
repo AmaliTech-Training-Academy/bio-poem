@@ -10,9 +10,7 @@ const SearchPoem = () => {
   const darkMode = useSelector((state: RootState) => state.darkMode.toggle);
   const [searchedPoem, setSearchedPoem] = useState<string>('');
   const [searchResults, setSearchResults] = useState([]); // Store filtered results
-  const searchResponse = useSelector(
-    (state: RootState) => state.search.response
-  );
+  const searchResponse = useSelector((state: RootState) => state.search.response);
 
   const dispatch = useDispatch();
 
