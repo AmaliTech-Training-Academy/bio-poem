@@ -25,15 +25,6 @@
     @apply h-full w-full flex items-center justify-center rounded-full text-white;
   }
 
-  .images{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    align-items: center;
-    gap: 1rem;
-    margin: 85px auto;
-    width: 60%;
-    min-height: 20vh;
-  }
 
   .image{
     width: 30%;

@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-
+import { useAppDispatch } from "../store/store";
+import GridImg from '../assets/Rectangle 36.png'
 import ReactPaginate from 'react-paginate'
+import { setShowModal } from '../store/poemSlice';
+import Modal from "./Modal";
 
 type propsObject = {
-  albumId: number
-  id: number
-  thumbnailUrl: string 
-  title: string 
-  url: string
+  _id: string
+ firstName: string
+ lastName: string
+ image: string
 }
 
 type propsArray = {
   data: propsObject[]
 }
-const Poems: React.FC<propsArray> = ({data}) => {
 
+const Poems: React.FC<propsArray> = ({data}) => {
+  
+  const dispatch = useAppDispatch();
   const [currentItems, setCurrentItems] = useState<propsObject[]>([]);
         const [pageCount, setPageCount] = useState(0);
         const [itemOffset, setItemOffset] = useState(0);
@@ -37,9 +41,22 @@ const Poems: React.FC<propsArray> = ({data}) => {
       
         return (
           <>
-          <div className="images">
-            {currentItems.map((image: propsObject, index) => {
-                return <div key={index}><img src={image.url} /></div>
+          <div className="grid grid-cols-3 gap-x-12 gap-y-9 mb-10">
+            {data?.map((poem:propsObject) => {
+                return (
+                <div key={poem._id}>
+                <div className='flex justify-between w-[299px] h-[140px] border-2 rounded-md p-5 items-center'>
+                        <div >
+                            <img className='rounded-full w-[119px] h-[119px]' src={GridImg} />
+                        </div>
+                        <div className='text-center'>
+                        <p>{poem.firstName} {poem.lastName}</p>
+                            <p onClick={() => dispatch(setShowModal())} className='text-[#F06A30] bg-[#FEF6EE] rounded-xl cursor-pointer'>Preview</p>
+                        </div>
+                    </div>
+                    <Modal />
+                </div>
+                )
             })}
           </div>
             <ReactPaginate
