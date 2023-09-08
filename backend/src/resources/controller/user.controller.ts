@@ -12,9 +12,13 @@ const userCredentials = async (req: Request, res: Response) => {
     // Create a new user
     const newUser = new usersModel({ username });
 
-    await newUser.save();
+    // Save the new user to the database
+    const savedUser = await newUser.save();
 
-    res.status(200).json({ message: 'Username submitted successfully' });
+    // Extract the userId from the saved user document
+    const userId = savedUser._id;
+
+    res.status(200).json({ userId, message: 'Username submitted successfully' });
   } catch (error) {
     console.error('Error creating user:', error);
     res
