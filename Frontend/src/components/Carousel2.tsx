@@ -13,7 +13,7 @@ import { searchPoem } from '../store/searchSlice';
 
 
 interface Poem {
-  id: number;
+  _id: number;
   firstName: string;
   lastName: string;
   adjectives: string;
@@ -63,10 +63,10 @@ const Carousel2: React.FC = () => {
     useEffect(() => {
       dispatch(searchPoem())
       setPoems(searchResponse.poems)
-    },)
+    },[dispatch])
     
 
-    console.log(poems);
+    // console.log(poems);
     
     const settings = {
         dots: false,
@@ -110,7 +110,7 @@ const Carousel2: React.FC = () => {
         <h1 className="text-2xl font-medium py-7">Popular Poems</h1>
         <Slider {...settings}>
             {poems.map((ele) => (
-              <div className='overflow-hidden border-4 border-[#F06A30] rounded-md ' key={ele.id}>
+              <div className='overflow-hidden border-4 border-[#F06A30] rounded-md ' key={ele._id}>
                 <div className='group [perspective:1000px]'>
                   <div className='inset-0 transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]'>
                         <div>

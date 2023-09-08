@@ -14,7 +14,8 @@ export const Complete = () => {
         navigate('/')
     }
 
-    const status = useAppSelector(state=> state.form.status) === 'Fulfilled';    
+    const status = useAppSelector(state=> state.form.status) === 'Fulfilled';
+    
 
   return (
     status ?
