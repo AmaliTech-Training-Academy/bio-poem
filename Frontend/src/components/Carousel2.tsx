@@ -116,7 +116,7 @@ const Carousel2 = () => {
               </div>
              ))}
         </Slider>
-            <Modal />
+         <Modal />
     </div>
   )
 }

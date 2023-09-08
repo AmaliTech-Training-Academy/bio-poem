@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../store/store";
 import GridImg from '../assets/Rectangle 36.png'
 import ReactPaginate from 'react-paginate'
+import { setShowModal } from '../store/poemSlice';
+import Modal from "./Modal";
 
 type propsObject = {
   _id: string
@@ -15,7 +17,8 @@ type propsArray = {
 }
 
 const Poems: React.FC<propsArray> = ({data}) => {
-
+  
+  // const dispatch = useDispatch();
   const [currentItems, setCurrentItems] = useState<propsObject[]>([]);
         const [pageCount, setPageCount] = useState(0);
         const [itemOffset, setItemOffset] = useState(0);
@@ -38,7 +41,7 @@ const Poems: React.FC<propsArray> = ({data}) => {
       
         return (
           <>
-          <div className="grid grid-cols-3 gap-x-12 gap-y-9">
+          <div className="grid grid-cols-3 gap-x-12 gap-y-9 mb-10">
             {data?.map((poem:propsObject) => {
                 return (
                 <div key={poem._id}>
@@ -48,9 +51,10 @@ const Poems: React.FC<propsArray> = ({data}) => {
                         </div>
                         <div className='text-center'>
                         <p>{poem.firstName} {poem.lastName}</p>
-                            <p className='text-[#F06A30] bg-[#FEF6EE] rounded-xl cursor-pointer'>Preview</p>
+                            <p onClick={() => dispatch(setShowModal())} className='text-[#F06A30] bg-[#FEF6EE] rounded-xl cursor-pointer'>Preview</p>
                         </div>
                     </div>
+                    <Modal />
                 </div>
                 )
             })}
