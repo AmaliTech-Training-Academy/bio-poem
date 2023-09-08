@@ -25,6 +25,7 @@ interface Poem {
   expectations: string;
   residence: string;
 }
+
 interface SampleArrowProps {
   onClick: () => void;
 }
@@ -63,7 +64,7 @@ const Carousel2: React.FC = () => {
     useEffect(() => {
       dispatch(searchPoem())
       setPoems(searchResponse.poems)
-    },[dispatch, searchResponse])
+    },[dispatch])
     
 
     console.log(poems);
