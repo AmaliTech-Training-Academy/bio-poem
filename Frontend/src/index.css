@@ -10,15 +10,6 @@
         font-family: 'Inter', sans-serif;
     }
   }
-  .images{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    align-items: center;
-    gap: 1rem;
-    margin: 85px auto;
-    width: 60%;
-    min-height: 20vh;
-  }
 
   .image{
     width: 30%;

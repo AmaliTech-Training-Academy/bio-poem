@@ -32,6 +32,7 @@ const Carousel2 = () => {
     const [poems, setPoems] = useState([])
     console.log('response',searchResponse)
     console.log(poems);
+    
 
     useEffect(() => {
       dispatch(searchPoem())
@@ -96,10 +97,10 @@ const Carousel2 = () => {
 
                         <div className="absolute inset-0 h-full w-full rounded-xl bg-white px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                                 <div className='flex flex-col min-h-full items-center justify-center py-10'>
-                                    <h3 className='font-semibold'>{ele.firstName}</h3>
-                                    <p className='text-[#646363] text-xs font-light cursor-pointer'>{ele.adjectives} {ele.importantRelation} {ele.loves} {ele.feelings}</p>
-                                    <p className='text-[#646363] text-xs font-light cursor-pointer'>{ele.fears} {ele.accomplishments} {ele.expectations} {ele.residence}</p>
-                                    <h3 className='font-semibold'>{ele.lastName}</h3>
+                                    {/* <h3 className='font-semibold'>{ele.firstName}</h3> */}
+                                    <p className='text-[#646363] text-lg font-light cursor-pointer'>{ele.adjectives} {ele.importantRelation} {ele.loves} {ele.feelings}</p>
+                                    <p className='text-[#646363] text-lg font-light cursor-pointer'>{ele.fears} {ele.accomplishments} {ele.expectations} {ele.residence}</p>
+                                    {/* <h3 className='font-semibold'>{ele.lastName}</h3> */}
                                     <button onClick={() => dispatch(setShowModal())} className='mt-2 rounded-md border-[#A5A2A2] border-2 bg-[#F06A30] py-3 px-2 text-white'>View Poem</button>
                                 </div>
                             </div>
