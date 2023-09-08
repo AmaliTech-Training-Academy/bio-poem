@@ -6,6 +6,7 @@ import searchSlice from "./searchSlice";
 import themeSlice from "./themeSlice";
 import darkModeSlice from "./darkModeSlice";
 import poemSlice from "./poemSlice";
+import userSlice from "./userSlice";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
 
@@ -20,6 +21,7 @@ const persistConfig = {
         search: searchSlice,
         theme: themeSlice,
         darkMode: darkModeSlice,
+        user: userSlice,
     })
 
   const persistedReducer = persistReducer(persistConfig, rootReducer)

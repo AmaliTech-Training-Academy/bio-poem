@@ -12,7 +12,26 @@ import { useState, useEffect } from 'react';
 import { searchPoem } from '../store/searchSlice';
 
 
-function SampleNextArrow({ onClick }) {
+type poem = {
+  firstName: string;
+  adjectives: string;
+  importantRelation: string;
+  loves: string;
+  feelings: string;
+  fears: string;
+  accomplishments: string;
+  expectations: string;
+  residence: string;
+  lastName: string;
+  backgroundTheme: string;
+  _id: string
+}
+
+type click ={
+  onClick : () => void;
+}
+
+function SampleNextArrow ({ onClick }:click) {
     
     return (
       <div onClick={onClick} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center ml-5 absolute -right-12 bottom-40 cursor-pointer'>
@@ -21,7 +40,7 @@ function SampleNextArrow({ onClick }) {
     );
   }
   
-  function SamplePrevArrow({ onClick }) {
+  function SamplePrevArrow({ onClick }:click) {
     
     return (
       <div onClick={onClick} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center mr-5 absolute -left-12 bottom-40 cursor-pointer'>
@@ -87,8 +106,8 @@ const Carousel2 = () => {
     <div className='h-[500px] w-[1150px] mt-5 mr-auto'>
         <h1 className="text-2xl font-medium py-7">Popular Poems</h1>
         <Slider {...settings}>
-            {poems.map((ele) => (
-              <div className='overflow-hidden border-4 border-[#F06A30] rounded-md ' key={ele.id}>
+            {poems.map((ele: poem) => (
+              <div className='overflow-hidden border-4 border-[#F06A30] rounded-md ' key={ele._id}>
                 <div className='group [perspective:1000px]'>
                   <div className='inset-0 transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]'>
                         <div>
