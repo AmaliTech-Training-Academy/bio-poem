@@ -6,6 +6,10 @@ const userCredentials = async (req: Request, res: Response) => {
   try {
     // Check if the username is already taken
     const similarUsername = await usersModel.findOne({ username });
+
+    if (!username)
+      return res.status(400).json({ message: 'Username is required' });
+
     if (similarUsername)
       return res.status(401).json({ message: 'Username already taken' });
 
@@ -18,7 +22,9 @@ const userCredentials = async (req: Request, res: Response) => {
     // Extract the userId from the saved user document
     const userId = savedUser._id;
 
-    res.status(200).json({ userId, message: 'Username submitted successfully' });
+    res
+      .status(200)
+      .json({ userId, message: 'Username submitted successfully' });
   } catch (error) {
     console.error('Error creating user:', error);
     res
