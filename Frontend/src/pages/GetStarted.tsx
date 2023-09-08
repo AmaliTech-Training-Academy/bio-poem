@@ -20,7 +20,7 @@ export const GetStarted = () => {
           <img src={circle} className='absolute right-[441px] bottom-32' />
           <img src={circle} className='absolute right-14 top-52' />
           {/* vectors */}
-          <img src={vector} className='absolute top-52 left-[341px]'/>
+          <img src={vector} className='absolute top-56 left-[350px] rotate-180'/>
           <img src={vector} className='absolute bottom-[218px] right-[524px]'/>
           {/* images */}
           <img src={sound} className='absolute z-20 right-16 bottom-0' />

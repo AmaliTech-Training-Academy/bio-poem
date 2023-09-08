@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Payload } from "../components/UserNameForm";
 import axios from "axios";
 
+
 type User = {
     userName: string;
     userId: string;
@@ -37,6 +38,10 @@ const userSlice = createSlice({
             const { userName } = action.payload
             state.userName = userName;
         },
+        setError: (state: User, action: PayloadAction<string>) => {
+            state.status = 'Error';
+            state.message = action.payload;
+        },
     },
     extraReducers: (builder)=> {
         builder
@@ -50,12 +55,15 @@ const userSlice = createSlice({
             state.message = message;
         })
         .addCase(submitUserName.rejected, (state) => {
-            state.status = 'Error';
+            state.status = 'Error'
+            state.message = 'Username already exists.'
         })
     },
 })
 
-export const submitUserName = createAsyncThunk<Response, UserName, {}>('userName/submitUserName', async (username: UserName) => {
+export const submitUserName = createAsyncThunk<Response, UserName, {}>(
+    'userName/submitUserName', 
+    async (username: UserName) => {
     const url = 'https://bio-poem.onrender.com/api/v1/poems/username'
     try {
         console.log(username);
