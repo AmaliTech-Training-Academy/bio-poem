@@ -82,7 +82,9 @@ const Carousel2 = () => {
         <h1 className="text-2xl font-medium py-7">Popular Poems</h1>
         <Slider {...settings}>
             {poems.map((ele) => (
-                    <div className='overflow-hidden border-4 border-[#F06A30] rounded-md' key={ele.id}>
+              <div className='overflow-hidden border-4 border-[#F06A30] rounded-md ' key={ele.id}>
+                <div className='group [perspective:1000px]'>
+                  <div className='inset-0 transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]'>
                         <div>
                             <img className='object-cover w-[100%] h-[250px]' src={GridImg} alt="" />
                         </div>
@@ -91,7 +93,19 @@ const Carousel2 = () => {
                          </h2>
                         <p className='text-[#F90A0A] cursor-pointer' onClick={()=>dispatch(setShowModal())}>Bio poem</p>
                         </div>
+
+                        <div className="absolute inset-0 h-full w-full rounded-xl bg-white px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                                <div className='flex flex-col min-h-full items-center justify-center py-10'>
+                                    <h3 className='font-semibold'>{ele.firstName}</h3>
+                                    <p className='text-[#646363] text-xs font-light cursor-pointer'>{ele.adjectives} {ele.importantRelation} {ele.loves} {ele.feelings}</p>
+                                    <p className='text-[#646363] text-xs font-light cursor-pointer'>{ele.fears} {ele.accomplishments} {ele.expectations} {ele.residence}</p>
+                                    <h3 className='font-semibold'>{ele.lastName}</h3>
+                                    <button onClick={() => dispatch(setShowModal())} className='mt-2 rounded-md border-[#A5A2A2] border-2 bg-[#F06A30] py-3 px-2 text-white'>View Poem</button>
+                                </div>
+                            </div>
                     </div>
+                </div>
+              </div>
              ))}
         </Slider>
     </div>
