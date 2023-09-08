@@ -8,9 +8,8 @@ const upvotePoem = async (req: Request, res: Response) => {
     const poemToUpdate = await poem.findById(id);
     console.log(poemToUpdate);
 
-    if (!poemToUpdate) {
+    if (!poemToUpdate)
       return res.status(404).json({ message: 'Poem not found' });
-    }
 
     // Increment the upvote count in the poem document
     poemToUpdate.upvotes += 1;

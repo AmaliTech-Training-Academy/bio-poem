@@ -9,6 +9,17 @@ const getPopularPoems = async (req: Request, res: Response) => {
 
     const popularPoems = poems.map((p) => ({
       _id: p._id,
+      firstName: p.firstName,
+      adjectives: p.adjectives,
+      importantRelation: p.importantRelation,
+      loves: p.loves,
+      feelings: p.feelings,
+      fears: p.fears,
+      accomplishments: p.accomplishments,
+      expectations: p.expectations,
+      residence: p.residence,
+      lastName: p.lastName,
+      backgroundTheme: p.backgroundTheme,
       popularity: calculatePopularity(p.upvotes, p.downvotes),
     }));
 

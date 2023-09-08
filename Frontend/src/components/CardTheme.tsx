@@ -1,14 +1,20 @@
 import none from '../assets/null.png'
 import defaultPattern from '../assets/default-pattern.png'
 import { CardPreview } from './CardPreview'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../store/store'
 import { changeThemeOption } from '../store/themeSlice'
-import {RootState} from '../store/store'
+import { selectTheme } from '../store/formSlice'
+
 
 
 export const CardTheme = () => {
-    const dispatch = useDispatch()
-    const currentOption = useSelector((state:RootState) => state.theme.theme)
+    const dispatch = useAppDispatch()
+    const currentOption = useAppSelector((state) => state.theme.theme)
+
+    const handleNoneTheme = () => {
+        dispatch(changeThemeOption('none'))
+        dispatch(selectTheme({theme:'#FFFFFF'}))
+    }
 
     return (
         <div className="mt-10">
@@ -17,7 +23,7 @@ export const CardTheme = () => {
             <div className='flex'>
                 {/* None */}
                 <div className='flex flex-col items-center mr-8 cursor-pointer' 
-                    onClick={()=>{dispatch(changeThemeOption('none'))}}>
+                    onClick={handleNoneTheme}>
                     <div className='w-16 h-14 bg-[#D9D9D98C] rounded-lg flex justify-center items-center mb-2'
                     style={currentOption === 'none' ? {border: '1px solid #F06A30'}: undefined}>
                         <img src={none}/>

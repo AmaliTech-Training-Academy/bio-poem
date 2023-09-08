@@ -7,8 +7,7 @@ import GridImg from '../assets/Rectangle 36.png'
 // import { poems } from '../data';
 import Modal from './Modal';
 import { setShowModal } from '../store/poemSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, useAppDispatch, useAppSelector } from '../store/store';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import { useState, useEffect } from 'react';
 import { searchPoem } from '../store/searchSlice';
 
@@ -64,7 +63,7 @@ const Carousel2: React.FC = () => {
     useEffect(() => {
       dispatch(searchPoem())
       setPoems(searchResponse.poems)
-    },)
+    },[dispatch, searchResponse])
     
 
     console.log(poems);

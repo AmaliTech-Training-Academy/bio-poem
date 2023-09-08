@@ -20,9 +20,12 @@ const themeSlice = createSlice({
             if(state.theme !== payload){
                 state.theme = payload
             }
+        },
+        resetTheme: (state: state) => {
+            state.theme = 'none'
         }
     }
 })
 
-export const {changeThemeOption} = themeSlice.actions;
+export const {changeThemeOption, resetTheme} = themeSlice.actions;
 export default themeSlice.reducer
