@@ -14,6 +14,8 @@ export const UserNameForm = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
     const status = useAppSelector(state=> state.user.status)
+    const errorMessage = useAppSelector(state=> state.user.message);
+    const value = useAppSelector(state => state.user.userName);
 
     const handleUserName = (e:any) => {
         e.preventDefault()
@@ -25,9 +27,7 @@ export const UserNameForm = () => {
         navigate('/')
     dispatch(updateUsername({userName: ''}))
     }
-    
-    const value = useAppSelector(state => state.user.userName);
-    console.log(status);
+
     
 return (
     <div className='relative flex flex-col items-center z-30'>
@@ -40,26 +40,30 @@ return (
             In verse, a life unfolds, with words we map,Biopoem app, where stories find their sap.Prepare to embark on a fresh adventure, as you share your tales on this platform.
         </div>
         <div className='text-2xl font-bold mb-6'>Get Started</div>
-        <form className='flex items-center justify-center border border-customOrange rounded-lg 2xl:w-[700px] xl:w-[619px] overflow-hidden bg-white pr-4'>
-            <input 
-                type='text' 
-                value={value}
-                onChange={handleUserName}
-                placeholder='Please Enter Your Username To Get Started' 
-                className='w-full px-4 py-5 outline-none'/>
-                <div 
-                className='flex items-center justify-center gap-4 bg-customOrange text-white rounded-lg px-3 h-10'
-                onClick={()=>dispatch(submitUserName({username:value}))}
-            >
-                <div className='text-sm'>Submit</div>
-                <div 
-                style={{
-                    background: 'rgba(252, 255, 252, 0.4)', 
-                    borderRadius: '50%'}}
-                    className='w-7 h-7 flex items-center justify-center'>
-                    <BsArrowRight/>
-                </div>
+        <form className='2xl:w-[700px] xl:w-[619px] overflow-hidden'>
+            <div className='flex items-center justify-center border border-customOrange rounded-lg overflow-hidden pr-4 bg-white'>
+                <input 
+                    type='text' 
+                    value={value}
+                    onChange={handleUserName}
+                    placeholder='Please Enter Your Username To Get Started' 
+                    className='w-full px-4 py-5 outline-none'/>
+                    <div 
+                        className='flex items-center justify-center gap-4 bg-customOrange text-white rounded-lg px-3 h-10 cursor-pointer'
+                        onClick={()=>dispatch(submitUserName({username:value}))}>
+                        <div className='text-sm'>Submit</div>
+                        <div 
+                            style={{
+                            background: 'rgba(252, 255, 252, 0.4)', 
+                            borderRadius: '50%'}}
+                            className='w-7 h-7 flex items-center justify-center'>
+                            <BsArrowRight/>
+                        </div>
+                    </div>
             </div>
+                <div className='text-red-600 mt-2 text-sm bg-transparent'>
+                    {errorMessage && value.length > 0 ? errorMessage + " Try again!" : undefined}
+                </div>
         </form>
     </div>
   )
