@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { setShowModal } from "../store/poemSlice";
 import { Poem } from "./Carousel2";
+import axios from 'axios'
 
 interface ModalProps {
   poems: Poem[];
@@ -15,6 +16,28 @@ const Modal: React.FC<ModalProps> = () => {
   const visible = useSelector((state: RootState) => state.poem.showModal);
   const singlePoem = useSelector((state: RootState) => state.poem.singlePoem);
   const dispatch = useDispatch();
+
+  const upvotePoem = async () => {
+      const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/upvote`;
+      try {
+        const response = await axios.post(url);
+        console.log('uptake', response);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  const downvotePoem = async () => {
+    const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/downvote`;
+    try {
+      const response = await axios.post(url);
+      console.log('downtake', response);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 
   const handleClose = (e: any) => {
     if (e.target.id === "container") dispatch(setShowModal());
@@ -70,10 +93,10 @@ const Modal: React.FC<ModalProps> = () => {
           </p>
         </div>
         <div className="flex items-center gap-2 ml-24">
-          <BiUpvote />
-          <span>0</span>
-          <BiDownvote />
-          <span>0</span>
+          <BiUpvote className="cursor-pointer" onClick={upvotePoem} />
+          <span>{singlePoem.upvotes}</span>
+          <BiDownvote className="cursor-pointer" onClick={downvotePoem} />
+          <span>{singlePoem.downvotes}</span>
         </div>
       </div>
     </div>

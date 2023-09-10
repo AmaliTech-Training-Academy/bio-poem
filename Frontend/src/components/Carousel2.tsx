@@ -23,6 +23,8 @@ export interface Poem {
   accomplishments: string;
   expectations: string;
   residence: string;
+  upvotes: number;
+  downvotes: number;
 }
 interface SampleArrowProps {
   onClick: () => void;
@@ -55,7 +57,7 @@ const Carousel2: React.FC = () => {
 
   const searchResponse = useAppSelector((state) => state.search.response);
   const [poems, setPoems] = useState<Poem[]>([]);
-  const [id, setId] = useState<string>("");
+  // const [id, setId] = useState<string>("");
 
   // console.log('response',searchResponse)
   // console.log("hello",poems);

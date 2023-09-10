@@ -18,6 +18,8 @@ type propsObject = {
   accomplishments: string;
   expectations: string;
   residence: string;
+  upvotes: number;
+  downvotes: number;
 };
 
 type propsArray = {
