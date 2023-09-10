@@ -11,7 +11,7 @@ const Homepage = () => {
     <div className='flex w-full'>
         <SideBar/>
         {openSearch && <SearchPoem/>}
-        <div className='w-9/12 md:px-5 xl:pl-10 xl:pr-14'>
+        <div className='w-9/12 md:px-5 xl:pl-10'>
         <MainContent/>
       </div>
       </div>
