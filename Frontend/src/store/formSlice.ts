@@ -16,18 +16,22 @@ export type data = {
     "backgroundTheme": string,
 }
 
+export type finishedPoem = {
+    data: data;
+    id: string;
+}
+
 export type state = {
     page: number,
     total: number,
     answers: data,
+    status: string,
 }
 
 // type answer ={
 //     id: string,
 //     value: string,
 // }
-
-
 
 
 const initialState: state = {
@@ -45,7 +49,8 @@ const initialState: state = {
         "residence": "",
         "lastName": "",
         "backgroundTheme": "",
-    }
+    },
+    status: 'null'
 }
 
 const formSlice = createSlice ({
@@ -80,15 +85,39 @@ const formSlice = createSlice ({
         resetState: (state:state) => {
             state.page = 1;
             state.total = 4
+            state.answers = {
+                "firstName":"",
+                "adjectives": "",
+                "importantRelation": "",
+                "loves": "",
+                "feelings": "",
+                "fears": "",
+                "accomplishments": "",
+                "expectations": "",
+                "residence": "",
+                "lastName": "",
+                "backgroundTheme": "",
+            }
         }
-    }
+    },
+    extraReducers: (builder)=> {
+        builder
+            .addCase(submitAnswers.pending, (state) =>{
+                state.status = 'Loading...'
+            })
+            .addCase(submitAnswers.fulfilled, (state)=> {
+                state.status = 'Fulfilled'
+            })
+            .addCase(submitAnswers.rejected, (state)=>{
+                state.status = 'Error'
+            })
+    },
 })
 
-export const submitAnswers = createAsyncThunk<void, data, {}>("answers/submitAnswers", async (answers:data) => {
+export const submitAnswers = createAsyncThunk<void, finishedPoem, {}>("answers/submitAnswers", async (data) => {
     try {
-        const response = await submitPoem(answers);
-        console.log(response, answers);
-        return response;
+        const response = await submitPoem(data);
+        console.log(response);
     } catch (error) {
         console.error(error)
         throw error

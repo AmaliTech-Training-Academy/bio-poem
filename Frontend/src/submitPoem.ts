@@ -1,12 +1,14 @@
 import axios from 'axios'
-import { data } from './store/formSlice'
+import { finishedPoem } from './store/formSlice'
 
-export const submitPoem = async (poem:data) => {
-    const url = 'https://bio-poem.onrender.com/api/v1/poems/create-poem';
+
+export const submitPoem = async (data:finishedPoem) => {
+    const url = `https://bio-poem.onrender.com/api/v1/poems/${data.id}/create-poem`;
 
     try {
-        const response = await axios.post(url, poem);
+        const response = await axios.post(url, data.data);
         console.log(response);
+        return response;
     } catch (error) {
         console.error(error);
         throw error;

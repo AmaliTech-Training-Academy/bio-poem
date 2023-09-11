@@ -1,9 +1,10 @@
 import { data } from './formSlice';
-import { payload } from './../components/FormSection';
-import { poems } from './../data';
+// import { payload } from './../components/FormSection';
+// import { poems } from './../data';
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from './store';
+import { Poem } from '../components/Carousel2';
 
 interface poemState {
     poems: []
@@ -12,6 +13,7 @@ interface poemState {
     loading: boolean
     poemData: []
     recentPoems: []
+    singlePoem:Poem
 }
 
 const initialState: poemState = {
@@ -20,7 +22,8 @@ const initialState: poemState = {
     enableModal: false,
     poemData: [],
     loading: false,
-    recentPoems: []
+    recentPoems: [],
+    singlePoem:[]
 }
 
 type PoemData = {
@@ -50,6 +53,9 @@ const poemSlice = createSlice({
         setPoemData: (state, action) => {
             state.poemData = action.payload;
           },
+          setPoemSingleData:(state,{payload})=>{
+            state.singlePoem = payload
+          }
     },
     extraReducers(builder) {
         builder
@@ -66,6 +72,6 @@ const poemSlice = createSlice({
     },
 })
 
-export const {setShowModal, setPoemData}  = poemSlice.actions
+export const {setShowModal, setPoemData,setPoemSingleData}  = poemSlice.actions
 export default poemSlice.reducer
 export const selectRecentPoems = (state: RootState) => state.poem.recentPoems

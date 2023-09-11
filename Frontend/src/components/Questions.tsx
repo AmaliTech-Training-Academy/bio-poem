@@ -1,7 +1,7 @@
 import { FormSection } from "./FormSection"
 import { BsArrowLeft } from "react-icons/bs"
 import { BsArrowRight } from "react-icons/bs"
-import { forward, back, submitPoemAnswers, submitAnswers } from "../store/formSlice"
+import { forward, back, submitPoemAnswers, submitAnswers, finishedPoem } from "../store/formSlice"
 import { questions } from "../questionsData"
 import { CardTheme } from "./CardTheme"
 import { useAppDispatch, useAppSelector } from '../store/store'
@@ -16,16 +16,13 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
     const dispatch = useAppDispatch()
     
     const answers = useAppSelector((state)=> state.form.answers);
-    // const currentStep = useSelector((state:RootState)=> state.form.total);
-    // const keys = Object.keys(answers);
+    const userId = useAppSelector((state)=> state.user.userId);
+
     const values = Object.values(answers);
-    // console.log(answers);
-    // console.log(key);
-    // const current = document.querySelector(".container-stepper")
-    // console.log(current);
     const handleSubmit = () => {
         dispatch(submitPoemAnswers())
-        dispatch(submitAnswers(answers))
+    const data : finishedPoem ={data: answers, id: userId}
+        dispatch(submitAnswers(data))
     }
     
 
@@ -36,18 +33,10 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
     const firstPageValues = values.slice(0, 4);
     const secondPageValues = values.slice(4, 7);
     const thirdPageValues = values.slice(7, 10);
-
-    // const firstPageKeys = keys.slice(0, 4);
-    // const secondPageKeys = keys.slice(4, 7);
-    // const thirdPageKeys = keys.slice(7, 10);
     
 
     let currentData;
     let currentValues: any;
-
-    // if(currentPage === 5){
-    //     return <></>
-    // }
 
     if(currentPage == 1){
         currentData = firstPage;   

@@ -11,6 +11,18 @@
     }
   }
 
+  .progress-step-border{
+    @apply border-customGrey2 border-[2px] bg-white w-8 h-8 rounded-full flex items-center justify-center;
+  }
+
+  .progress-step-complete{
+    @apply border-none w-8 h-8 rounded-full flex items-center justify-center;
+  }
+  .step-complete{
+    @apply h-full w-full flex items-center justify-center rounded-full text-white;
+  }
+
+
   .image{
     width: 30%;
     height: 20%;

@@ -1,85 +1,104 @@
-import Slider from 'react-slick'
-import "slick-carousel/slick/slick.css"; 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { LiaArrowLeftSolid, LiaArrowRightSolid } from 'react-icons/lia';
-import GridImg from '../assets/Rectangle 36.png'
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import { useState, useEffect } from 'react';
-import { searchPoem } from '../store/searchSlice';
-import { setShowModal } from '../store/poemSlice';
+import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
+import GridImg from "../assets/Rectangle 36.png";
 
+// import { poems } from '../data';
+import Modal from "./Modal";
+import { setPoemSingleData, setShowModal } from "../store/poemSlice";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { useState, useEffect } from "react";
+import { searchPoem } from "../store/searchSlice";
+
+export interface Poem {
+  _id: number;
+  firstName: string;
+  lastName: string;
+  adjectives: string;
+  importantRelation: string;
+  loves: string;
+  feelings: string;
+  fears: string;
+  accomplishments: string;
+  expectations: string;
+  residence: string;
+  upvotes: number;
+  downvotes: number;
+  backgroundTheme: string;
+}
 
 function SampleNextArrow({ onClick }) {
+    
     return (
       <div onClick={onClick} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center ml-5 absolute -right-12 bottom-40 cursor-pointer'>
         <LiaArrowRightSolid />
       </div>
     );
-  };
+  }
   
   function SamplePrevArrow({ onClick }) {
+    
     return (
       <div onClick={onClick} className='rounded-full border-2 border-[#F06A30] h-10 w-10 flex items-center justify-center mr-5 absolute -left-12 bottom-40 cursor-pointer'>
         <LiaArrowLeftSolid />
       </div>
     );
-  };
+  }
 
 const Carousel2 = () => {
     const dispatch = useDispatch();
     const searchResponse = useSelector((state: RootState) => state.search.response);
     const [poems, setPoems] = useState([])
-    console.log('response',searchResponse)
-    console.log(poems);
+
+    // console.log('response',searchResponse)
+    // console.log(poems);
     
 
-    useEffect(() => {
-      dispatch(searchPoem())
-      setPoems(searchResponse.poems)
-    }, [dispatch])
-    
-    console.log(poems);
-    
-    const settings = {
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        initialSlide: 0,
-        nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              initialSlide: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      };
+  useEffect(() => {
+    dispatch(searchPoem());
+    setPoems(searchResponse.poems);
+  }, [dispatch]);
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    nextArrow: <SampleNextArrow onClick={() => {}} />,
+    prevArrow: <SamplePrevArrow onClick={() => {}} />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
-    <div className='h-[500px]  mt-5 mr-auto'>
+    <div className='h-[500px] w-[1150px] mt-5 mr-auto'>
         <h1 className="text-2xl font-medium py-7">Popular Poems</h1>
         <Slider {...settings}>
             {poems.map((ele) => (
@@ -92,7 +111,7 @@ const Carousel2 = () => {
                         <div className='text-center py-5'>
                         <h2 className='text-[#646363] font-semibold'> {ele.firstName} {ele.lastName}
                          </h2>
-                        <p className='text-[#F90A0A] cursor-pointer' onClick={()=>dispatch(setShowModal())}>Bio poem</p>
+                        <p onClick={() => dispatch(setShowModal())} className='text-[#F90A0A] cursor-pointer'>Bio poem</p>
                         </div>
 
                         <div className="absolute inset-0 h-full w-full rounded-xl bg-white px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
@@ -109,8 +128,9 @@ const Carousel2 = () => {
               </div>
              ))}
         </Slider>
+         <Modal />
     </div>
-  )
-}
+  );
+};
 
-export default Carousel2
+export default Carousel2;
