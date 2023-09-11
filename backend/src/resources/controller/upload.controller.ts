@@ -3,13 +3,10 @@ import cloudinary from '../../utils/cloudinary.upload';
 import usersModel from '../../resources/model/users.model';
 
 const uploadProfile = async (req: Request, res: Response) => {
-
   try {
     const file = req.files?.image as any;
 
-    if (!file) {
-      return res.status(400).json({ message: 'No file provided' });
-    }
+    if (!file) return res.status(400).json({ message: 'No file provided' });
 
     const { username } = req.params;
 
@@ -23,9 +20,7 @@ const uploadProfile = async (req: Request, res: Response) => {
     // Check if the user exists
     const user = await usersModel.findOne({ username });
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
+    if (!user) return res.status(404).json({ message: 'User not found' });
 
     // Store the Cloudinary URL in the user's profileImage field
     user.profileImage = result.secure_url; // Assuming 'secure_url' is the URL of the uploaded image

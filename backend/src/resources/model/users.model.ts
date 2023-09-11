@@ -11,3 +11,6 @@ const userSchema = new Schema({
 })
 
 export default model<userInterface>('users', userSchema)
+
+// one - one relationship in my requirement
+// the createPoem table references the user table

@@ -8,22 +8,16 @@ const recentPoems = async (req: Request, res: Response) => {
   const itemsPerPage = parseInt(req.query.limit as string, 10) || 12;
 
   try {
-
-    const user = await usersModel.find()
-
     // Find recent poems and populate the user data
     const recentPoems = await poem
       .find({})
       .sort({ createdAt: -1 })
       .limit(itemsPerPage)
       .populate({
-        path: 'user', // Assuming the field in 'poem' model that references the user is named 'userId'
+        path: 'user', // Assuming the field in 'poem' model that references the user is named user
         select: 'profileImage username', // Select the fields you want to include
       })
       .exec();
-
-      console.log(recentPoems);
-      
 
     res.status(200).json({ success: true, recentPoems });
   } catch (error) {

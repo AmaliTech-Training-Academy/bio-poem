@@ -6,7 +6,6 @@ const upvotePoem = async (req: Request, res: Response) => {
 
   try {
     const poemToUpdate = await poem.findById(id);
-    console.log(poemToUpdate);
 
     if (!poemToUpdate)
       return res.status(404).json({ message: 'Poem not found' });
@@ -17,7 +16,7 @@ const upvotePoem = async (req: Request, res: Response) => {
     // Save the updated poem document
     await poemToUpdate.save();
 
-    res.status(200).json({ message: 'Poem upvoted successfully' });
+    res.status(200).json({ poemToUpdate, message: 'Poem upvoted successfully' });
   } catch (error) {
     console.error('Error upvoting poem:', error);
     res

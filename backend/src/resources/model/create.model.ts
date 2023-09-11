@@ -64,3 +64,7 @@ const createPoemSchema = new Schema(
 );
 
 export default model<createInterface>('CreatePoem', createPoemSchema);
+
+// one - many relationship
+// one user can have many poems and many poems belongs to one user
+// but in my requirement: one user can only have one poem and one poem will only belong to one user

@@ -11,9 +11,9 @@ const downvotes = async (req: Request, res: Response) => {
 
     poemToDownVote.downvotes += 1;
 
-    poemToDownVote.save();
+    await poemToDownVote.save();
 
-    res.status(200).json({ message: 'Poem down voted successfully' });
+    res.status(200).json({ poemToDownVote, message: 'Poem down voted successfully' });
   } catch (error) {}
 };
 export default downvotes;
