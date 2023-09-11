@@ -7,11 +7,14 @@ const recentPoems = async (req: Request, res: Response) => {
   const currentPage = parseInt(req.query.page as string, 10) || 1;
   const itemsPerPage = parseInt(req.query.limit as string, 10) || 12;
 
+  const skip = (currentPage - 1) * itemsPerPage
+
   try {
     // Find recent poems and populate the user data
     const recentPoems = await poem
       .find({})
       .sort({ createdAt: -1 })
+      .skip(skip)
       .limit(itemsPerPage)
       .populate({
         path: 'user', // Assuming the field in 'poem' model that references the user is named user
