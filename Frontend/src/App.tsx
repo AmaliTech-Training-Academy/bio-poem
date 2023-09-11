@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage'
 import { CreatePoem } from './pages/CreatePoem'
 import { useSelector } from 'react-redux'
 import { RootState } from './store/store'
+import { GetStarted } from "./pages/GetStarted";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Homepage/>}/>
           <Route path='/create' element={<CreatePoem/>}/>
+          <Route path='/get-started' element={<GetStarted/>}/>
         </Routes>
       </BrowserRouter>
     </div>
