@@ -1,9 +1,13 @@
 import { Schema, model } from "mongoose";
-import profileInterface from '../../utils/interfaces/users.interface'
+import userInterface from '../../utils/interfaces/users.interface'
 
 const userSchema = new Schema({
-    username: String,
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+      },
     profileImage: String,
 })
 
-export default model<profileInterface>('users', userSchema)
+export default model<userInterface>('users', userSchema)

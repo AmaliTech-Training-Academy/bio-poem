@@ -4,7 +4,6 @@ import usersModel from '../../resources/model/users.model';
 
 const createQuestionnaire = async (req: Request, res: Response) => {
   const {
-    username,
     firstName,
     adjectives,
     importantRelation,
@@ -19,24 +18,32 @@ const createQuestionnaire = async (req: Request, res: Response) => {
   } = req.body;
 
   try {
-    // Check if the username is already taken
-    const similarUsername = await usersModel.findOne({ username });
-    if (similarUsername) {
-      return res.status(401).json({ message: 'Username already Taken' });
-    }
+    // const { username } = req.body; // Get the username from the request body
+    // // console.log('username', username);
+    const { id } = req.params;
+    // Check if a user with this username exists
+    const user = await usersModel.findById(id);
+    console.log('user1', user);
 
-    // made the username unique in the model, so I dont I need the check for similarUserName
-    // Check if a poem with the same combination of firstName, and lastName exists
-    const existingPoem = await poem.findOne({ username });
-    if (existingPoem) {
+    if (!user) {
       return res
         .status(401)
-        .json({ message: 'Poem for this user already exists' });
+        .json({ message: 'User does not exist. Provide a valid username.' });
     }
 
-    // Create a new poem if all checks pass
+    // Check if a poem already exists for this user
+    const existingPoem = await poem.findOne({ user: user._id });
+
+    if (existingPoem) {
+      return res.status(401).json({
+        message:
+          'A poem for this user already exists. You cannot create another.',
+      });
+    }
+
+    // Create a new poem associated with the user
     const createdQuestionnaire = await poem.create({
-      username,
+      user: user._id, // Associate the poem with the user
       firstName,
       adjectives,
       importantRelation,

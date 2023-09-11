@@ -1,6 +1,6 @@
-interface profileInterface {
+interface userInterface {
     username: string,
     profileImage: string
 }
 
-export default profileInterface
+export default userInterface

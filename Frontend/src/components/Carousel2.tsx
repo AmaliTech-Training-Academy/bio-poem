@@ -27,6 +27,7 @@ export interface Poem {
   downvotes: number;
   backgroundTheme: string;
 }
+
 interface SampleArrowProps {
   onClick: () => void;
 }
