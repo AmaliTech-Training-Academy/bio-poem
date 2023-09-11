@@ -4,7 +4,7 @@ import { MdClose } from 'react-icons/md';
 import person from '../assets/searchImage.png';
 import { searchPoem } from '../store/searchSlice';
 import { useAppDispatch, useAppSelector  } from '../store/store';
-import { setShowModal } from '../store/poemSlice';
+import { setPoemSingleData, setShowModal } from '../store/poemSlice';
 
 type poem = {
   "firstName":string,
@@ -33,6 +33,11 @@ const SearchPoem = () => {
   const darkMode = useAppSelector((state) => state.darkMode.toggle)
 
   const dispatch = useAppDispatch()
+
+  const handleShowSinglePoem = (data: poem) => {
+    dispatch(setPoemSingleData(data)) 
+    dispatch(setShowModal());
+  };
 
   useEffect(() => {
     dispatch(searchPoem())
@@ -135,7 +140,7 @@ const SearchPoem = () => {
               </div>
 
               <div className="flex items-center ">
-                <button className="text-white bg-orange-500 px-2.5 rounded-r-full rounded-l-full font-medium cursor-pointer" onClick={()=>dispatch(setShowModal())}>
+                <button className="text-white bg-orange-500 px-2.5 rounded-r-full rounded-l-full font-medium cursor-pointer" onClick={() => handleShowSinglePoem(ele)}>
                   View
                 </button>
                 <div className="ml-5 bg-[#D9D9D9] rounded-full  cursor-pointer">

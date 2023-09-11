@@ -10,7 +10,6 @@ const RecentPoems = () => {
     console.log(recentPoems);
     
 
-    // const [images, setImages] = useState([]);
 
     useEffect(() => {
       dispatch(getRecentPoems())
