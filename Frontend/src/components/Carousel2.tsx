@@ -4,12 +4,11 @@ import "slick-carousel/slick/slick-theme.css";
 import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
 import GridImg from "../assets/Rectangle 36.png";
 
-// import { poems } from '../data';
 import Modal from "./Modal";
-import { setPoemSingleData, setShowModal } from "../store/poemSlice";
-import { useAppDispatch, useAppSelector } from "../store/store";
+import { getPopularPoems, setPoemSingleData, setShowModal } from "../store/poemSlice";
+import { RootState, useAppDispatch } from "../store/store";
 import { useState, useEffect } from "react";
-import { searchPoem } from "../store/searchSlice";
+import {useSelector} from 'react-redux'
 
 export interface Poem {
   _id: number;
@@ -57,8 +56,9 @@ function SamplePrevArrow({ onClick }: SampleArrowProps) {
 const Carousel2: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const searchResponse = useAppSelector((state) => state.search.response);
+  const searchResponse = useSelector((state: RootState) => state.poem.popularPoem);
   const [poems, setPoems] = useState<Poem[]>([]);
+  console.log('popular',searchResponse)
 
   const handleShowSinglePoem = (data:Poem) => {
     dispatch(setPoemSingleData(data)) 
@@ -66,8 +66,8 @@ const Carousel2: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(searchPoem());
-    setPoems(searchResponse.poems);
+    dispatch(getPopularPoems());
+    setPoems(searchResponse.popularPoems);
   }, [dispatch]);
 
   const settings = {
@@ -141,16 +141,15 @@ const Carousel2: React.FC = () => {
                 <div className="absolute inset-0 h-full w-full rounded-xl bg-white px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="flex flex-col min-h-full items-center justify-center py-10">
                     <p className="text-[#646363] text-lg font-light cursor-pointer">
-                      {ele.adjectives} {ele.importantRelation} Loves to{" "}
-                      {ele.loves} {ele.feelings}
-                    </p>
-                    <p className="text-[#646363] text-lg font-light cursor-pointer">
-                      {ele.fears} Who {ele.accomplishments} {ele.expectations}{" "}
-                      Residence of {ele.residence}
+                    <ul>
+                        <li>{ele.adjectives}</li>
+                        <li>{ele.importantRelation}</li>
+                        <li>Loves to{" "} {ele.loves}</li>
+                      </ul>
                     </p>
                     <button
                       onClick={() => handleShowSinglePoem(ele)}
-                      className="mt-2 rounded-md border-[#A5A2A2] border-2 bg-[#F06A30] py-3 px-2 text-white"
+                      className="mt-2 rounded-md border-[#A5A2A2] border-2 bg-[#F06A30] py-3 px-7 text-white"
                     >
                       View Poem
                     </button>
