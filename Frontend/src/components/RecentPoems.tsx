@@ -1,12 +1,11 @@
 import {useEffect} from 'react'
 // import GridImg from '../assets/Rectangle 36.png'
 import Poems from '../components/Poems';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../store/store';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import { getRecentPoems, selectRecentPoems } from '../store/poemSlice';
 
 const RecentPoems = () => {
-    const recentPoems = useSelector(selectRecentPoems);
+    const recentPoems = useAppSelector(selectRecentPoems);
     const dispatch = useAppDispatch()
     console.log(recentPoems);
     
