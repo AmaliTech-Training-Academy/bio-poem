@@ -42,7 +42,7 @@ const SideBar = () => {
       
 
   return (
-    <div className='sticky inset-y-0 min-h-screen w-max  h-fit  border-r  border-gray-400 border-r-1 md:px-4 xl:pr-14 pl-6 pt-10 pb-4 w-3/12' id='sidebar'>
+    <div className='fixed top-0 left-0 h-screen md:px-4 xl:pr-14 pl-6 pt-10 pb-4 overflow-y-auto bg-white border-r border-gray-400 z-10'>
         {toggle ? <img src={darkModeLogo} alt='logo' className='m-auto'/>: <img src={logo} alt='logo' className='m-auto'/>}
         <div className='text-2xl font-normal mt-[114px] w-fit m-auto' >
 

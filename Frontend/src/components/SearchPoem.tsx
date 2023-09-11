@@ -77,9 +77,9 @@ const SearchPoem = () => {
   
  
   return (
-    <div className="border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434]">
+    <div className="lg:ml-24 xl:ml-32 2xl:ml-36 border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434]">
       <div
-        className={`flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px] ${
+        className={`flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px] mr-3.5  ml-4 ${
           darkMode ? 'bg-[#fff]' : ''
         }`}
       >
@@ -108,7 +108,7 @@ const SearchPoem = () => {
         <>
           {searchResults.length === 0 ? (<>
             {fetchPoems.slice(0,displayedDivs).map((ele:poem) => (
-            <div className="flex gap-x-28 mb-[30px]" key={ele._id}>
+            <div className="flex gap-x-28 mb-[30px] px-3.5" key={ele._id}>
               <div className="flex items-center">
                 <img src={person} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
                 <p className={`ml-5 font-medium ${darkMode ? 'text-[#fff]' : ''}`}>
@@ -131,7 +131,7 @@ const SearchPoem = () => {
           ):(
             <>
               {searchResults.slice(0,displayedDivs).map((ele:poem) => (
-            <div className="flex gap-x-28 mb-[30px]" key={ele._id}>
+            <div className="flex gap-x-28 mb-[30px] px-3.5" key={ele._id}>
               <div className="flex items-center">
                 <img src={person} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
                 <p className={`ml-5 font-medium ${darkMode ? 'text-[#fff]' : ''}`}>

@@ -30,8 +30,9 @@ const Homepage = () => {
     <div className='flex overflow-x-hidden'>
         <SideBar/>
         {openSearch && <SearchPoem/>}
-        <div className='w-9/12 md:px-5 xl:pl-10'>
+        <div className={`w-9/12 md:px-5 xl:pl-10 ${openSearch ? '' :'ml-auto'}`}>
         <MainContent/>
+        </div>
       </div>
     )
 }

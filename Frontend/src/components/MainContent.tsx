@@ -11,7 +11,7 @@ const MainContent = () => {
   console.log('modal', enableModal);
   
   return (
-    <div className='ml-10 pl-4 w-full'>
+    <div className=' pl-4 w-full'>
         <Header/>
         <div>
         <Carousel2/>
