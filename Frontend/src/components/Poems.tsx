@@ -20,6 +20,7 @@ type propsObject = {
   residence: string;
   upvotes: number;
   downvotes: number;
+  backgroundTheme: string;
 };
 
 type propsArray = {

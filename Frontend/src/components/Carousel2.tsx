@@ -25,6 +25,7 @@ export interface Poem {
   residence: string;
   upvotes: number;
   downvotes: number;
+  backgroundTheme: string;
 }
 interface SampleArrowProps {
   onClick: () => void;
@@ -57,13 +58,9 @@ const Carousel2: React.FC = () => {
 
   const searchResponse = useAppSelector((state) => state.search.response);
   const [poems, setPoems] = useState<Poem[]>([]);
-  // const [id, setId] = useState<string>("");
-
-  // console.log('response',searchResponse)
-  // console.log("hello",poems);
 
   const handleShowSinglePoem = (data:Poem) => {
-    dispatch(setPoemSingleData(data)) // Convert the number to a string
+    dispatch(setPoemSingleData(data)) 
     dispatch(setShowModal());
   };
 
@@ -110,9 +107,9 @@ const Carousel2: React.FC = () => {
   };
 
   return (
-    <div className="h-[500px] w-auto mt-5">
+    <div className="h-[500px] w-auto mt-5 mr-auto">
       <h1 className="text-2xl font-medium py-7">Popular Poems</h1>
-      <Slider {...settings} className="relative left-8">
+      <Slider {...settings} className="">
         {poems.map((ele) => (
           <div
             className="overflow-hidden border-4 border-[#F06A30] rounded-md "
@@ -142,7 +139,6 @@ const Carousel2: React.FC = () => {
 
                 <div className="absolute inset-0 h-full w-full rounded-xl bg-white px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="flex flex-col min-h-full items-center justify-center py-10">
-                    {/* <h3 className='font-semibold'>{ele.firstName}</h3> */}
                     <p className="text-[#646363] text-lg font-light cursor-pointer">
                       {ele.adjectives} {ele.importantRelation} Loves to{" "}
                       {ele.loves} {ele.feelings}
@@ -151,7 +147,6 @@ const Carousel2: React.FC = () => {
                       {ele.fears} Who {ele.accomplishments} {ele.expectations}{" "}
                       Residence of {ele.residence}
                     </p>
-                    {/* <h3 className='font-semibold'>{ele.lastName}</h3> */}
                     <button
                       onClick={() => handleShowSinglePoem(ele)}
                       className="mt-2 rounded-md border-[#A5A2A2] border-2 bg-[#F06A30] py-3 px-2 text-white"

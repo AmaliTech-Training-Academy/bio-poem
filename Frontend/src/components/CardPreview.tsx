@@ -32,7 +32,8 @@ return (
             {/* Preview */}
             {view ?
                 <div className='border border-customGrey1 rounded-lg px-16 pt-4 pb-6 xl:w-9/12'>
-                    <div className='rounded-lg border border-black bg-contain relative overflow-hidden lg:w-full' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
+                    <div className='rounded-lg border border-black bg-contain relative overflow-hidden lg:w-full' 
+                    style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme : 'none'}}>
                         {userPoem.backgroundTheme.length > 9 ?
                             <img 
                         src={ userPoem.backgroundTheme} 

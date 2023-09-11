@@ -4,7 +4,7 @@ import RecentPoems from '../components/RecentPoems'
 
 const MainContent = () => {
   return (
-    <div className='sm:pl-4 w-full'>
+    <div className='ml-10 pl-4 w-full'>
         <Header/>
         <Carousel2/>
         <RecentPoems/>

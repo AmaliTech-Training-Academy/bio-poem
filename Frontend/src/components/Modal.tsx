@@ -52,7 +52,14 @@ const Modal: React.FC<ModalProps> = () => {
       onClick={handleClose}
       className="fixed w-[100%] h-[784px] left-[14%] top-[20%] inset-0 bg-black bg-opacity-5 backdrop-blur-sm flex justify-center items-center"
     >
-      <div className="absolute top-28 bg-white w-[693px] rounded-3xl px-10 py-5">
+      <div className="absolute bg-white top-20 w-[693px] rounded-3xl px-10 py-5" 
+      style={{background: singlePoem.backgroundTheme.length <= 9 ? singlePoem.backgroundTheme : "#ffffff" }}>
+        {singlePoem.backgroundTheme.length > 9 ?
+                            <img 
+                        src={ singlePoem.backgroundTheme} 
+                        className='absolute z-10 h-full w-full' 
+                        style={{background: singlePoem.backgroundTheme.length <= 9 ? '#ffffff' : undefined}}/>
+                        : undefined}
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img
