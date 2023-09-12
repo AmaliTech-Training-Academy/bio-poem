@@ -22,11 +22,14 @@ type poem = {
   "userName": string,
   "_id": string    
 }
+interface poemArr {
+    poemData: poem[]
+}
 
 const SearchPoem = () => {
   const [searchedPoem, setSearchedPoem] = useState<string>('')
   const [searchResults, setSearchResults] = useState([])
-  const [fetchPoems, setFetchPoems] = useState([])
+  const [fetchPoems, setFetchPoems] = useState<poemArr>([])
   const [displayedDivs, setDisplayedDivs] = useState(5);
   const [showMore, setShowMore] = useState<boolean>(true)
 
