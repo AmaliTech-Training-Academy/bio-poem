@@ -3,6 +3,7 @@ import {useEffect} from 'react'
 import Poems from '../components/Poems';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { getRecentPoems, selectRecentPoems } from '../store/poemSlice';
+import { useSelector } from 'react-redux';
 
 const RecentPoems = () => {
     const {recentPoems} = useSelector(selectRecentPoems);
