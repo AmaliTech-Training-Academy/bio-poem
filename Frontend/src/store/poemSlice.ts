@@ -1,11 +1,8 @@
 import { data } from './formSlice';
-// import { payload } from './../components/FormSection';
-// import { poems } from './../data';
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from './store';
 import { Poem } from '../components/Carousel2';
-import { setVote } from './voteSlice';
 
 interface poemState {
     poems: []
@@ -41,7 +38,6 @@ type PoemData = {
 export const getPopularPoems = createAsyncThunk<PoemData, void, object>('popularPoem/get', async () =>{
     try {
         const response = await axios.get('https://bio-poem.onrender.com/api/v1/poems/popular-poems')
-        console.log('response',response.data);
         return response.data
     } catch (error) {
         console.error(error);
@@ -52,7 +48,6 @@ export const getPopularPoems = createAsyncThunk<PoemData, void, object>('popular
 export const getRecentPoems = createAsyncThunk<PoemData, void, object>('recentPoem/get', async (page) =>{
     try {
         const response = await axios.get(`https://bio-poem.onrender.com/api/v1/poems/recent-poem?page=${page || 1}`)
-        console.log('response',response.data);
         return response.data
     } catch (error) {
         console.error(error);

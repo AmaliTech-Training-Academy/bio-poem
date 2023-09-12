@@ -22,6 +22,7 @@ type propsObject = {
   upvotes: number;
   downvotes: number;
   backgroundTheme: string;
+  profileImage: string;
 };
 
 type propsArray = {
