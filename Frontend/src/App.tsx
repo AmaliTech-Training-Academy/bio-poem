@@ -7,7 +7,9 @@ import Homepage from './pages/Homepage'
 import { CreatePoem } from './pages/CreatePoem'
 import { useSelector } from 'react-redux'
 import { RootState } from './store/store'
-import { GetStarted } from "./pages/GetStarted";
+import { GetStarted } from "./pages/GetStarted"
+import { ToastContainer } from "react-toastify";
+
 
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
           <Route path='/create' element={<CreatePoem/>}/>
           <Route path='/get-started' element={<GetStarted/>}/>
         </Routes>
+        <ToastContainer/>
       </BrowserRouter>
     </div>
   )

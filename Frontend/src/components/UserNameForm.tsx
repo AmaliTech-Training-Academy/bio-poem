@@ -3,7 +3,7 @@ import bio from '../assets/bio.png'
 import { BsArrowRight } from 'react-icons/bs'
 import { useAppDispatch } from '../store/store'
 import { useAppSelector } from '../store/store'
-import { submitUserName, updateUsername } from '../store/userSlice'
+import { resetStatus, submitUserName, updateUsername } from '../store/userSlice'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -25,7 +25,7 @@ export const UserNameForm = () => {
     
     if(status === 'Fulfilled'){
         navigate('/')
-    dispatch(updateUsername({userName: ''}))
+        dispatch(resetStatus())
     }
 
     

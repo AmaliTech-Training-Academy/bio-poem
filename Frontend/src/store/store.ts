@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, } from "redux-persist"
+import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import storage  from "redux-persist/lib/storage"
 import formSlice from "./formSlice"
 import searchSlice from "./searchSlice";
@@ -7,7 +8,7 @@ import themeSlice from "./themeSlice";
 import darkModeSlice from "./darkModeSlice";
 import poemSlice from "./poemSlice";
 import userSlice from "./userSlice";
-import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
+import userProfileSlice from './userProfile'
 
 
 const persistConfig = {
@@ -22,6 +23,7 @@ const persistConfig = {
         theme: themeSlice,
         darkMode: darkModeSlice,
         user: userSlice,
+        userProfile: userProfileSlice,
     })
 
   const persistedReducer = persistReducer(persistConfig, rootReducer)

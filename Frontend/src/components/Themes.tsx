@@ -1,14 +1,17 @@
 import { colors } from '../colorData';
 import { patterns } from '../patternData';
 import { selectTheme } from '../store/formSlice';
-import { RootState } from '../store/store';
-import { themeProps } from './CardPreview';
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../store/store';
+// import { themeProps } from './CardPreview';
+
+type themeProps = {
+  currentOption: string,
+}
 
 export const Themes: React.FC<themeProps> = ({currentOption}) => {
 
-  const dispatch = useDispatch()
-  const selectedTheme = useSelector((state: RootState)=> state.form.answers.backgroundTheme)
+  const dispatch = useAppDispatch()
+  const selectedTheme = useAppSelector((state)=> state.form.answers.backgroundTheme)
 
     if(currentOption === 'none'){
         return null
