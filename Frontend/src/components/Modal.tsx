@@ -19,6 +19,8 @@ interface person{
 
 const Modal: React.FC<ModalProps> = () => {
   const visible = useSelector((state: RootState) => state.poem.showModal);
+  console.log(visible);
+  
 
   const singlePoem = useSelector((state: RootState) => state.poem.singlePoem);
   const [singlePoemPic, setSinglePoemPic] = useState<person>({})
@@ -28,11 +30,7 @@ const Modal: React.FC<ModalProps> = () => {
 
 
  useEffect(() => {
-  const handlePic = () => setSinglePoemPic(singlePoem.user)
-  console.log('pic', singlePoemPic);
-  console.log(singlePoem);
-  
-
+  const handlePic = () => setSinglePoemPic(singlePoem.user)  
   handlePic()
  }, [])
  
@@ -65,7 +63,6 @@ const Modal: React.FC<ModalProps> = () => {
   };
 
   if (!visible || !singlePoem ) return null;
-  console.log('pic', singlePoemPic);
 
   return (
     <div

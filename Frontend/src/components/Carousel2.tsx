@@ -58,14 +58,18 @@ const Carousel2: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const searchResponse = useSelector((state: RootState) => state.poem.popularPoem);
-  console.log('test', searchResponse);
+ 
   
   const [poems, setPoems] = useState<Poem[]>([]);
 
   const handleShowSinglePoem = (data:Poem) => {
     dispatch(setPoemSingleData(data)) 
     dispatch(setShowModal());
+    console.log('num', 8);
+    
   };
+
+  
 
   useEffect(() => {
     dispatch(getPopularPoems());

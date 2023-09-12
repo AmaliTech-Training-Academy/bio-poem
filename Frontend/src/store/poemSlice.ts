@@ -7,7 +7,7 @@ import { Poem } from '../components/Carousel2';
 interface poemState {
     poems: []
     status: string
-    enableModal:boolean
+    showModal:boolean
     loading: boolean
     poemData: []
     recentPoems: object
@@ -20,7 +20,7 @@ interface poemState {
 const initialState: poemState = {
     poems: [],
     status: 'idle',
-    enableModal: false,
+    showModal: false,
     poemData: [],
     loading: false,
     recentPoems: {},
@@ -55,6 +55,7 @@ export const getRecentPoems = createAsyncThunk<PoemData, void, object>('recentPo
     }
 })
 
+// Upvote
 export const upvotePoem = createAsyncThunk ('upvotePoem/post', async(singlePoem: Poem)=>{
     const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/upvote`;
       try {
@@ -83,7 +84,7 @@ const poemSlice = createSlice({
     initialState,
     reducers:{
         setShowModal: (state)=>{
-            state.enableModal = !state.enableModal
+            state.showModal = !state.showModal
         },
         setPoemData: (state, action) => {
             state.poemData = action.payload;
