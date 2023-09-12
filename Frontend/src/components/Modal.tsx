@@ -6,22 +6,25 @@ import { RootState } from "../store/store";
 import { setShowModal } from "../store/poemSlice";
 import { Poem } from "./Carousel2";
 import axios from 'axios'
+import {useState} from 'react'
 
 interface ModalProps {
-  poems: Poem[];
-  id: string;
+  poems?: Poem[];
+  id?: string;
 }
 
 const Modal: React.FC<ModalProps> = () => {
   const visible = useSelector((state: RootState) => state.poem.showModal);
   const singlePoem = useSelector((state: RootState) => state.poem.singlePoem);
+  const [vote, setVote] = useState(null)
   const dispatch = useDispatch();
 
   const upvotePoem = async () => {
       const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/upvote`;
       try {
         const response = await axios.post(url);
-        console.log('uptake', response);
+        console.log('uptake', response.data.message);
+        setVote(response.data.message)
     } catch (error) {
       console.log(error);
       throw error;
@@ -52,12 +55,12 @@ const Modal: React.FC<ModalProps> = () => {
       onClick={handleClose}
       className="fixed w-[100%] h-[784px] left-[14%] top-[20%] inset-0 bg-black bg-opacity-5 backdrop-blur-sm flex justify-center items-center"
     >
-      <div className="absolute bg-white top-20 w-[693px] rounded-3xl px-10 py-5" 
+      <div className="absolute top-20 w-[693px] rounded-3xl px-10 py-5" 
       style={{background: singlePoem.backgroundTheme.length <= 9 ? singlePoem.backgroundTheme : "#ffffff" }}>
         {singlePoem.backgroundTheme.length > 9 ?
                             <img 
                         src={ singlePoem.backgroundTheme} 
-                        className='absolute z-10 h-full w-full' 
+                        className='absolute h-full w-full' 
                         style={{background: singlePoem.backgroundTheme.length <= 9 ? '#ffffff' : undefined}}/>
                         : undefined}
         <div className="flex items-center justify-between">
@@ -84,8 +87,8 @@ const Modal: React.FC<ModalProps> = () => {
             <div className="bg-black w-[2px] h-full"></div>
             <div className="w-2 h-2 rounded-full bg-black"></div>
           </div>
-          <p className="ml-16">
-            <ul>
+  
+            <ul className="ml-16 z-20">
               <li>{singlePoem.firstName}</li>
               <li>{singlePoem.adjectives}</li>
               <li>{singlePoem.importantRelation}</li>
@@ -97,11 +100,11 @@ const Modal: React.FC<ModalProps> = () => {
               <li>Residence of {singlePoem.residence}</li>
               <li>{singlePoem.lastName}</li>
             </ul>
-          </p>
+  
         </div>
         <div className="flex items-center gap-2 ml-24">
-          <BiUpvote className="cursor-pointer" onClick={upvotePoem} />
-          <span>{singlePoem.upvotes}</span>
+          <BiUpvote className="cursor-pointer" onClick={upvotePoem} style={vote !== null && {color:'red'}}/>
+          <span>{vote !== null ? singlePoem.upvotes +1 : singlePoem.upvotes}</span>
           <BiDownvote className="cursor-pointer" onClick={downvotePoem} />
           <span>{singlePoem.downvotes}</span>
         </div>

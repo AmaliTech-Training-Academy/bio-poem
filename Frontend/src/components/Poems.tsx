@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../store/store";
 import GridImg from "../assets/Rectangle 36.png";
-import ReactPaginate from "react-paginate";
+// import ReactPaginate from "react-paginate";
 import { setPoemSingleData, setShowModal } from "../store/poemSlice";
 import Modal from "./Modal";
 import { Poem } from "./Carousel2";
+import Pagination from "./Pagination";
 
 type propsObject = {
   _id: number;
@@ -52,7 +53,7 @@ const Poems: React.FC<propsArray> = ({ data }) => {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-x-12 gap-y-9 mb-10">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-9 mb-10">
         {data?.map((poem: propsObject) => {
           return (
             <div key={poem._id}>
@@ -80,7 +81,9 @@ const Poems: React.FC<propsArray> = ({ data }) => {
           );
         })}
       </div>
-      <ReactPaginate
+      <Pagination
+      />
+      {/* <ReactPaginate
         breakLabel="..."
         nextLabel="Next >"
         onPageChange={handlePageClick}
@@ -93,7 +96,7 @@ const Poems: React.FC<propsArray> = ({ data }) => {
         previousLinkClassName="page-num"
         nextLinkClassName="page-num"
         activeLinkClassName="active"
-      />
+      /> */}
     </>
   );
 };
