@@ -7,7 +7,7 @@ import { Poem } from '../components/Carousel2';
 interface poemState {
     poems: []
     status: string
-    showModal:boolean
+    enableModal:boolean
     loading: boolean
     poemData: []
     recentPoems: object
@@ -20,7 +20,7 @@ interface poemState {
 const initialState: poemState = {
     poems: [],
     status: 'idle',
-    showModal: false,
+    enableModal: false,
     poemData: [],
     loading: false,
     recentPoems: {},
@@ -83,7 +83,7 @@ const poemSlice = createSlice({
     initialState,
     reducers:{
         setShowModal: (state)=>{
-            state.showModal = !state.showModal
+            state.enableModal = !state.enableModal
         },
         setPoemData: (state, action) => {
             state.poemData = action.payload;

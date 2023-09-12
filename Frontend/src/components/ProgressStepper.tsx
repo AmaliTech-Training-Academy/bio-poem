@@ -1,4 +1,3 @@
-// import { Stepper } from 'react-stepper-responsive'
 import { Stepper } from './Stepper'
 import '../App.css'
 

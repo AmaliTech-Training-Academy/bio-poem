@@ -27,12 +27,12 @@ const Homepage = () => {
   dispatch(resetTheme())
   
   return (
-    <div className='flex w-full'>
+    <div className='flex overflow-x-hidden'>
         <SideBar/>
         {openSearch && <SearchPoem/>}
-        <div className='w-9/12 md:px-5 xl:pl-10'>
+        <div className={`w-9/12 md:px-5  ${openSearch ? 'xl:ml-34 2xl:ml-[38rem]' :'xl:ml-34 2xl:ml-80 ml-auto'}`}>
         <MainContent/>
-      </div>
+        </div>
       </div>
     )
 }
