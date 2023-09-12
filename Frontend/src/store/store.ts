@@ -9,6 +9,7 @@ import darkModeSlice from "./darkModeSlice";
 import poemSlice from "./poemSlice";
 import userSlice from "./userSlice";
 import userProfileSlice from './userProfile'
+import recentSearchSlice from "./recentSearchSlice";
 
 
 const persistConfig = {
@@ -24,6 +25,7 @@ const persistConfig = {
         darkMode: darkModeSlice,
         user: userSlice,
         userProfile: userProfileSlice,
+        recentSearch: recentSearchSlice
     })
 
   const persistedReducer = persistReducer(persistConfig, rootReducer)

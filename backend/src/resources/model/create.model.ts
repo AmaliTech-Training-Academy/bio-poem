@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import createInterface from '../../utils/interfaces/create.interface';
+import CreatePoemInterface from '../../utils/interfaces/create.interface';
 
 const createPoemSchema = new Schema(
   {
@@ -49,7 +49,6 @@ const createPoemSchema = new Schema(
     user:{
       type: Schema.Types.ObjectId,
       ref: 'users',
-      required: true
     },
     upvotes: {
       type: Number,
@@ -63,4 +62,8 @@ const createPoemSchema = new Schema(
   { timestamps: true },
 );
 
-export default model<createInterface>('CreatePoem', createPoemSchema);
+export default model<CreatePoemInterface>('CreatePoem', createPoemSchema);
+
+// one - many relationship
+// one user can have many poems and many poems belongs to one user
+// but in my requirement: one user can only have one poem and one poem will only belong to one user
