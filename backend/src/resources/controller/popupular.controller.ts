@@ -28,7 +28,14 @@ const getPopularPoems = async (req: Request, res: Response) => {
     // Sort poems by popularity in descending order
     popularPoems.sort((a, b) => b.popularity - a.popularity);
 
-    res.status(200).json({ success: true, popularPoems });
+    const popuPoems = popularPoems.map((p) => {
+      const { popularity, ...poemWithoutPopularity } = p
+      return poemWithoutPopularity
+    })
+
+    console.log(popuPoems)
+
+    res.status(200).json({ success: true, popuPoems });
   } catch (error) {
     console.error('Error fetching popular poems:', error);
     res
