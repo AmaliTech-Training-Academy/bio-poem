@@ -11,7 +11,6 @@ interface SearchState {
 
 const initialState: SearchState = {
     openSearch: false,
-    remainSearch: true,
     loading: false,
     response: null,
 }
@@ -36,7 +35,7 @@ const searchSlice = createSlice({
     initialState,
     reducers: {
         setOpenSearch: (state) => {
-            state.openSearch = initialState.remainSearch
+            state.openSearch = !state.openSearch
         },
         resetSearchState: (state) => {
             state.openSearch = initialState.openSearch;

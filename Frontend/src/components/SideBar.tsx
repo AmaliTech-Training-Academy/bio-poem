@@ -42,9 +42,9 @@ const SideBar = () => {
       
 
   return (
-    <div className='min-h-screen w-max  h-fit border-r border-gray-400 border-r-1 md:px-4 xl:pr-14 pl-6 pt-10 pb-4 w-3/12' id='sidebar'>
+    <div className='fixed top-0 left-0 h-screen md:px-4 xl:pr-14 pl-6 pt-10 pb-4  overflow-y-auto border-r border-gray-400 z-10'>
         {toggle ? <img src={darkModeLogo} alt='logo' className='m-auto'/>: <img src={logo} alt='logo' className='m-auto'/>}
-        <div className='text-2xl font-normal mt-[114px] w-fit m-auto' >
+        <div className='text-2xl font-normal mt-[7vh] w-fit m-auto' >
 
                 <div className={`flex items-center cursor-pointer py-2.5 ${activeSection === '/' && !openSearch ? `border-l-4 border-${initialBorderColor}-500` : ''}`}
                     onClick={() => handleSectionClick('/')}>
@@ -53,7 +53,7 @@ const SideBar = () => {
                 
                 </div>
 
-                <div className={`flex items-center my-[55px] cursor-pointer py-2.5 ${activeSection === 'search' || openSearch ? 'border-l-4 border-orange-500' : ''}`}
+                <div className={`flex items-center my-[6.875vh] cursor-pointer py-2.5 ${activeSection === 'search' || openSearch ? 'border-l-4 border-orange-500' : ''}`}
                     onClick={() => handleSectionClick('search')}>
                     <BiSearchAlt2 className='lg:ml-3 ml-5'/>
                     {!openSearch && <p className='lg:ml-5 ml-11'>Search</p>}
@@ -66,8 +66,8 @@ const SideBar = () => {
                 </div>
         </div>
 
-        <div className={`py-4  border border-[#F06A30] rounded-3xl m-auto mt-[470px]  ${!openSearch ? `px-5` : `w-16`}`}>
-            {!openSearch && <div className='flex items-center mb-[5px] justify-between'>
+        <div className={`py-4  border border-[#F06A30] rounded-3xl m-auto mt-[30vh]  ${!openSearch ? `px-5` : `w-16`}`}>
+            {!openSearch && <div className='flex items-center mb-[0.25vh] justify-between'>
                 <p >Appearance</p> 
                 {!toggle ? <MdOutlineLightMode className='w-11 h-5'/> : <MdLightMode className='w-11 h-5'/>}
                 
