@@ -14,17 +14,16 @@ const Homepage = () => {
 
   const openSearch = useAppSelector((state)=>state.search.openSearch);
   const userId = useAppSelector(state=> state.user.userId);
-  console.log(userId);
 
   useEffect(()=> {
     if(!userId){
       navigate('/get-started')
     }
-  })
+    dispatch(resetState())
+    dispatch(resetTheme())
+  },);
   
   
-  dispatch(resetState())
-  dispatch(resetTheme())
   
   return (
     <div className='flex overflow-x-hidden'>

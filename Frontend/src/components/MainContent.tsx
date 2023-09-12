@@ -6,9 +6,6 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 
 const MainContent = () => {
-  const enableModal = useSelector((state:RootState)=>state.poem.enableModal)
-
-  console.log('modal', enableModal);
   
   return (
     <div className=' pl-4 w-full'>
@@ -17,7 +14,6 @@ const MainContent = () => {
         <Carousel2/>
         <RecentPoems/>
         </div>
-        {enableModal && <Modal/>}
     </div>
   )
 }
