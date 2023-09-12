@@ -18,12 +18,9 @@ const createQuestionnaire = async (req: Request, res: Response) => {
   } = req.body;
 
   try {
-    // const { username } = req.body; // Get the username from the request body
-    // // console.log('username', username);
     const { id } = req.params;
     // Check if a user with this username exists
     const user = await usersModel.findById(id);
-    console.log('user1', user);
 
     if (!user) {
       return res

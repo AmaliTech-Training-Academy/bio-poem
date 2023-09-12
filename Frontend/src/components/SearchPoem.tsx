@@ -63,7 +63,7 @@ const SearchPoem = () => {
   };
   
   const removeItem = (id:string) =>{
-    const updatedPoems = fetchPoems.filter((poem: poem)=>poem._id !==id)
+    const updatedPoems = fetchPoems?.filter((poem: poem)=>poem._id !==id)
     setFetchPoems(updatedPoems)
     setDisplayedDivs(displayedDivs - 1)
   };
