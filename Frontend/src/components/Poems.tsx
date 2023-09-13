@@ -63,6 +63,7 @@ const Poems: React.FC<propsArray> = ({ data }) => {
                   <img
                     className="rounded-full w-[119px] h-[119px]"
                     src={GridImg}
+                    alt=""
                   />
                 </div>
                 <div className="text-center">
