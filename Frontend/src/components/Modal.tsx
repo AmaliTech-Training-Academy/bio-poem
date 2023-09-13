@@ -1,30 +1,46 @@
 import GridImg from "../assets/Rectangle 36.png";
 import { VscClose } from "react-icons/vsc";
-import { BiDownvote, BiUpvote } from "react-icons/bi";
+import { BiDownvote, BiUpvote} from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { setShowModal } from "../store/poemSlice";
 import { Poem } from "./Carousel2";
 import axios from 'axios'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 interface ModalProps {
   poems?: Poem[];
   id?: string;
 }
+interface person{
+  _id : string
+  username: string
+}
 
 const Modal: React.FC<ModalProps> = () => {
   const visible = useSelector((state: RootState) => state.poem.showModal);
+  console.log(visible);
+  
+
   const singlePoem = useSelector((state: RootState) => state.poem.singlePoem);
+  const [singlePoemPic, setSinglePoemPic] = useState<person>({})
+
   const [vote, setVote] = useState(null)
   const dispatch = useDispatch();
 
+
+ useEffect(() => {
+  const handlePic = () => setSinglePoemPic(singlePoem.user)  
+  handlePic()
+ }, [])
+ 
+  
   const upvotePoem = async () => {
       const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/upvote`;
       try {
         const response = await axios.post(url);
-        console.log('uptake', response.data.message);
         setVote(response.data.message)
+        setSinglePoemPic(singlePoem.user)
     } catch (error) {
       console.log(error);
       throw error;
@@ -48,26 +64,26 @@ const Modal: React.FC<ModalProps> = () => {
 
   if (!visible || !singlePoem ) return null;
 
-
   return (
     <div
       id="container"
       onClick={handleClose}
-      className="fixed w-[100%] h-[784px] left-[14%] top-[20%] inset-0 bg-black bg-opacity-5 backdrop-blur-sm flex justify-center items-center"
+      className="fixed h-[784px] left-[16%] top-[20%] inset-0 bg-black bg-opacity-5 backdrop-blur-none flex justify-center items-center z-20"
     >
-      <div className="absolute top-20 w-[693px] rounded-3xl px-10 py-5" 
-      style={{background: singlePoem.backgroundTheme.length <= 9 ? singlePoem.backgroundTheme : "#ffffff" }}>
-        {singlePoem.backgroundTheme.length > 9 ?
-                            <img 
-                        src={ singlePoem.backgroundTheme} 
-                        className='absolute h-full w-full' 
-                        style={{background: singlePoem.backgroundTheme.length <= 9 ? '#ffffff' : undefined}}/>
-                        : undefined}
+      <div className="absolute top-25 w-[693px] rounded-3xl px-10 py-5"
+      style={{ background: singlePoem.backgroundTheme ? singlePoem.backgroundTheme : "#ffffff" }}>
+      {singlePoem.backgroundTheme && (
+        <img
+          src={singlePoem.backgroundTheme}
+          className="absolute h-full w-full -z-30 rounded-3xl"
+          alt="Background"
+        />
+      )}
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img
               className="rounded-full h-[65px] w-[65px]"
-              src={GridImg}
+              src={singlePoem.profileImage}
               alt="Profile"
             />
             <p className="ml-5 font-medium text-2xl text-black">
@@ -88,7 +104,7 @@ const Modal: React.FC<ModalProps> = () => {
             <div className="w-2 h-2 rounded-full bg-black"></div>
           </div>
   
-            <ul className="ml-16 z-20">
+            <ul className="ml-16">
               <li>{singlePoem.firstName}</li>
               <li>{singlePoem.adjectives}</li>
               <li>{singlePoem.importantRelation}</li>
@@ -103,7 +119,7 @@ const Modal: React.FC<ModalProps> = () => {
   
         </div>
         <div className="flex items-center gap-2 ml-24">
-          <BiUpvote className="cursor-pointer" onClick={upvotePoem} style={vote !== null && {color:'red'}}/>
+          <BiUpvote className="cursor-pointer" onClick={upvotePoem} style={vote !== null && {fill: 'red'}}/>
           <span>{vote !== null ? singlePoem.upvotes +1 : singlePoem.upvotes}</span>
           <BiDownvote className="cursor-pointer" onClick={downvotePoem} />
           <span>{singlePoem.downvotes}</span>

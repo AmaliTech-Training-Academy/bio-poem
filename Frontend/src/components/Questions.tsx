@@ -8,23 +8,28 @@ import { useAppDispatch, useAppSelector } from '../store/store'
 import { Complete } from "./Complete"
 
 
+
 type Props = {
     currentPage: number,
     }
 
 export const Questions: React.FC<Props> = ({currentPage}) => {
     const dispatch = useAppDispatch()
+    console.log(currentPage);
+    
     
     const answers = useAppSelector((state)=> state.form.answers);
     const userId = useAppSelector((state)=> state.user.userId);
+    const status = useAppSelector(state=> state.form.status);
+
 
     const values = Object.values(answers);
+
     const handleSubmit = () => {
-        dispatch(submitPoemAnswers())
-    const data : finishedPoem ={data: answers, id: userId}
+    const data : finishedPoem = {data: answers, id: userId}
         dispatch(submitAnswers(data))
+        dispatch(submitPoemAnswers())
     }
-    
 
     const firstPage = questions.slice(0, 4);
     const secondPage = questions.slice(4, 7);
@@ -67,12 +72,13 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
             />         
         )}
 
-        { currentPage === 4 ? <CardTheme/> : undefined }
+        { currentPage === 4 ? <CardTheme loading={status}/> : undefined }
 
         { currentPage === 5 ? <Complete/> : undefined}
 
         {/* Navigation */}
-        { currentPage === 5 ? undefined : 
+        { 
+        currentPage === 5 ? undefined : status !== 'Fulfilled' ?   
         <div className="flex justify-between mt-4 mb-8">
             <div className="flex items-center p-[10px] cursor-pointer"
                 onClick={()=>{dispatch(back())}}
@@ -94,6 +100,8 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
                 </div>
             }
             </div>
+            : 
+            undefined 
         }
         
     </form>
