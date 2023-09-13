@@ -1,12 +1,23 @@
 import { CreatePoemHeader } from '../components/CreatePoemHeader'
 import { CreatePoemContent } from '../components/CreatePoemContent'
 import SideBar from '../components/SideBar'
-import { useSelector } from 'react-redux'
-import { RootState } from '../store/store'
+import { useAppSelector } from '../store/store'
 import SearchPoem from '../components/SearchPoem'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
 
 export const CreatePoem = () => {
-  const openSearch = useSelector((state:RootState)=>state.search.openSearch)
+  const navigate = useNavigate();
+
+  const userId = useAppSelector(state=> state.user.userId);
+
+  useEffect(()=> {
+    if(!userId){
+      navigate('/get-started')
+    }
+  })
+
+  const openSearch = useAppSelector((state)=>state.search.openSearch)
   return (
     <div className='flex overflow-x-hidden'>
         <SideBar/>
