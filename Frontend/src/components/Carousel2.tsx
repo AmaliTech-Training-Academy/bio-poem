@@ -25,6 +25,7 @@ export interface Poem {
   upvotes: number;
   downvotes: number;
   backgroundTheme: string;
+  profileImage: string;
 }
 
 interface SampleArrowProps {
@@ -57,18 +58,28 @@ const Carousel2: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const searchResponse = useSelector((state: RootState) => state.poem.popularPoem);
+ 
+  
   const [poems, setPoems] = useState<Poem[]>([]);
-  console.log('popular',searchResponse)
 
   const handleShowSinglePoem = (data:Poem) => {
     dispatch(setPoemSingleData(data)) 
     dispatch(setShowModal());
+    console.log('num', 8);
+    
   };
+
+  
 
   useEffect(() => {
     dispatch(getPopularPoems());
-    setPoems(searchResponse.popularPoems);
   }, [dispatch]);
+
+  useEffect(() => {
+    if (searchResponse.popuPoems) {
+      setPoems(searchResponse.popuPoems);
+    }
+  }, [searchResponse.popuPoems]);
 
   const settings = {
     dots: false,
@@ -140,13 +151,11 @@ const Carousel2: React.FC = () => {
 
                 <div className="absolute inset-0 h-full w-full rounded-xl bg-white px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="flex flex-col min-h-full items-center justify-center py-10">
-                    <p className="text-[#646363] text-lg font-light cursor-pointer">
-                    <ul>
+                    <ul className="text-[#646363] text-lg font-light">
                         <li>{ele.adjectives}</li>
                         <li>{ele.importantRelation}</li>
                         <li>Loves to{" "} {ele.loves}</li>
                       </ul>
-                    </p>
                     <button
                       onClick={() => handleShowSinglePoem(ele)}
                       className="mt-2 rounded-md border-[#A5A2A2] border-2 bg-[#F06A30] py-3 px-7 text-white"

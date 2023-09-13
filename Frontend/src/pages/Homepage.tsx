@@ -11,9 +11,13 @@ const Homepage = () => {
   const dispatch = useAppDispatch();
 
   const openSearch = useAppSelector((state)=>state.search.openSearch);
+  const userId = useAppSelector(state=> state.user.userId);
+
   
   dispatch(resetState())
   dispatch(resetTheme())
+  
+  
   
   return (
     <div className='flex overflow-x-hidden'>

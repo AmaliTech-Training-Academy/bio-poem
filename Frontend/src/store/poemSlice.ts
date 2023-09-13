@@ -1,16 +1,13 @@
 import { data } from './formSlice';
-// import { payload } from './../components/FormSection';
-// import { poems } from './../data';
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from './store';
 import { Poem } from '../components/Carousel2';
-import { setVote } from './voteSlice';
 
 interface poemState {
     poems: []
     status: string
-    enableModal:boolean
+    showModal:boolean
     loading: boolean
     poemData: []
     recentPoems: object
@@ -23,7 +20,7 @@ interface poemState {
 const initialState: poemState = {
     poems: [],
     status: 'idle',
-    enableModal: false,
+    showModal: false,
     poemData: [],
     loading: false,
     recentPoems: {},
@@ -41,7 +38,6 @@ type PoemData = {
 export const getPopularPoems = createAsyncThunk<PoemData, void, object>('popularPoem/get', async () =>{
     try {
         const response = await axios.get('https://bio-poem.onrender.com/api/v1/poems/popular-poems')
-        console.log('response',response.data);
         return response.data
     } catch (error) {
         console.error(error);
@@ -52,7 +48,6 @@ export const getPopularPoems = createAsyncThunk<PoemData, void, object>('popular
 export const getRecentPoems = createAsyncThunk<PoemData, void, object>('recentPoem/get', async (page) =>{
     try {
         const response = await axios.get(`https://bio-poem.onrender.com/api/v1/poems/recent-poem?page=${page || 1}`)
-        console.log('response',response.data);
         return response.data
     } catch (error) {
         console.error(error);
@@ -60,6 +55,7 @@ export const getRecentPoems = createAsyncThunk<PoemData, void, object>('recentPo
     }
 })
 
+// Upvote
 export const upvotePoem = createAsyncThunk ('upvotePoem/post', async(singlePoem: Poem)=>{
     const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/upvote`;
       try {
@@ -88,7 +84,7 @@ const poemSlice = createSlice({
     initialState,
     reducers:{
         setShowModal: (state)=>{
-            state.enableModal = !state.enableModal
+            state.showModal = !state.showModal
         },
         setPoemData: (state, action) => {
             state.poemData = action.payload;
