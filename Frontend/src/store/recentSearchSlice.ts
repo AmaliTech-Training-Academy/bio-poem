@@ -34,9 +34,12 @@ const recentSearchSlice = createSlice({
   name: 'recentSearch',
   initialState,
   reducers: {
-    addRecentSearch: (state, action: PayloadAction<string>) => {
-      if (!state.recentSearches.includes(action.payload)) {
-        state.recentSearches.unshift(action.payload);
+    addRecentSearch: (state, action: PayloadAction<singlePoem>) => {
+      const poemToAdd = action.payload;
+      const exists = state.recentSearches.some((poem) => poem._id === poemToAdd._id);
+      
+      if (!exists) {
+        state.recentSearches.unshift(poemToAdd);
       }
     },
   },
