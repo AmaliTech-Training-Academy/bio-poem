@@ -4,10 +4,10 @@ import { MdClose } from 'react-icons/md';
 import person from '../assets/searchImage.png';
 import { searchPoem } from '../store/searchSlice';
 import { useAppDispatch, useAppSelector  } from '../store/store';
-import { setPoemSingleData, setShowModal } from '../store/poemSlice';
+import { setPoemSingleData, setShowModal } from '../store/poemSlice'
 import { addRecentSearch } from '../store/recentSearchSlice';
 
-type poem = {
+export type poem = {
   "firstName":string,
   "adjectives": string,
   "importantRelation": string,
@@ -22,7 +22,7 @@ type poem = {
   "userName": string,
   "_id": string    
 }
-interface poemArr {
+export interface poemArr {
     poemData: poem[]
 }
 
@@ -32,6 +32,8 @@ const SearchPoem = () => {
   const [fetchPoems, setFetchPoems] = useState<poemArr>([])
   const [displayedDivs, setDisplayedDivs] = useState(5);
   const [showMore, setShowMore] = useState<boolean>(true)
+
+  const [saveSearch, setSaveSearches] = useState<poemArr>([])
 
   const searchResponse = useAppSelector((state) => state.search.response);
   const darkMode = useAppSelector((state) => state.darkMode.toggle)
@@ -48,6 +50,7 @@ const SearchPoem = () => {
     dispatch(searchPoem())
     setFetchPoems(searchResponse.poems)
     setDisplayedDivs(5)
+    dispatch(addRecentSearch(searchResults))
   }, [dispatch, searchedPoem]);
   
 
@@ -58,10 +61,9 @@ const SearchPoem = () => {
     return fullName.includes(searchedPoem)      
   })   
     setSearchResults(filteredResults)
-
-    //update recent searches
-    if(searchedPoem && !recentSearches.includes(searchedPoem)){
-      dispatch(addRecentSearch(searchResults))
+    if(searchResults.length !== 0){
+      setSaveSearches([...saveSearch, ...searchResults])
+      saveSearch.unshift(searchResults)
     }
   };
   
@@ -84,11 +86,10 @@ const SearchPoem = () => {
 
   const  clearAll = () => setDisplayedDivs(0);
 
-  console.log('recent', recentSearches);
-  console.log('search res', searchResponse);
-  console.log('searched Term', searchedPoem);
+  console.log('saved poem', saveSearch);
+  // console.log('search res', searchResponse);
+  // console.log('searched Term', searchedPoem);
   console.log('search result', searchResults);
-  console.log('all poems', fetchPoems);
   
   
   
@@ -97,7 +98,7 @@ const SearchPoem = () => {
   
  
   return (
-    <div className="fixed top-0 h-screen overflow-y-auto lg:ml-24 xl:ml-32 2xl:ml-36 border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434] z-10">
+    <div className="fixed top-0 h-screen overflow-y-auto lg:ml-24 xl:ml-32 2xl:ml-[9.3rem] border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434] z-10">
       <div
         className={`flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px] mr-3.5  ml-4 ${
           darkMode ? 'bg-[#fff]' : ''
@@ -114,7 +115,7 @@ const SearchPoem = () => {
       </div>
       <div className={`flex gap-x-56 px-2.5 py-3 border-y-[0.5px] border-[#D9D9D9] mb-[40px] w-full justify-between`}>
         <p className={`text-base ${darkMode ? 'text-[#fff]' : ''}`}>Recent</p>
-        {fetchPoems.length !== 0 && displayedDivs !== 0 ? (
+        {searchResults.length !== 0 && displayedDivs !== 0 ? (
           <p className="text-[#F06A30] w-max cursor-pointer" onClick={clearAll} >Clear all</p>
         ) : (
           ''
@@ -122,12 +123,12 @@ const SearchPoem = () => {
       </div>
 
       {/* Search results */}
-      {fetchPoems.length === 0 || displayedDivs === 0  || (searchedPoem !== '' && searchResults.length === 0) ? (
+      { displayedDivs === 0  || (searchResults.length === 0) ? (
         <p className="text-[#F06A30] mt-[207px]">No Results...</p>
       ) : (
         <>
-          {searchResults.length === 0 ? (<>
-            {fetchPoems.slice(0,displayedDivs).map((ele:poem) => (
+          {searchResults.length !== 0 ? (<>
+            {searchResults.slice(0,displayedDivs).map((ele:poem) => (
             <div className="flex gap-x-28 mb-[30px] px-3.5 w-full justify-between" key={ele._id}>
               <div className="flex items-center">
                 <img src={person} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
@@ -148,7 +149,8 @@ const SearchPoem = () => {
           ))}
           {showMore && <p className="text-[#F06A30] border-b-[1px] border-[#F06A30] cursor-pointer" onClick={seeMore}>See more</p>}
           </>
-          ):(
+          )
+          :(
             <>
               {searchResults.slice(0,displayedDivs).map((ele:poem) => (
             <div className="flex gap-x-28 mb-[30px] px-3.5 w-full justify-between" key={ele._id}>
