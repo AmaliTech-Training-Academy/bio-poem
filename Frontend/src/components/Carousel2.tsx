@@ -26,6 +26,13 @@ export interface Poem {
   downvotes: number;
   backgroundTheme: string;
   profileImage: string;
+  user: User
+}
+
+interface User{
+  username: string;
+  _id: string
+  profileImage: string
 }
 
 interface SampleArrowProps {

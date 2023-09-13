@@ -83,7 +83,7 @@ const Modal: React.FC<ModalProps> = () => {
           <div className="flex items-center">
             <img
               className="rounded-full h-[65px] w-[65px]"
-              src={singlePoem.profileImage}
+              src={singlePoem.user.profileImage}
               alt="Profile"
             />
             <p className="ml-5 font-medium text-2xl text-black">

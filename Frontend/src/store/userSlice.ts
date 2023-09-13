@@ -45,6 +45,10 @@ const userSlice = createSlice({
         resetStatus: (state:User) => {
             state.status = '';
             state.message = ''
+        },
+        resetUser: (state:User) => {
+            state.userName = '';
+            state.userId = ''
         }
     },
     extraReducers: (builder)=> {
@@ -82,4 +86,4 @@ export const submitUserName = createAsyncThunk<Response, UserName, {}>(
 })
 
 export default userSlice.reducer;
-export const { updateUsername, resetStatus } = userSlice.actions;
+export const { updateUsername, resetStatus, resetUser } = userSlice.actions;

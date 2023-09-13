@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux'
 import { RootState } from './store/store'
 import { GetStarted } from "./pages/GetStarted"
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 

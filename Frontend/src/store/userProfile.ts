@@ -10,10 +10,13 @@ const userProfileSlice = createSlice({
     reducers: {
         setProfile: (state: {userImage: string}, action: PayloadAction<string>) => {
             state.userImage = action.payload
+        },
+        resetProfile: (state: {userImage: string}) => {
+            state.userImage = '';
         }
     }
 });
 
 export default userProfileSlice.reducer;
-export const { setProfile } = userProfileSlice.actions;
+export const { setProfile, resetProfile } = userProfileSlice.actions;
 

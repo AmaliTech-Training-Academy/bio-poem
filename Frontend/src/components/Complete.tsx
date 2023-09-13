@@ -2,6 +2,8 @@ import medal from '../assets/star-tick.png'
 import { useNavigate } from "react-router"
 import { resetState } from '../store/formSlice'
 import { useAppDispatch,} from '../store/store'
+import { resetUser } from '../store/userSlice'
+import { resetProfile } from '../store/userProfile'
 
 
 export const Complete = () => {
@@ -10,6 +12,8 @@ export const Complete = () => {
 
     const handleCompletion = (): void => {
         dispatch(resetState())
+        dispatch(resetUser())
+        dispatch(resetProfile())
         navigate('/')
     }
 
