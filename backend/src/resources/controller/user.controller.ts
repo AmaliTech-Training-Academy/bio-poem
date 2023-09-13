@@ -10,13 +10,7 @@ const userCredentials = async (req: Request, res: Response) => {
     // Check if the username is already taken
     const existingUser = await usersModel.findOne({ username });
 
-    if (existingUser) {
-      if (existingUser._id) {
-        res.status(200).json({ message: 'Allowed access to the page' });
-      } else {
-        return res.status(401).json({ message: 'Username is required' });
-      }
-    }
+    if (existingUser) res.status(401).json({ message: 'Username is required' });
 
     // Create a new user
     const newUser = new usersModel({ username });
