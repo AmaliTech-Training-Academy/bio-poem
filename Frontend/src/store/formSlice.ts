@@ -36,7 +36,7 @@ export type state = {
 
 const initialState: state = {
     page: 1,
-    total: 4,
+    total: 5,
     answers: {
         "firstName":"",
         "adjectives": "",
@@ -79,8 +79,9 @@ const formSlice = createSlice ({
             }
         },
         submitPoemAnswers: (state: state) => {
-            state.page = 5;
-            state.total = 5;
+            if(state.status === 'Fulfilled'){
+                state.page = 5;
+            }
         },
         resetState: (state:state) => {
             state.page = 1;
@@ -98,6 +99,7 @@ const formSlice = createSlice ({
                 "lastName": "",
                 "backgroundTheme": "",
             }
+            state.status = 'null'
         }
     },
     extraReducers: (builder)=> {

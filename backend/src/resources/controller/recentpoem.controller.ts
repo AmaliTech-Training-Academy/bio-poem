@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import poem from '../model/create.model';
-import usersModel from '../model/users.model';
 
 const recentPoems = async (req: Request, res: Response) => {
   // Default values for page and limit if not provided or not valid numbers

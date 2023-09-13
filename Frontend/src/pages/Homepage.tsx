@@ -4,24 +4,18 @@ import MainContent from '../components/MainContent'
 import { resetState } from '../store/formSlice'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { resetTheme } from '../store/themeSlice'
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
+
 
 
 const Homepage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const openSearch = useAppSelector((state)=>state.search.openSearch);
   const userId = useAppSelector(state=> state.user.userId);
 
-  useEffect(()=> {
-    if(!userId){
-      navigate('/get-started')
-    }
-    dispatch(resetState())
-    dispatch(resetTheme())
-  },);
+  
+  dispatch(resetState())
+  dispatch(resetTheme())
   
   
   
