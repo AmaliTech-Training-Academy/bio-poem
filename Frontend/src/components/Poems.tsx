@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useAppDispatch } from "../store/store";
 import GridImg from "../assets/Rectangle 36.png";
 // import ReactPaginate from "react-paginate";
@@ -7,8 +6,14 @@ import Modal from "./Modal";
 import { Poem } from "./Carousel2";
 import Pagination from "./Pagination";
 
-type propsObject = {
-  _id: number;
+type User = {
+  _id: string
+  username:string
+  profileImage:string
+}
+
+export type propsObject = {
+  _id: string;
   firstName: string;
   lastName: string;
   adjectives: string;
@@ -23,7 +28,9 @@ type propsObject = {
   downvotes: number;
   backgroundTheme: string;
   profileImage: string;
-};
+  user: User
+}
+
 
 type propsArray = {
   data: propsObject[];
@@ -31,21 +38,6 @@ type propsArray = {
 
 const Poems: React.FC<propsArray> = ({ data }) => {
   const dispatch = useAppDispatch();
-  const [currentItems, setCurrentItems] = useState<propsObject[]>([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 12;
-
-  useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(data.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, data]);
-
-  const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % data.length;
-    setItemOffset(newOffset);
-  };
 
   const handleShowSinglePoem = (data: Poem) => {
     dispatch(setPoemSingleData(data)); 

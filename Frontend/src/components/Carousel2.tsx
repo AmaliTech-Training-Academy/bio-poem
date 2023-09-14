@@ -3,15 +3,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
 import GridImg from "../assets/Rectangle 36.png";
-
 import Modal from "./Modal";
 import { getPopularPoems, setPoemSingleData, setShowModal } from "../store/poemSlice";
-import { RootState, useAppDispatch } from "../store/store";
-import { useState, useEffect } from "react";
-import {useSelector} from 'react-redux'
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { useEffect } from "react";
 
 export interface Poem {
-  _id: number;
+  _id: string;
   firstName: string;
   lastName: string;
   adjectives: string;
@@ -26,7 +24,15 @@ export interface Poem {
   downvotes: number;
   backgroundTheme: string;
   profileImage: string;
+  user: User;
 }
+
+export interface User {
+  _id?:string|null
+  username: string
+  profileImage: string
+}
+
 
 interface SampleArrowProps {
   onClick: () => void;
@@ -57,29 +63,21 @@ function SamplePrevArrow({ onClick }: SampleArrowProps) {
 const Carousel2: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const searchResponse = useSelector((state: RootState) => state.poem.popularPoem);
- 
-  
-  const [poems, setPoems] = useState<Poem[]>([]);
+  const popularPoems = useAppSelector((state) => state.poem.popularPoems);
 
   const handleShowSinglePoem = (data:Poem) => {
     dispatch(setPoemSingleData(data)) 
-    dispatch(setShowModal());
-    console.log('num', 8);
-    
+    dispatch(setShowModal());    
   };
 
+  console.log(popularPoems);
+  
   
 
   useEffect(() => {
     dispatch(getPopularPoems());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (searchResponse.popuPoems) {
-      setPoems(searchResponse.popuPoems);
-    }
-  }, [searchResponse.popuPoems]);
 
   const settings = {
     dots: false,
@@ -122,7 +120,7 @@ const Carousel2: React.FC = () => {
     <div className="h-[500px] w-auto mt-5 mr-auto">
       <h1 className="text-2xl font-medium py-7">Popular Poems</h1>
       <Slider {...settings} className="">
-        {poems.map((ele) => (
+        {popularPoems?.map((ele) => (
           <div
             className="overflow-hidden border-4 border-[#F06A30] rounded-md "
             key={ele._id}
