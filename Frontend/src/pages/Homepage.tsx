@@ -4,6 +4,7 @@ import MainContent from '../components/MainContent'
 import { resetState } from '../store/formSlice'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { resetTheme } from '../store/themeSlice'
+import { resetProfile } from '../store/userProfile'
 
 
 
@@ -11,11 +12,10 @@ const Homepage = () => {
   const dispatch = useAppDispatch();
 
   const openSearch = useAppSelector((state)=>state.search.openSearch);
-  const userId = useAppSelector(state=> state.user.userId);
 
-  
   dispatch(resetState())
   dispatch(resetTheme())
+  dispatch(resetProfile())
   
   
   

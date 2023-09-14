@@ -4,7 +4,8 @@ import { IoClose } from 'react-icons/io5'
 import { Themes } from './Themes'
 import { useAppSelector } from '../store/store'
 import { useState } from 'react'
-import profile from '../assets/searchImage.png'
+// import profile from '../assets/searchImage.png'
+
 
 type themeProps = {
     currentOption: string,
@@ -15,6 +16,8 @@ export const CardPreview: React.FC<themeProps> = ({currentOption}) => {
     const [view, setView] = useState<boolean>(false);
 
     const userPoem = useAppSelector((state)=> state.form.answers);
+    const profileImg = useAppSelector(state=> state.userProfile.userImage)  
+
 
     const poemData = Object.values(userPoem);
         
@@ -38,7 +41,7 @@ return (
                                 : undefined}
                                 <div className='z-40 relative px-4 py-1 h-full'>
                                     <div className='flex items-center'>
-                                        <img src={profile} className='w-6 h-6 rounded-full'/>
+                                        <img src={profileImg} className='w-6 h-6 rounded-full'/>
                                         <div className='ml-3 text-xs'>{userPoem.firstName +' '+ userPoem.lastName}</div>
                                         <IoClose className="ml-auto text-black w-3 h-3"/>
                                     </div>

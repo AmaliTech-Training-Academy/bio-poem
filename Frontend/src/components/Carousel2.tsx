@@ -24,7 +24,7 @@ export interface Poem {
   downvotes: number;
   backgroundTheme: string;
   profileImage: string;
-  user: User;
+  user: User
 }
 
 export interface User {
@@ -77,7 +77,6 @@ const Carousel2: React.FC = () => {
   useEffect(() => {
     dispatch(getPopularPoems());
   }, [dispatch]);
-
 
   const settings = {
     dots: false,

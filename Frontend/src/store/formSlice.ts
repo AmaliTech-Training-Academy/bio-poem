@@ -78,10 +78,8 @@ const formSlice = createSlice ({
                 backgroundTheme: theme
             }
         },
-        submitPoemAnswers: (state: state) => {
-            if(state.status === 'Fulfilled'){
-                state.page = 5;
-            }
+        submitPoemAnswers: (state: state,) => {
+            state.page = 5
         },
         resetState: (state:state) => {
             state.page = 1;

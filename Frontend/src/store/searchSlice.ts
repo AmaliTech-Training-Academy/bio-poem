@@ -5,19 +5,23 @@ import { data } from "./formSlice"
 interface SearchState {
     openSearch: boolean,
     loading: boolean,
-    response: PoemData | null
-}
-
-const initialState: SearchState = {
-    openSearch: false,
-    loading: false,
-    response: null,
+    response: PoemData 
 }
 
 type PoemData = {
     success: boolean;
     poems: data[]
 }
+
+const initialState: SearchState = {
+    openSearch: false,
+    loading: false,
+    response: {
+        success:false,
+        poems: []
+    },
+}
+
 
 export const searchPoem = createAsyncThunk<PoemData, void, object>('search/get', async () => {
     try {

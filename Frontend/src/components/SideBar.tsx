@@ -75,7 +75,7 @@ const SideBar = () => {
             {!openSearch && <hr className='h-[1px] bg-[#928F8F]'/>}
             {!openSearch &&<div className='flex items-center my-[26px] justify-between'>
                  <p className=''>Dark mode</p> 
-                {toggle ?<PiToggleRightFill className='w-11 h-5 mr-23  cursor-pointer w-[50px] h-[50px]' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/> : <PiToggleLeftFill className='w-[50px] h-[50px] cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/>}
+                {toggle ?<PiToggleRightFill className='w-11 h-5 mr-23  cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/> : <PiToggleLeftFill className='w-[50px] h-[50px] cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/>}
                 
             </div>
             }
@@ -86,7 +86,7 @@ const SideBar = () => {
                 </div>
                 )}
         </div>
-    </div>
+    </div> 
   )
 }
 
