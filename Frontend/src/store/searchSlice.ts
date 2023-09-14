@@ -4,9 +4,8 @@ import { data } from "./formSlice"
 
 interface SearchState {
     openSearch: boolean,
-    remainSearch: boolean,
     loading: boolean,
-    response: any | null
+    response: PoemData | null
 }
 
 const initialState: SearchState = {
@@ -20,7 +19,7 @@ type PoemData = {
     poems: data[]
 }
 
-export const searchPoem = createAsyncThunk<PoemData, void, {}>('search/get', async () => {
+export const searchPoem = createAsyncThunk<PoemData, void, object>('search/get', async () => {
     try {
         const response = await axios.get('https://bio-poem.onrender.com/api/v1/poems/all-poems')
         return response.data
@@ -46,9 +45,9 @@ const searchSlice = createSlice({
             .addCase(searchPoem.pending, (state) => {
                 state.loading = true
             })
-            .addCase(searchPoem.fulfilled, (state, {payload}: PayloadAction<any>) => {
+            .addCase(searchPoem.fulfilled, (state, action: PayloadAction<PoemData>) => {
                 state.loading = false
-                state.response = payload
+                state.response = action.payload
             })
             .addCase(searchPoem.rejected, (state) => {
                 state.loading = false
