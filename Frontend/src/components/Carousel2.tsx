@@ -83,10 +83,10 @@ const Carousel2: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (searchResponse.popuPoems) {
-      setPoems(searchResponse.popuPoems);
+    if (searchResponse) {
+      setPoems(searchResponse);
     }
-  }, [searchResponse.popuPoems]);
+  }, [searchResponse]);
 
   const settings = {
     dots: false,

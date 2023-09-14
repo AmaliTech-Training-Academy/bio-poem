@@ -1,4 +1,3 @@
-import GridImg from "../assets/Rectangle 36.png";
 import { VscClose } from "react-icons/vsc";
 import { BiDownvote, BiUpvote} from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +22,7 @@ const Modal: React.FC<ModalProps> = () => {
   
 
   const singlePoem = useSelector((state: RootState) => state.poem.singlePoem);
-  const [singlePoemPic, setSinglePoemPic] = useState<person>({})
+  const [singlePoemPic, setSinglePoemPic] = useState<person>()
 
   const [vote, setVote] = useState(null)
   const dispatch = useDispatch();

@@ -4,7 +4,6 @@ import { data } from "./formSlice"
 
 interface SearchState {
     openSearch: boolean,
-    remainSearch: boolean,
     loading: boolean,
     response: any | null
 }
