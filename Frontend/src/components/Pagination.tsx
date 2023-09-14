@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import arrowLeft from '../assets/arrow-left.png';
 import arrowRight from '../assets/arrow-right.png';
-import { getRecentPoems, selectRecentPoems } from '../store/poemSlice';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { getRecentPoems } from '../store/poemSlice';
 
 
 const Pagination = () => {
-    const dispatch = useDispatch()
-    const {total, hasMore} = useSelector(selectRecentPoems);
-    const [poemsPerPage, setPoemsPerPage] = useState(12)
-    let pageNumbers = []
+    const dispatch = useAppDispatch()
+
+    const total = useAppSelector(state=> state.poem.total)
+    const hasMore = useAppSelector(state=> state.poem.hasMore)
+    // const [poemsPerPage, setPoemsPerPage] = useState(12)
+    const poemsPerPage = 12;
+    const pageNumbers: number[] = []
     const [currentPage, setCurrentPage ] = useState(1);
 
     for(let i = 1; i <= Math.ceil(total/poemsPerPage); i++){
@@ -17,20 +20,20 @@ const Pagination = () => {
     }
 
     const goToNextPage = () =>{
-        if (hasMore && pageNumbers.at(-1) !== currentPage){
+        if (hasMore && pageNumbers[pageNumbers.length - 1]!== currentPage){
             setCurrentPage(prev => prev + 1) 
         }
     }
 
     const goToPreviousPage = () =>{
-        if (pageNumbers.at(0) < currentPage){
+        if (pageNumbers[0] < currentPage){
             setCurrentPage(prev => prev - 1) 
         }
     }
 
     useEffect(() => {
         dispatch(getRecentPoems(currentPage))
-      }, [currentPage])
+      }, [currentPage, dispatch])
 
 
  
