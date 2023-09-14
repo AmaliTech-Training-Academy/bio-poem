@@ -7,8 +7,6 @@ import { CardTheme } from "./CardTheme"
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { Complete } from "./Complete"
 import { toast } from 'react-toastify'
-import { resetUser } from "../store/userSlice"
-import { Navigate } from "react-router-dom"
 
 
 

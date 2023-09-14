@@ -5,7 +5,8 @@ import person from '../assets/searchImage.png';
 import { searchPoem } from '../store/searchSlice';
 import { useAppDispatch, useAppSelector  } from '../store/store';
 import { setPoemSingleData, setShowModal } from '../store/poemSlice'
-import { addRecentSearch, singlePoem } from '../store/recentSearchSlice';
+import { addRecentSearch } from '../store/recentSearchSlice';
+import { data } from '../store/formSlice';
 
 export type poem = {
   "firstName":string,
@@ -29,15 +30,12 @@ export interface poemArr {
 const SearchPoem = () => {
   const [searchedPoem, setSearchedPoem] = useState<string>('')
   const [searchResults, setSearchResults] = useState<any>([])
-  const [fetchPoems, setFetchPoems] = useState<poemArr[]>([])
+  const [fetchPoems, setFetchPoems] = useState<data[]>([])
   const [displayedDivs, setDisplayedDivs] = useState(5);
   const [showMore, setShowMore] = useState<boolean>(true)
 
-  const [saveSearch, setSaveSearches] = useState<poemArr[]>([])
-
   const searchResponse = useAppSelector((state) => state.search.response);
   const darkMode = useAppSelector((state) => state.darkMode.toggle)
-  const recentSearches = useAppSelector((state)=>state.recentSearch.recentSearches)
 
   const dispatch = useAppDispatch()
 
@@ -82,7 +80,7 @@ const SearchPoem = () => {
 
   const  clearAll = () => setDisplayedDivs(0);
 
-  console.log('saved poem', saveSearch);
+  // console.log('saved poem', saveSearch);
   // console.log('search res', searchResponse);
   // console.log('searched Term', searchedPoem);
   console.log('search result', searchResults);
