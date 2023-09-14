@@ -2,7 +2,6 @@ import Header from '../components/Header'
 import Carousel2 from '../components/Carousel2'
 import RecentPoems from '../components/RecentPoems'
 
-
 const MainContent = () => {
   
   return (

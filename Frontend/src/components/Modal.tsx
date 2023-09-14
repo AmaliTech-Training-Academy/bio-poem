@@ -1,45 +1,37 @@
 import { VscClose } from "react-icons/vsc";
 import { BiDownvote, BiUpvote} from "react-icons/bi";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/store";
 import { setShowModal } from "../store/poemSlice";
 import { Poem } from "./Carousel2";
 import axios from 'axios'
-import {useState, useEffect} from 'react'
+import {useState,} from 'react'
 
 interface ModalProps {
   poems?: Poem[];
   id?: string;
 }
-interface person{
+export interface person{
   _id : string
   username: string
+  profileImage: string
 }
 
+
 const Modal: React.FC<ModalProps> = () => {
-  const visible = useSelector((state: RootState) => state.poem.showModal);
-  console.log(visible);
+  const dispatch = useAppDispatch();
   
+  const visible = useAppSelector((state) => state.poem.showModal);
+  const singlePoem = useAppSelector((state) => state.poem.singlePoem);
 
-  const singlePoem = useSelector((state: RootState) => state.poem.singlePoem);
-  const [singlePoemPic, setSinglePoemPic] = useState<person>()
-
+  // console.log('check',singlePoem);
+  
   const [vote, setVote] = useState(null)
-  const dispatch = useDispatch();
-
-
- useEffect(() => {
-  const handlePic = () => setSinglePoemPic(singlePoem.user)  
-  handlePic()
- }, [])
  
-  
   const upvotePoem = async () => {
       const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/upvote`;
       try {
         const response = await axios.post(url);
         setVote(response.data.message)
-        setSinglePoemPic(singlePoem.user)
     } catch (error) {
       console.log(error);
       throw error;
@@ -57,8 +49,12 @@ const Modal: React.FC<ModalProps> = () => {
   }
 }
 
-  const handleClose = (e: any) => {
-    if (e.target.id === "container") dispatch(setShowModal());
+  const handleClose = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+
+  if (target.id === "container") {
+    dispatch(setShowModal());
+  }
   };
 
   if (!visible || !singlePoem ) return null;
