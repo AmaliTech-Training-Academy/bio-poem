@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../store/store'
 import { changeThemeOption } from '../store/themeSlice'
 import { selectTheme } from '../store/formSlice'
 import { RotatingLines } from 'react-loader-spinner'
+import { PoemFont } from './PoemFont'
 
 export type load = {
     loading: string
@@ -63,6 +64,7 @@ export const CardTheme: React.FC<load> = ({loading}) => {
                             <div className="text-sm font-semibold">Pattern</div>
                         </div>
                     </div>
+                    <PoemFont/>
                     <CardPreview currentOption={currentOption}/>
                 </div>
             }

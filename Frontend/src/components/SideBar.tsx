@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import logo from '../assets/new-logo.png' 
-import darkModeLogo from '../assets/mdi_bio.png'
+// import darkModeLogo from '../assets/mdi_bio.png'
 import {LiaHomeSolid} from 'react-icons/lia'
 import {BiSearchAlt2, BiFolderPlus} from 'react-icons/bi'
 import {MdOutlineLightMode,MdLightMode} from 'react-icons/md'
@@ -47,11 +47,11 @@ const SideBar = () => {
         {/* logo */}
         
         <div className='flex items-center h-8 mx-auto'>
-            <img src={toggle ? darkModeLogo : logo} alt='logo' className='w-8 h-full'/>
+            <img src={logo} alt='logo' className='w-8 h-full'/>
             <img src={bio} className='h-12'/>
         </div>
         {/* Links */}
-        <div className='text-2xl font-normal w-fit m-auto' >
+        <div className='text-2xl font-normal w-fit mx-auto md:mt-14 xl:mt-20' >
                 <div className={`flex items-center mb-9  cursor-pointer py-2.5 ${activeSection === '/' && !openSearch ? `border-l-4 border-${initialBorderColor}-500` : ''}`}
                     onClick={() => handleSectionClick('/')}>
                     <LiaHomeSolid className='lg:ml-3 xl:ml-5'/>

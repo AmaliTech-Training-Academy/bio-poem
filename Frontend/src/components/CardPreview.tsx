@@ -35,10 +35,11 @@ return (
                             <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden mx-auto lg:w-full xl:w-[480px]' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
                                 {userPoem.backgroundTheme.length > 9 ?
                                     <img 
-                                src={ userPoem.backgroundTheme} 
-                                className='absolute z-10 h-full w-full' 
-                                style={userPoem.backgroundTheme.length <= 9 ? {display: 'none'} : undefined  }/>
-                                : undefined}
+                                        src={ userPoem.backgroundTheme} 
+                                        className='absolute z-10 h-full w-full' 
+                                        style={userPoem.backgroundTheme.length <= 9 ? {display: 'none'} : undefined  }/>
+                                        : undefined
+                                }
                                 <div className='z-40 relative px-4 py-1 h-full'>
                                     <div className='flex items-center'>
                                         <img src={profileImg} alt='Profile Image' className='w-6 h-6 rounded-full'/>
