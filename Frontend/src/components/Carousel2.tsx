@@ -70,7 +70,6 @@ const Carousel2: React.FC = () => {
     dispatch(setShowModal());    
   };
 
-  console.log(popularPoems);
   
   
 
