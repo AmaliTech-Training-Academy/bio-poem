@@ -2,11 +2,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
-import GridImg from "../assets/Rectangle 36.png";
-// import Modal from "./Modal";
 import { getPopularPoems, setPoemSingleData, setShowModal } from "../store/poemSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { useEffect } from "react";
+import user from '../assets/user.jpg'
 
 export interface Poem {
   _id: string;
@@ -128,7 +127,7 @@ const Carousel2: React.FC = () => {
                 <div>
                   <img
                     className="object-cover w-[100%] h-[250px]"
-                    src={GridImg}
+                    src={user}
                     alt=""
                   />
                 </div>
