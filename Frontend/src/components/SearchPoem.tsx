@@ -5,7 +5,7 @@ import person from '../assets/searchImage.png';
 import { searchPoem } from '../store/searchSlice';
 import { useAppDispatch, useAppSelector  } from '../store/store';
 import { setPoemSingleData, setShowModal } from '../store/poemSlice'
-import { addRecentSearch } from '../store/recentSearchSlice';
+import { addRecentSearch, singlePoem } from '../store/recentSearchSlice';
 
 export type poem = {
   "firstName":string,
@@ -28,12 +28,12 @@ export interface poemArr {
 
 const SearchPoem = () => {
   const [searchedPoem, setSearchedPoem] = useState<string>('')
-  const [searchResults, setSearchResults] = useState([])
-  const [fetchPoems, setFetchPoems] = useState<poemArr>([])
+  const [searchResults, setSearchResults] = useState<any>([])
+  const [fetchPoems, setFetchPoems] = useState<poemArr[]>([])
   const [displayedDivs, setDisplayedDivs] = useState(5);
   const [showMore, setShowMore] = useState<boolean>(true)
 
-  const [saveSearch, setSaveSearches] = useState<poemArr>([])
+  const [saveSearch, setSaveSearches] = useState<poemArr[]>([])
 
   const searchResponse = useAppSelector((state) => state.search.response);
   const darkMode = useAppSelector((state) => state.darkMode.toggle)
@@ -41,7 +41,7 @@ const SearchPoem = () => {
 
   const dispatch = useAppDispatch()
 
-  const handleShowSinglePoem = (data: poem) => {
+  const handleShowSinglePoem = (data: any) => {
     dispatch(setPoemSingleData(data)) 
     dispatch(setShowModal());
   };
@@ -56,19 +56,15 @@ const SearchPoem = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedPoem( e.target.value.toLowerCase()) 
-    const filteredResults = fetchPoems.filter((ele:poem)=>{
+    const filteredResults = fetchPoems.filter((ele:any)=>{
     const fullName = `${ele.firstName} ${ele.lastName}`.toLowerCase()
     return fullName.includes(searchedPoem)      
   })   
     setSearchResults(filteredResults)
-    if(searchResults.length !== 0){
-      setSaveSearches([...saveSearch, ...searchResults])
-      saveSearch.unshift(searchResults)
-    }
   };
   
   const removeItem = (id:string) =>{
-    const updatedPoems = fetchPoems?.filter((poem: poem)=>poem._id !==id)
+    const updatedPoems = fetchPoems?.filter((poem:any)=>poem._id !==id)
     setFetchPoems(updatedPoems)
     setDisplayedDivs(displayedDivs - 1)
   };
@@ -91,12 +87,6 @@ const SearchPoem = () => {
   // console.log('searched Term', searchedPoem);
   console.log('search result', searchResults);
   
-  
-  
-  
-  
-  
- 
   return (
     <div className="fixed top-0 h-screen overflow-y-auto lg:ml-24 xl:ml-32 2xl:ml-[9.3rem] border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434] z-10">
       <div
