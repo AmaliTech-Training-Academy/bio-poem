@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
 import GridImg from "../assets/Rectangle 36.png";
-import Modal from "./Modal";
+// import Modal from "./Modal";
 import { getPopularPoems, setPoemSingleData, setShowModal } from "../store/poemSlice";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { useEffect } from "react";
@@ -165,7 +165,7 @@ const Carousel2: React.FC = () => {
           </div>
         ))}
       </Slider>
-      <Modal />
+      {/* <Modal /> */}
     </div>
   );
 };

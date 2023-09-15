@@ -24,7 +24,7 @@ export const UserNameForm = () => {
     }
     
     if(status === 'Fulfilled'){
-        navigate('/')
+        navigate('/create')
         dispatch(resetStatus())
     }
 

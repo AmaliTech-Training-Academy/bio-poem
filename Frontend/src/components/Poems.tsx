@@ -1,7 +1,7 @@
 import GridImage from '../assets/user.jpg'
 import { useAppDispatch } from "../store/store";
 import { setPoemSingleData, setShowModal } from "../store/poemSlice";
-import Modal from "./Modal";
+// import Modal from "./Modal";
 import { Poem } from "./Carousel2";
 import Pagination from "./Pagination";
 
@@ -76,7 +76,7 @@ const Poems: React.FC<propsArray> = ({ data }) => {
                   </p>
                 </div>
               </div>
-              <Modal />
+              {/* <Modal /> */}
             </div>
           );
         })}

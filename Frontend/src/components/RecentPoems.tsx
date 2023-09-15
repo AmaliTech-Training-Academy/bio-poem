@@ -19,7 +19,7 @@ const RecentPoems = () => {
     <div className='mx-auto mt-5 font-Inter'>
       <div>
         <h1 className="text-2xl font-medium py-7">Recent Poems</h1>
-                <Poems data={recentPoems}/>
+        <Poems data={recentPoems}/>
       </div>
     </div>
   )
