@@ -9,10 +9,9 @@ const RecentPoems = () => {
     const  recentPoems = useAppSelector(state=> state.poem.recentPoems);
     const dispatch = useAppDispatch()
 
-    console.log(recentPoems);
     
     useEffect(() => {
-      dispatch(getRecentPoems(2))
+      dispatch(getRecentPoems(recentPoems))
     }, [dispatch])
     
     

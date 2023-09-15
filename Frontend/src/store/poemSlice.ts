@@ -77,7 +77,6 @@ const initialState: poemState = {
 export const getPopularPoems = createAsyncThunk<PopularPoemsResponse, void, object>('popularPoem/get', async () =>{
     try {
         const response = await axios.get('https://bio-poem.onrender.com/api/v1/poems/popular-poems')
-        console.log('popular', response.data);
         return response.data
     } catch (error) {
         console.error(error);
@@ -88,7 +87,6 @@ export const getPopularPoems = createAsyncThunk<PopularPoemsResponse, void, obje
 export const getRecentPoems = createAsyncThunk<RecentPoemsResponse, number, object>('recentPoem/get', async (page) =>{
     try {
         const response = await axios.get(`https://bio-poem.onrender.com/api/v1/poems/recent-poem?page=${page || 1}`)
-        console.log('read',response);
         return response.data
     } catch (error) {
         console.error(error);

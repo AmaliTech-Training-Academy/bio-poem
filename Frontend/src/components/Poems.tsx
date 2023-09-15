@@ -1,6 +1,5 @@
+import GridImage from '../assets/user.jpg'
 import { useAppDispatch } from "../store/store";
-import GridImg from "../assets/Rectangle 36.png";
-// import ReactPaginate from "react-paginate";
 import { setPoemSingleData, setShowModal } from "../store/poemSlice";
 // import Modal from "./Modal";
 import { Poem } from "./Carousel2";
@@ -52,11 +51,18 @@ const Poems: React.FC<propsArray> = ({ data }) => {
             <div key={poem._id}>
               <div className="flex justify-between w-[299px] h-[140px] border-2 rounded-md p-5 items-center">
                 <div>
-                  <img
-                    className="rounded-full w-[119px] h-[119px]"
-                    src={GridImg}
-                    alt=""
-                  />
+                {poem.user.profileImage ? (
+            <img
+              className="rounded-full w-[119px] h-[119px]"
+              src={poem.user.profileImage}
+            />
+          ) : (
+            <img
+              className="rounded-full w-[119px] h-[119px]"
+              src={GridImage}
+              alt="GridImage"
+            />
+          )}
                 </div>
                 <div className="text-center">
                   <p className="pb-5">
@@ -77,20 +83,6 @@ const Poems: React.FC<propsArray> = ({ data }) => {
       </div>
       <Pagination
       />
-      {/* <ReactPaginate
-        breakLabel="..."
-        nextLabel="Next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< Previous"
-        renderOnZeroPageCount={null}
-        containerClassName="pagination"
-        pageLinkClassName="page-num"
-        previousLinkClassName="page-num"
-        nextLinkClassName="page-num"
-        activeLinkClassName="active"
-      /> */}
     </>
   );
 };
