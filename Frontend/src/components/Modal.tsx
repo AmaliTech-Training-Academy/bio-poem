@@ -74,7 +74,7 @@ const Modal: React.FC<ModalProps> = () => {
       onClick={handleClose}
       className="fixed h-[784px] left-[16%] top-[20%] inset-0 bg-black bg-opacity-5 backdrop-blur-none flex justify-center items-center z-20"
     >
-      <div className="absolute top-25 w-[693px] rounded-3xl px-10 py-5"
+      <div className="absolute top-25 w-[693px] rounded-3xl p-10"
       style={{ background: singlePoem.backgroundTheme ? singlePoem.backgroundTheme : "#ffffff" }}>
       {singlePoem.backgroundTheme && (
         <img
