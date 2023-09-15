@@ -2,7 +2,6 @@ import { colors } from '../colorData';
 import { patterns } from '../patternData';
 import { selectTheme } from '../store/formSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
-// import { themeProps } from './CardPreview';
 
 type themeProps = {
   currentOption: string,

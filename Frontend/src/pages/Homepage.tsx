@@ -23,7 +23,7 @@ const Homepage = () => {
     <div className='flex overflow-x-hidden'>
         <SideBar/>
         {openSearch && <SearchPoem/>}
-        <div className={`w-9/12 md:px-5  ${openSearch ? 'xl:ml-34 2xl:ml-[38rem]' :'xl:ml-34 2xl:ml-80 ml-auto'}`}>
+        <div className={`w-9/12 md:px-5  ${openSearch ? 'xl:ml-34 2xl:ml-[38rem]' :'xl:ml-34 2xl:ml-72 ml-auto'}`}>
         <MainContent/>
         </div>
       </div>

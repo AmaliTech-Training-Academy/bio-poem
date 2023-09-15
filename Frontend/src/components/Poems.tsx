@@ -2,7 +2,7 @@ import { useAppDispatch } from "../store/store";
 import GridImg from "../assets/Rectangle 36.png";
 // import ReactPaginate from "react-paginate";
 import { setPoemSingleData, setShowModal } from "../store/poemSlice";
-import Modal from "./Modal";
+// import Modal from "./Modal";
 import { Poem } from "./Carousel2";
 import Pagination from "./Pagination";
 
@@ -70,7 +70,7 @@ const Poems: React.FC<propsArray> = ({ data }) => {
                   </p>
                 </div>
               </div>
-              <Modal />
+              {/* <Modal /> */}
             </div>
           );
         })}

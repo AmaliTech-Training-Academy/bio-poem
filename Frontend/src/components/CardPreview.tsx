@@ -31,8 +31,8 @@ return (
                     </div>
                     {/* Preview */}
                     {view ?
-                        <div className='border border-customGrey1 rounded-lg px-16 pt-4 pb-6 xl:w-9/12'>
-                            <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden lg:w-full' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
+                        <div className='border border-customGrey1 rounded-lg pt-4 pb-6 xl:w-full'>
+                            <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden mx-auto lg:w-full xl:w-[480px]' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
                                 {userPoem.backgroundTheme.length > 9 ?
                                     <img 
                                 src={ userPoem.backgroundTheme} 
@@ -41,7 +41,7 @@ return (
                                 : undefined}
                                 <div className='z-40 relative px-4 py-1 h-full'>
                                     <div className='flex items-center'>
-                                        <img src={profileImg} className='w-6 h-6 rounded-full'/>
+                                        <img src={profileImg} alt='Profile Image' className='w-6 h-6 rounded-full'/>
                                         <div className='ml-3 text-xs'>{userPoem.firstName +' '+ userPoem.lastName}</div>
                                         <IoClose className="ml-auto text-black w-3 h-3"/>
                                     </div>
