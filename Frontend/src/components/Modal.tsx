@@ -1,3 +1,4 @@
+import GridImage from '../assets/user.jpg'
 import { VscClose } from "react-icons/vsc";
 import { BiDownvote, BiUpvote} from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -23,30 +24,38 @@ const Modal: React.FC<ModalProps> = () => {
   const visible = useAppSelector((state) => state.poem.showModal);
   const singlePoem = useAppSelector((state) => state.poem.singlePoem);
 
-  // console.log('check',singlePoem);
-  
-  const [vote, setVote] = useState(null)
+  const [upvoted, setUpVoted] = useState(false)
+  const [downvoted, setDownvoted] = useState(false);
  
   const upvotePoem = async () => {
+    if (!upvoted){
       const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/upvote`;
       try {
         const response = await axios.post(url);
-        setVote(response.data.message)
+        setUpVoted(true)
+        setDownvoted(false)
+        console.log('uptake', response);
+        
     } catch (error) {
       console.log(error);
       throw error;
     }
+    }
   }
 
   const downvotePoem = async () => {
-    const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/downvote`;
-    try {
-      const response = await axios.post(url);
-      console.log('downtake', response);
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+    if (!downvoted) {
+      const url = `https://bio-poem.onrender.com/api/v1/poems/${singlePoem._id}/downvote`;
+      try {
+        const response = await axios.post(url);
+        setDownvoted(true);
+        setUpVoted(false);
+        console.log('downtake', response);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+    }
 }
 
   const handleClose = (e: React.MouseEvent) => {
@@ -76,11 +85,18 @@ const Modal: React.FC<ModalProps> = () => {
       )}
         <div className="flex items-center justify-between">
           <div className="flex items-center">
+          {singlePoem.user.profileImage ? (
             <img
-              className="rounded-full h-[65px] w-[65px]"
+              className="rounded-full w-[65px] h-[65px]"
               src={singlePoem.user.profileImage}
-              alt="Profile"
             />
+          ) : (
+            <img
+              className="rounded-full w-[65px] h-[65px]"
+              src={GridImage}
+              alt="GridImage"
+            />
+          )}
             <p className="ml-5 font-medium text-2xl text-black">
               {singlePoem.firstName} {singlePoem.lastName}
             </p>
@@ -114,10 +130,10 @@ const Modal: React.FC<ModalProps> = () => {
   
         </div>
         <div className="flex items-center gap-2 ml-24">
-          <BiUpvote className="cursor-pointer" onClick={upvotePoem} style={vote !== null && {fill: 'red'}}/>
-          <span>{vote !== null ? singlePoem.upvotes +1 : singlePoem.upvotes}</span>
-          <BiDownvote className="cursor-pointer" onClick={downvotePoem} />
-          <span>{singlePoem.downvotes}</span>
+          <BiUpvote className={`cursor-pointer ${upvoted ? 'active' : ''}`} onClick={upvotePoem} style={upvoted !== false && {fill: 'red'}}/>
+          <span>{upvoted ? singlePoem.upvotes + 1 : singlePoem.upvotes}</span>
+          <BiDownvote className={`cursor-pointer ${downvoted ? 'active' : ''}`} onClick={downvotePoem} style={downvoted !== false && {fill: 'red'}} />
+          <span>{downvoted ? singlePoem.downvotes +1 : singlePoem.downvotes}</span>
         </div>
       </div>
     </div>
