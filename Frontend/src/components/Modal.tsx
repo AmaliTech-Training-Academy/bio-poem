@@ -1,4 +1,4 @@
-import GridImage from '../assets/user.jpg'
+import GridImage from '../assets/user.png'
 import { VscClose } from "react-icons/vsc";
 import { BiDownvote, BiUpvote} from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -81,7 +81,7 @@ const Modal: React.FC<ModalProps> = () => {
         <img
           src={singlePoem.backgroundTheme}
           className="absolute h-full w-full -z-30 rounded-3xl"
-          alt="Background"
+          alt=""
         />
       ): undefined}
         <div className="flex items-center justify-between px-12 py-2">
@@ -92,11 +92,13 @@ const Modal: React.FC<ModalProps> = () => {
               src={singlePoem.user.profileImage}
             />
           ) : (
-            <img
-              className="rounded-full w-[65px] h-[65px]"
-              src={GridImage}
-              alt="GridImage"
-            />
+            <div className='bg-white rounded-full'>
+              <img
+                className="rounded-full w-[65px] h-[65px]"
+                src={GridImage}
+                alt="GridImage"
+              />
+            </div>
           )}
             <p className="ml-5 font-medium text-2xl text-black">
               {singlePoem.firstName} {singlePoem.lastName}

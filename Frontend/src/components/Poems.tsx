@@ -1,4 +1,4 @@
-import GridImage from '../assets/user.jpg'
+import GridImage from '../assets/user.png'
 import { useAppDispatch } from "../store/store";
 import { setPoemSingleData, setShowModal } from "../store/poemSlice";
 // import Modal from "./Modal";
@@ -57,11 +57,13 @@ const Poems: React.FC<propsArray> = ({ data }) => {
               src={poem.user.profileImage}
             />
           ) : (
-            <img
-              className="rounded-full w-[119px] h-[119px]"
-              src={GridImage}
-              alt="GridImage"
-            />
+            <div className='bg-white rounded-full'>
+              <img
+                className="rounded-full w-[119px] h-[119px]"
+                src={GridImage}
+                alt="GridImage"
+              />
+            </div>
           )}
                 </div>
                 <div className="text-center">
