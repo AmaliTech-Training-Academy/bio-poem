@@ -24,13 +24,20 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
     const status = useAppSelector(state=> state.form.status);
 
     const values = Object.values(answers);
+    // console.log(values);
+    
 
     const handleSubmit = () => {
-    const data : finishedPoem = {data: answers, id: userId}
+        const allAreEmpty = values.slice(0, 11).every(value => value === '')
+        if(allAreEmpty){
+            toast.warn("Answer all questions")
+        } else {
+        const data : finishedPoem = {data: answers, id: userId}
         console.log(data);
         dispatch(submitAnswers(data))
         dispatch(submitPoemAnswers())
     }
+}
     
 
     const firstPage = questions.slice(0, 4);

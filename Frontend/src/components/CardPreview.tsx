@@ -33,7 +33,7 @@ return (
                     {/* Preview */}
                     {view ?
                         <div className='border border-customGrey1 rounded-lg p-4 lg:w-full'>
-                            <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden mx-auto lg:w-full xl:w-[480px]' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
+                            <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden mx-auto lg:w-full' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
                                 {userPoem.backgroundTheme.length > 9 ?
                                     <img 
                                         src={ userPoem.backgroundTheme} 
@@ -41,7 +41,7 @@ return (
                                         style={userPoem.backgroundTheme.length <= 9 ? {display: 'none'} : undefined  }/>
                                         : undefined
                                 }
-                                <div className='z-40 relative px-4 py-1 h-full'>
+                                <div className='z-40 relative px-4 py-1 h-full w-full'>
                                     <div className='flex items-center'>
                                         <img src={profileImg} alt='Profile Image' className='w-6 h-6 rounded-full'/>
                                         <div className='ml-3 text-xs' style={{color: selectedFontColor}}>{userPoem.firstName +' '+ userPoem.lastName}</div>

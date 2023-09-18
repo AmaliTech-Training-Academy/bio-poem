@@ -91,7 +91,7 @@ export const PoemFont: React.FC = () => {
             </div>
           </div>
           {/* Colors */}
-          <div className='mt-12 border rounded-lg grid grid-cols-6 p-2 gap-x-3 gap-y-16 w-10/12'>
+          <div className='mt-12 border rounded-lg grid grid-cols-6 p-2 gap-x-3 gap-y-16 md:w-10/12 xl:w-full'>
               {
                 fontColors.map((color)=> 
                 <div 

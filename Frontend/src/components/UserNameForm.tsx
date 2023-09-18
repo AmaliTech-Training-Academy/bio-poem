@@ -3,8 +3,9 @@ import bio from '../assets/bio.png'
 import { BsArrowRight } from 'react-icons/bs'
 import { useAppDispatch } from '../store/store'
 import { useAppSelector } from '../store/store'
-import { resetStatus, submitUserName, updateUsername } from '../store/userSlice'
+import { resetStatus, resetUser, submitUserName, updateUsername } from '../store/userSlice'
 import { useNavigate } from 'react-router-dom'
+import  { toast } from 'react-toastify'
 
 
 export type Payload = {
@@ -21,16 +22,21 @@ export const UserNameForm = () => {
         e.preventDefault()
         const userName: Payload = {userName: e.target.value};
         dispatch(updateUsername(userName))
+        if(errorMessage){
+        dispatch(resetStatus())
+        dispatch(resetUser())
+        }
     }
     
     if(status === 'Fulfilled'){
+        toast.success("Username created successfully")
         navigate('/create')
         dispatch(resetStatus())
     }
 
-    if(errorMessage && value.length > 0 ){
-        dispatch(updateUsername({userName: ''}))
-    }
+    // if(errorMessage && value.length > 0 ){
+    //     dispatch(updateUsername({userName: ''}))
+    // }
     
 return (
     <div className='relative flex flex-col items-center z-30'>
