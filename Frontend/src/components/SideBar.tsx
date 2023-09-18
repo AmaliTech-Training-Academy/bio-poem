@@ -47,7 +47,7 @@ const SideBar = () => {
         
         <div className='flex items-center h-8 mx-auto'>
             <img src={logo} alt='logo' className='w-8 h-full'/>
-            <img src={bio} className='h-12'/>
+            <img src={bio} className='h-12' alt='logo'/>
         </div>
         {/* Links */}
         <div className='text-2xl font-normal w-fit mx-auto md:mt-14 xl:mt-20' >

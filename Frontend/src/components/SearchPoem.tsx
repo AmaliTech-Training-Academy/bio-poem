@@ -98,13 +98,9 @@ const SearchPoem = () => {
 
   const  clearAll = () => setDisplayedDivs(0);
 
-  // console.log('saved poem', saveSearch);
-  // console.log('search res', searchResponse);
-  console.log('searched Term', searchedPoem);
-  console.log('search result', searchResults);
   
   return (
-    <div className="fixed top-0 h-screen overflow-y-auto overflow-x-hidden lg:ml-24 xl:ml-[8.5rem] 2xl:ml-[9.3rem] border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434] z-10">
+    <div className="fixed top-0 h-screen overflow-y-auto overflow-x-hidden lg:ml-[7rem] xl:ml-[7rem] 2xl:ml-[7rem] border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434] z-10">
       <div
         className={`flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px] mr-3.5  ml-4 ${
           darkMode ? 'bg-[#fff]' : ''
