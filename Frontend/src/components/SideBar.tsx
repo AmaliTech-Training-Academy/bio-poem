@@ -23,7 +23,7 @@ const SideBar = () => {
     const initialBorderColor = activeSection === '/create' ? 'orange' : 'orange';
 
     useEffect(() => {
-        setActiveSection(window.location.pathname);
+        setActiveSection(window.location.pathname)
       }, [window.location.pathname]);
 
     const handleSectionClick = (section:any) => {
@@ -42,7 +42,7 @@ const SideBar = () => {
       
 
   return (
-    <div className='fixed top-0 left-0 h-screen md:px-4 xl:pr-14 pl-6 pt-10 pb-4  overflow-y-auto border-r border-gray-400 z-10'>
+    <div className={`fixed top-0 left-0 h-screen md:px-4 xl:pr-14 pl-6 pt-10 pb-4  overflow-y-auto border-r border-gray-400 z-10 ${toggle ? 'scroll-hide' : '' } `}>
         {toggle ? <img src={darkModeLogo} alt='logo' className='m-auto'/>: <img src={logo} alt='logo' className='m-auto'/>}
         <div className='text-2xl font-normal mt-[7vh] w-fit m-auto' >
 
@@ -75,14 +75,14 @@ const SideBar = () => {
             {!openSearch && <hr className='h-[1px] bg-[#928F8F]'/>}
             {!openSearch &&<div className='flex items-center my-[26px] justify-between'>
                  <p className=''>Dark mode</p> 
-                {toggle ?<PiToggleRightFill className='w-11 h-5 mr-23  cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/> : <PiToggleLeftFill className='w-[50px] h-[50px] cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/>}
+                {toggle ?<PiToggleRightFill className='w-[50px] h-[50px] mr-23  cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/> : <PiToggleLeftFill className='w-[50px] h-[50px] cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/>}
                 
             </div>
             }
 
             {openSearch && (
                 <div>
-                    {toggle ? <PiToggleLeftFill className='w-[50px] h-[150px] m-auto cursor-pointer' style={{color:'#E9E9EA'}}  onClick={()=>dispatch(setDarkMode())}/> : <PiToggleRightFill className='w-[50px] h-[150px] m-auto cursor-pointer' style={{color:'#E9E9EA'}}  onClick={()=>dispatch(setDarkMode())}/>}
+                    {toggle ? <PiToggleRightFill className='w-[50px] h-[150px] m-auto cursor-pointer' style={{color:'#E9E9EA'}}  onClick={()=>dispatch(setDarkMode())}/> : <PiToggleLeftFill className='w-[50px] h-[150px] m-auto cursor-pointer' style={{color:'#E9E9EA'}}  onClick={()=>dispatch(setDarkMode())}/>}
                 </div>
                 )}
         </div>

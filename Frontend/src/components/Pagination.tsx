@@ -11,7 +11,8 @@ const Pagination = () => {
     const total = useAppSelector(state=> state.poem.total)
     const hasMore = useAppSelector(state=> state.poem.hasMore)
     // const [poemsPerPage, setPoemsPerPage] = useState(12)
-    const poemsPerPage = 12;
+    const openSearch = useAppSelector((state)=>state.search.openSearch)
+    const poemsPerPage =  12 ;
     const pageNumbers: number[] = []
     const [currentPage, setCurrentPage ] = useState(1);
 
@@ -35,12 +36,12 @@ const Pagination = () => {
         dispatch(getRecentPoems(currentPage))
       }, [currentPage, dispatch])
 
-
+    const toggle = useAppSelector((state)=>state.darkMode.toggle)
  
  
   return (
     <div className="w-full flex justify-center">
-      <div className="flex my-6">
+      <div className={`flex my-6 ${toggle ? 'bg-black' : ''}`}>
         <div className="py-3 px-4 border-y-2 border-l-2 rounded-l-lg cursor-pointer flex items-center gap-3" onClick={goToPreviousPage}>
           <div>
             <img src={arrowLeft} alt="<-" />

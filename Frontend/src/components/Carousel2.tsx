@@ -70,6 +70,7 @@ const Carousel2: React.FC = () => {
     dispatch(setShowModal());    
   };
 
+  const openSearch = useAppSelector((state)=>state.search.openSearch)
   
   
 
@@ -88,10 +89,19 @@ const Carousel2: React.FC = () => {
     prevArrow: <SamplePrevArrow onClick={() => {}} />,
     responsive: [
       {
+        breakpoint: 1444,
+        settings: {
+          slidesToShow: openSearch ? 2 : 3,
+          slidesToScroll: openSearch ? 2 : 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: openSearch ? 2 : 3,
+          slidesToScroll: openSearch ? 2 : 3,
           infinite: true,
           dots: true,
         },
@@ -114,6 +124,7 @@ const Carousel2: React.FC = () => {
     ],
   };
 
+  const toggle = useAppSelector((state)=>state.darkMode.toggle)
   return (
     <div className="h-[500px] w-auto mt-5 mr-auto">
       <h1 className="text-2xl font-medium py-7">Popular Poems</h1>
@@ -123,7 +134,7 @@ const Carousel2: React.FC = () => {
             className="overflow-hidden border-4 border-[#F06A30] rounded-md "
             key={ele._id}
           >
-            <div className="group [perspective:1000px]">
+            <div className={`group [perspective:1000px] ${toggle ? 'bg-black' : ''}`}>
               <div className="inset-0 transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div>
                   <img
@@ -132,8 +143,8 @@ const Carousel2: React.FC = () => {
                     alt=""
                   />
                 </div>
-                <div className="text-center py-5">
-                  <h2 className="text-[#646363] font-semibold">
+                <div className={`text-center py-5 `} >
+                  <h2 className={`text-[#646363] font-semibold ${toggle ? 'text-white' :'text-[#646363]'}`}>
                     {" "}
                     {ele.firstName} {ele.lastName}
                   </h2>
