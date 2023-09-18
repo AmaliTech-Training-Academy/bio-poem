@@ -1,22 +1,42 @@
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5'
 import { AiOutlineClose } from 'react-icons/ai'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { fontColors } from '../fontColors'
-import { useAppSelector } from '../store/store'
+import { useAppDispatch, useAppSelector } from '../store/store'
+import { selectFontColor, setView } from '../store/formSlice'
+import { resetTheme } from '../store/themeSlice'
 
 
+// type themeProps = {
+//   currentOption: string,
+// }
 
 
-export const PoemFont = () => {
-  const [view, setView] = useState<boolean>(false);
-  const [poemColor, setPoemColor ] = useState<string>('#000000');
+export const PoemFont: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  // const [view, setView] = useState<boolean>(false);
+  // const [poemColor, setPoemColor ] = useState<string>('#000000');
   // const [poemSize, setPoemSize] = useState<string>('14');
 
-  const userPoem = useAppSelector(state=> state.form.answers.backgroundTheme)
+  const userPoem = useAppSelector(state=> state.form.answers.backgroundTheme);
+  const selectedFontColor = useAppSelector(state => state.form.answers.fontColor);
+  const view = useAppSelector(state=> state.form.view);
+
+  const handleColorSelection = () => {
+    dispatch(resetTheme())
+    dispatch(setView())
+  };
+
+  // if(currentOption != 'none'){
+  //   dispatch(setView())
+  // }
+
   return (
     <>
-    <div className="mt-8">
-      <div className="text-customOrange flex w-[48px] justify-between items-center cursor-pointer text-sm mb-4"  onClick={()=>setView(!view)}>Font{view ? <IoChevronUp/> 
+    <div className="mt-8 w-full">
+      <div className="text-customOrange flex w-[48px] justify-between items-center cursor-pointer text-sm mb-4"  
+      onClick={handleColorSelection}>Font{view ? <IoChevronUp/> 
         : <IoChevronDown/>}
       </div>
       { view ? 
@@ -28,10 +48,10 @@ export const PoemFont = () => {
         <div className='p-2'>
           <div className='flex justify-between'>
             <div>Preview</div>
-            <AiOutlineClose className="cursor-pointer" onClick={()=>setView(!view)}/> 
+            <AiOutlineClose className="cursor-pointer" onClick={()=>dispatch(setView())}/> 
           </div>
           {/* Sample text */}
-          <div className='mt-2 border rounded-lg relative z-40 overflow-hidden' style={{color: poemColor, background:userPoem.length <= 9 ? userPoem : undefined }}>
+          <div className='mt-2 border rounded-lg relative z-40 overflow-hidden' style={{color: selectedFontColor, background:userPoem.length <= 9 ? userPoem : undefined }}>
           <img 
             src={userPoem.length > 9 ? userPoem : undefined} 
             className='absolute z-10 h-full w-full'
@@ -78,7 +98,7 @@ export const PoemFont = () => {
                   key={color.id} 
                   className='w-14 h-12 rounded-lg border cursor-pointer' 
                   style={{background:color.color}}
-                  onClick={()=>setPoemColor(color.color)}>
+                  onClick={()=>dispatch(selectFontColor(color.color))}>
                 </div>
                 )
               }

@@ -6,26 +6,25 @@ import {BiSearchAlt2, BiFolderPlus} from 'react-icons/bi'
 import {MdOutlineLightMode,MdLightMode} from 'react-icons/md'
 import {PiToggleRightFill, PiToggleLeftFill} from 'react-icons/pi'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { resetSearchState, setOpenSearch } from '../store/searchSlice'
-import { RootState } from '../store/store'
+import { useAppDispatch, useAppSelector } from '../store/store'
 import { setDarkMode} from '../store/darkModeSlice'
 import bio from '../assets/bio.png'
 
 
 const SideBar = () => {
     const [activeSection, setActiveSection] = useState(window.location.pathname)
-    const toggle = useSelector((state:RootState)=>state.darkMode.toggle)
-    const openSearch = useSelector((state:RootState)=>state.search.openSearch)
+    const toggle = useAppSelector((state)=>state.darkMode.toggle)
+    const openSearch = useAppSelector((state)=>state.search.openSearch)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
     
     const initialBorderColor = activeSection === '/create' ? 'orange' : 'orange';
 
     useEffect(() => {
         setActiveSection(window.location.pathname);
-      }, [window.location.pathname]);
+    }, [window.location.pathname]);
 
     const handleSectionClick = (section:any) => {
         setActiveSection(section)

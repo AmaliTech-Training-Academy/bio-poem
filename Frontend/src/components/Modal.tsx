@@ -81,6 +81,7 @@ const Modal: React.FC<ModalProps> = () => {
         <img
           src={singlePoem.backgroundTheme}
           className="absolute h-full w-full -z-30 rounded-3xl"
+          style={singlePoem.backgroundTheme.length <= 8 ? {display: 'none'}: undefined}
           alt=""
         />
       ): undefined}
