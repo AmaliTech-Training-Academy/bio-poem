@@ -3,9 +3,10 @@ import defaultPattern from '../assets/default-pattern.png'
 import { CardPreview } from './CardPreview'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { changeThemeOption } from '../store/themeSlice'
-import { selectTheme } from '../store/formSlice'
+import { selectTheme, setView } from '../store/formSlice'
 import { RotatingLines } from 'react-loader-spinner'
 import { PoemFont } from './PoemFont'
+import { Themes } from './Themes'
 
 export type load = {
     loading: string
@@ -14,11 +15,18 @@ export type load = {
 export const CardTheme: React.FC<load> = ({loading}) => {
     const dispatch = useAppDispatch()
     const currentOption = useAppSelector((state) => state.theme.theme)
+    const view = useAppSelector(state=> state.form.view);
+
+    if(currentOption != 'none' && view){
+        dispatch(setView())
+    };
 
     const handleNoneTheme = () => {
         dispatch(changeThemeOption('none'))
         dispatch(selectTheme({theme:'#FFFFFF'}))
     }
+
+
 
     return (
         <>
@@ -64,8 +72,9 @@ export const CardTheme: React.FC<load> = ({loading}) => {
                             <div className="text-sm font-semibold">Pattern</div>
                         </div>
                     </div>
+                    <Themes currentOption={currentOption} />
                     <PoemFont/>
-                    <CardPreview currentOption={currentOption}/>
+                    <CardPreview/>
                 </div>
             }
         </>
