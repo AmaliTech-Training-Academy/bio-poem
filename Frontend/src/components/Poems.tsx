@@ -1,5 +1,5 @@
 import GridImage from '../assets/user.png'
-import { useAppDispatch } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/store";
 import { setPoemSingleData, setShowModal } from "../store/poemSlice";
 // import Modal from "./Modal";
 import { Poem } from "./Carousel2";
@@ -43,18 +43,22 @@ const Poems: React.FC<propsArray> = ({ data }) => {
     dispatch(setShowModal());
   };
 
+  const toggle = useAppSelector((state)=>state.darkMode.toggle)
+  const openSearch = useAppSelector((state)=>state.search.openSearch)
+
   return (
     <>
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-9 mb-10">
+      <div className={`grid  gap-y-9 mb-10 ${openSearch ? 'xl:grid-cols-2 grid-cols-1' : 'md:grid-cols-2 xl:grid-cols-3  '}`}>
         {data?.map((poem: propsObject) => {
           return (
-            <div key={poem._id}>
-              <div className="flex justify-between w-[299px] h-[140px] border-2 rounded-md p-5 items-center">
+            <div key={poem._id} >
+              <div className={`flex justify-between w-[299px] h-[140px] border-2 rounded-md p-5 items-center ${toggle ? 'bg-black border-[#646363]' : ''}`}>
                 <div>
-                {poem.user.profileImage ? (
-            <img
+                  {poem.user.profileImage ? (
+                  <img
               className="rounded-full w-[119px] h-[119px]"
               src={poem.user.profileImage}
+              alt='profile image'
             />
           ) : (
             <div className='bg-white rounded-full'>
