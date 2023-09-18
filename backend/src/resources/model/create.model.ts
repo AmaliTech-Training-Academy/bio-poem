@@ -46,7 +46,10 @@ const createPoemSchema = new Schema(
     backgroundTheme: {
       type: String,
     },
-    user:{
+    fontColor: {
+      type: String,
+    },
+    user: {
       type: Schema.Types.ObjectId,
       ref: 'users',
     },
