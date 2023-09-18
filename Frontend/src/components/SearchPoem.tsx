@@ -6,9 +6,15 @@ import { searchPoem } from '../store/searchSlice';
 import { useAppDispatch, useAppSelector  } from '../store/store';
 import { setPoemSingleData, setShowModal } from '../store/poemSlice'
 import { addRecentSearch } from '../store/recentSearchSlice';
-import { data } from '../store/formSlice';
+import { data } from '../store/formSlice'
 
+interface usersId {
+  "_id":  string
+  "username": string
+  "profileImage": string
+}
 export type poem = {
+  "_id": string  
   "firstName":string,
   "adjectives": string,
   "importantRelation": string,
@@ -20,17 +26,18 @@ export type poem = {
   "residence": string,
   "lastName": string,
   "backgroundTheme": string,
+  "user": usersId
   "userName": string,
-  "_id": string    
+    
 }
 export interface poemArr {
-    poemData: poem[]
+    poems: poem[]
 }
 
 const SearchPoem = () => {
   const [searchedPoem, setSearchedPoem] = useState<string>('')
   const [searchResults, setSearchResults] = useState<any>([])
-  const [fetchPoems, setFetchPoems] = useState<data[]>([])
+  const [fetchPoems, setFetchPoems] = useState<poemArr[]>([])
   const [displayedDivs, setDisplayedDivs] = useState(5)
   const [showMore, setShowMore] = useState<boolean>(true)
 
@@ -76,6 +83,7 @@ const SearchPoem = () => {
       setSearchResults(filteredResults);
     }
   }, [fetchPoems]);
+  
 
   
   const removeItem = (id:string) =>{
@@ -133,7 +141,7 @@ const SearchPoem = () => {
             {searchResults.slice(0,displayedDivs).map((ele:poem) => (
             <div className="flex gap-x-28 mb-[30px] px-3.5 w-full justify-between" key={ele._id}>
               <div className="flex items-center">
-                <img src={person} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
+                <img src={ele.user.profileImage} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
                 <p className={`ml-5 font-medium ${darkMode ? 'text-[#fff]' : ''}`}>
                   {ele.firstName} {ele.lastName}
                 </p>
