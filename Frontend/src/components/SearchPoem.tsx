@@ -31,13 +31,15 @@ const SearchPoem = () => {
   const [searchedPoem, setSearchedPoem] = useState<string>('')
   const [searchResults, setSearchResults] = useState<any>([])
   const [fetchPoems, setFetchPoems] = useState<data[]>([])
-  const [displayedDivs, setDisplayedDivs] = useState(5);
+  const [displayedDivs, setDisplayedDivs] = useState(5)
   const [showMore, setShowMore] = useState<boolean>(true)
 
   const searchResponse = useAppSelector((state) => state.search.response);
   const darkMode = useAppSelector((state) => state.darkMode.toggle)
 
   const dispatch = useAppDispatch()
+
+ 
 
   const handleShowSinglePoem = (data: any) => {
     dispatch(setPoemSingleData(data)) 
@@ -54,12 +56,27 @@ const SearchPoem = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedPoem( e.target.value.toLowerCase()) 
+    localStorage.setItem('searchedPoem', searchedPoem)
     const filteredResults = fetchPoems.filter((ele:any)=>{
     const fullName = `${ele.firstName} ${ele.lastName}`.toLowerCase()
     return fullName.includes(searchedPoem)      
-  })   
+  }) ;
+
     setSearchResults(filteredResults)
   };
+
+  useEffect(() => {
+    const recentSearch = localStorage.getItem('searchedPoem');
+    if (recentSearch) {
+      setSearchedPoem(recentSearch);
+      const filteredResults = fetchPoems.filter((ele: any) => {
+        const fullName = `${ele.firstName} ${ele.lastName}`.toLowerCase();
+        return fullName.includes(recentSearch);
+      });
+      setSearchResults(filteredResults);
+    }
+  }, [fetchPoems]);
+
   
   const removeItem = (id:string) =>{
     const updatedPoems = fetchPoems?.filter((poem:any)=>poem._id !==id)
@@ -78,15 +95,12 @@ const SearchPoem = () => {
     setShowMore(false)
   };
 
+
   const  clearAll = () => setDisplayedDivs(0);
 
-  // console.log('saved poem', saveSearch);
-  // console.log('search res', searchResponse);
-  // console.log('searched Term', searchedPoem);
-  console.log('search result', searchResults);
   
   return (
-    <div className="fixed top-0 h-screen overflow-y-auto lg:ml-28  border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434] z-10">
+    <div className="fixed top-0 h-screen overflow-y-auto overflow-x-hidden lg:ml-[7rem] xl:ml-[7rem] 2xl:ml-[7rem] border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434] z-10">
       <div
         className={`flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px] mr-3.5  ml-4 ${
           darkMode ? 'bg-[#fff]' : ''

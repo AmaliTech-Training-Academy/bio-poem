@@ -23,8 +23,8 @@ const SideBar = () => {
     const initialBorderColor = activeSection === '/create' ? 'orange' : 'orange';
 
     useEffect(() => {
-        setActiveSection(window.location.pathname);
-    }, [window.location.pathname]);
+        setActiveSection(window.location.pathname)
+      }, [window.location.pathname]);
 
     const handleSectionClick = (section:any) => {
         setActiveSection(section)
@@ -42,12 +42,12 @@ const SideBar = () => {
       
 
   return (
-    <div className='fixed flex flex-col justify-between top-0 left-0 h-screen md:px-4 pl-6 pt-10 pb-4  overflow-y-auto border-r border-gray-400 z-10 scrollbar-hide'>
+    <div className={`fixed flex flex-col justify-between top-0 left-0 h-screen md:px-4 pl-6 pt-10 pb-4  overflow-y-auto border-r border-gray-400 z-10 scrollbar-hide ${toggle ? 'scroll-hide' : '' } `}>
         {/* logo */}
         
         <div className='flex items-center h-8 mx-auto'>
             <img src={logo} alt='logo' className='w-8 h-full'/>
-            <img src={bio} className='h-12'/>
+            <img src={bio} className='h-12' alt='logo'/>
         </div>
         {/* Links */}
         <div className='text-2xl font-normal w-fit mx-auto md:mt-14 xl:mt-20' >
@@ -80,14 +80,14 @@ const SideBar = () => {
             {!openSearch && <hr className='h-[1px] bg-[#928F8F]'/>}
             {!openSearch &&<div className='flex items-center my-[26px] justify-between'>
                  <p className=''>Dark mode</p> 
-                {toggle ?<PiToggleRightFill className='w-11 h-5 mr-23  cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/> : <PiToggleLeftFill className='w-[50px] h-[50px] cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/>}
+                {toggle ?<PiToggleRightFill className='w-[50px] h-[50px] mr-23  cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/> : <PiToggleLeftFill className='w-[50px] h-[50px] cursor-pointer' style={{color:'#E9E9EA'}} onClick={()=>dispatch(setDarkMode())}/>}
                 
             </div>
             }
 
             {openSearch && (
                 <div>
-                    {toggle ? <PiToggleLeftFill className='w-[50px] h-[150px] m-auto cursor-pointer' style={{color:'#E9E9EA'}}  onClick={()=>dispatch(setDarkMode())}/> : <PiToggleRightFill className='w-[50px] h-[150px] m-auto cursor-pointer' style={{color:'#E9E9EA'}}  onClick={()=>dispatch(setDarkMode())}/>}
+                    {toggle ? <PiToggleRightFill className='w-[50px] h-[150px] m-auto cursor-pointer' style={{color:'#E9E9EA'}}  onClick={()=>dispatch(setDarkMode())}/> : <PiToggleLeftFill className='w-[50px] h-[150px] m-auto cursor-pointer' style={{color:'#E9E9EA'}}  onClick={()=>dispatch(setDarkMode())}/>}
                 </div>
                 )}
         </div>
