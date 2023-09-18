@@ -24,10 +24,13 @@ export const UserNameForm = () => {
     }
     
     if(status === 'Fulfilled'){
-        navigate('/')
+        navigate('/create')
         dispatch(resetStatus())
     }
 
+    if(errorMessage && value.length > 0 ){
+        dispatch(updateUsername({userName: ''}))
+    }
     
 return (
     <div className='relative flex flex-col items-center z-30'>

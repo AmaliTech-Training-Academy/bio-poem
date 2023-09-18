@@ -5,20 +5,21 @@ import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import { CreatePoem } from './pages/CreatePoem'
-import { useSelector } from 'react-redux'
-import { RootState } from './store/store'
+import { useAppSelector } from './store/store'
 import { GetStarted } from "./pages/GetStarted"
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
 function App() {
-  const toggle = useSelector((state: RootState)=> state.darkMode.toggle)
-  const showModal = useSelector((state:RootState)=>state.poem.enableModal)
+  const toggle = useAppSelector((state)=> state.darkMode.toggle)
+  const showModal = useAppSelector((state)=>state.poem.showModal)
 
 
   return (
-    <div className={`${toggle ? 'bg-black text-[#fff]': ''} ${showModal ? 'overflow-y-hidden' : ''}`}>
+    <div className={`${toggle ? 'bg-[#121212E5] text-[#fff]': ''} ${showModal ? 'overflow-y-hidden' : ''}`}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Homepage/>}/>

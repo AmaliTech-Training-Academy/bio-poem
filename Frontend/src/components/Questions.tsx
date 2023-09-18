@@ -6,6 +6,7 @@ import { questions } from "../questionsData"
 import { CardTheme } from "./CardTheme"
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { Complete } from "./Complete"
+import { toast } from 'react-toastify'
 
 
 
@@ -22,14 +23,15 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
     const userId = useAppSelector((state)=> state.user.userId);
     const status = useAppSelector(state=> state.form.status);
 
-
     const values = Object.values(answers);
 
     const handleSubmit = () => {
     const data : finishedPoem = {data: answers, id: userId}
+        console.log(data);
         dispatch(submitAnswers(data))
         dispatch(submitPoemAnswers())
     }
+    
 
     const firstPage = questions.slice(0, 4);
     const secondPage = questions.slice(4, 7);
@@ -56,6 +58,9 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
         currentValues = thirdPageValues; 
     } 
     
+    if(status === 'Fulfilled'){
+        toast.success("Success!")
+    }
 
     return (
     <form className='mt-4'>
@@ -89,8 +94,9 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
 
             { currentPage === 4 ? ( 
                 <button 
-                className="p-[10px] bg-customOrange text-white rounded-lg"
-                onClick={handleSubmit}>Submit</button>
+                    className="p-[10px] bg-customOrange text-white rounded-lg"
+                    onClick={handleSubmit}>Submit
+                </button>
             ) :
                 <div className="flex items-center p-[10px] cursor-pointer"
                     onClick={()=>{dispatch(forward())}}

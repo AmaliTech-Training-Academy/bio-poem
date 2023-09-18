@@ -1,4 +1,4 @@
-import GridImage from '../assets/user.jpg'
+import GridImage from '../assets/user.png'
 import { VscClose } from "react-icons/vsc";
 import { BiDownvote, BiUpvote} from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -72,18 +72,20 @@ const Modal: React.FC<ModalProps> = () => {
     <div
       id="container"
       onClick={handleClose}
-      className="fixed h-[784px] left-[16%] top-[20%] inset-0 bg-black bg-opacity-5 backdrop-blur-none flex justify-center items-center z-20"
+      className="h-full absolute inset-0 flex justify-center z-20 pt-4"
+      style={{backgroundColor: 'rgba(0,0,0, 0.45)'}}
     >
-      <div className="absolute top-25 w-[693px] rounded-3xl p-10"
+      <div className="rounded-3xl w-4/12 fixed"
       style={{ background: singlePoem.backgroundTheme ? singlePoem.backgroundTheme : "#ffffff" }}>
-      {singlePoem.backgroundTheme && (
+      {singlePoem.backgroundTheme.length > 8 ? (
         <img
           src={singlePoem.backgroundTheme}
           className="absolute h-full w-full -z-30 rounded-3xl"
-          alt="Background"
+          style={singlePoem.backgroundTheme.length <= 8 ? {display: 'none'}: undefined}
+          alt=""
         />
-      )}
-        <div className="flex items-center justify-between">
+      ): undefined}
+        <div className="flex items-center justify-between px-12 py-2">
           <div className="flex items-center">
           {singlePoem.user.profileImage ? (
             <img
@@ -91,11 +93,13 @@ const Modal: React.FC<ModalProps> = () => {
               src={singlePoem.user.profileImage}
             />
           ) : (
-            <img
-              className="rounded-full w-[65px] h-[65px]"
-              src={GridImage}
-              alt="GridImage"
-            />
+            <div className='bg-white rounded-full'>
+              <img
+                className="rounded-full w-[65px] h-[65px]"
+                src={GridImage}
+                alt="GridImage"
+              />
+            </div>
           )}
             <p className="ml-5 font-medium text-2xl text-black">
               {singlePoem.firstName} {singlePoem.lastName}

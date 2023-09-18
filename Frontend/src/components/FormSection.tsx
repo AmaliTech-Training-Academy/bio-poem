@@ -30,7 +30,7 @@ export const FormSection: React.FC<Props> = ({question, type, id, height, placeh
   }
   
   return (
-    <div className="flex flex-col" >  
+    <div className="flex flex-col mb-6" >  
         <label htmlFor={id} className="px-3 font-semibold text-xl py-[10px]">{question}</label>
         <input 
         type={type} 
