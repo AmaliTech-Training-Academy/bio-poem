@@ -108,7 +108,8 @@ const formSlice = createSlice ({
                 "backgroundTheme": "",
                 "fontColor": "#000000"
             }
-            state.status = 'null'
+            state.status = 'null',
+            state.view = false
         }
     },
     extraReducers: (builder)=> {
