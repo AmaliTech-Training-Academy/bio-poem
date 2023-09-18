@@ -15,6 +15,8 @@ import fetchAllPoems from './resources/router/getAll.router';
 import recentPoems from './resources/router/recentPoem.router';
 import uploadImage from './resources/router/upload.router';
 import username from './resources/router/user.router';
+import backgroundImage from './resources/router/background';
+
 
 validateEnv();
 
@@ -73,6 +75,7 @@ class App {
       recentPoems,
       uploadImage,
       username,
+      backgroundImage,
     );
   }
 
