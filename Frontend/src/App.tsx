@@ -19,7 +19,7 @@ function App() {
 
 
   return (
-    <div className={`${toggle ? 'bg-gray-800 text-[#fff]': ''} ${showModal ? 'overflow-y-hidden' : ''}`}>
+    <div className={`${toggle ? 'bg-[#121212E5] text-[#fff]': ''} ${showModal ? 'overflow-y-hidden' : ''}`}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Homepage/>}/>
