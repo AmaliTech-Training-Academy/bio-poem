@@ -1,7 +1,7 @@
 import GridImage from '../assets/user.jpg'
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { setPoemSingleData, setShowModal } from "../store/poemSlice";
-import Modal from "./Modal";
+// import Modal from "./Modal";
 import { Poem } from "./Carousel2";
 import Pagination from "./Pagination";
 
@@ -60,11 +60,13 @@ const Poems: React.FC<propsArray> = ({ data }) => {
               src={poem.user.profileImage}
             />
           ) : (
-            <img
-              className="rounded-full w-[119px] h-[119px]"
-              src={GridImage}
-              alt="GridImage"
-            />
+            <div className='bg-white rounded-full'>
+              <img
+                className="rounded-full w-[119px] h-[119px]"
+                src={GridImage}
+                alt="GridImage"
+              />
+            </div>
           )}
                 </div>
                 <div className="text-center">
@@ -79,7 +81,7 @@ const Poems: React.FC<propsArray> = ({ data }) => {
                   </p>
                 </div>
               </div>
-              <Modal />
+              {/* <Modal /> */}
             </div>
           );
         })}

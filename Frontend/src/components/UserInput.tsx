@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { setProfile } from '../store/userProfile'
 import { toast } from 'react-toastify'
+import { RotatingLines } from 'react-loader-spinner'
 
 
 type Props = {
@@ -20,15 +21,18 @@ export const UserInput: React.FC<Props> = ({currentPage}) => {
   const profileImg = useAppSelector(state=> state.userProfile.userImage)  
   const [image, setImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
     if(selectedImage) {
+      setLoading(true)
       setImage(selectedImage)
       const filePreviewUrl = URL.createObjectURL(selectedImage);
       setPreviewUrl(filePreviewUrl)
     };
+
   };
 
   const handleImageUpload = async () => {
@@ -50,6 +54,7 @@ export const UserInput: React.FC<Props> = ({currentPage}) => {
     console.log('File uploaded successfully:', response.data);
     if(response.data.success){
       setImage(null)
+      setLoading(false)
       dispatch(setProfile(response.data.data))
       toast.success(response.data.message)
     }
@@ -59,7 +64,7 @@ export const UserInput: React.FC<Props> = ({currentPage}) => {
 }
 
   return (
-    <div className='md:w-4/6 xl:w-3/6 my-4 mx-auto'>
+    <div className='md:w-5/6 xl:w-3/6 my-4 mx-auto'>
         {currentPage ===  1 ?
         <label htmlFor='fileInput' className='flex flex-col justify-center'>
           <div className='relative w-20 mx-auto cursor-pointer'>
@@ -74,7 +79,16 @@ export const UserInput: React.FC<Props> = ({currentPage}) => {
           {image ? <button 
           onClick={handleImageUpload}
           className='mt-4 bg-customOrange w-fit mx-auto text-white px-4 py-2 rounded-lg'>Upload Image</button> 
-          : undefined}
+          :
+          loading ? 
+          <RotatingLines
+            strokeColor="#F06A30"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="30"
+            visible={true}/> 
+            :
+            undefined}
         </label>
         : undefined
         }

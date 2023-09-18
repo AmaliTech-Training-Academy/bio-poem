@@ -2,7 +2,6 @@ import { colors } from '../colorData';
 import { patterns } from '../patternData';
 import { selectTheme } from '../store/formSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
-// import { themeProps } from './CardPreview';
 
 type themeProps = {
   currentOption: string,
@@ -22,7 +21,7 @@ export const Themes: React.FC<themeProps> = ({currentOption}) => {
     }
     
   return (
-    <div className="mb-6 border border-customGrey1 rounded-lg p-4 h-56 lg:w-12/12 xl:w-[480px] flex flex-wrap justify-center gap-3">
+    <div className="mt-8 mb-6 border border-customGrey1 rounded-lg p-4 h-56 lg:w-12/12 xl:w-[480px] flex flex-wrap justify-center gap-3">
         {currentOption === 'solid' ? colors.map((color) => 
         <div 
           className='w-16 h-14 rounded-lg border border-customGrey1 cursor-pointer' 

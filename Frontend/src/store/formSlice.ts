@@ -14,6 +14,7 @@ export type data = {
     "residence": string,
     "lastName": string,
     "backgroundTheme": string,
+    "fontColor": string
 }
 
 export type finishedPoem = {
@@ -26,6 +27,7 @@ export type state = {
     total: number,
     answers: data,
     status: string,
+    view: boolean
 }
 
 // type answer ={
@@ -49,8 +51,10 @@ const initialState: state = {
         "residence": "",
         "lastName": "",
         "backgroundTheme": "",
+        "fontColor": "#000000" 
     },
-    status: 'null'
+    status: 'null',
+    view: false,
 }
 
 const formSlice = createSlice ({
@@ -78,8 +82,14 @@ const formSlice = createSlice ({
                 backgroundTheme: theme
             }
         },
+        selectFontColor: (state: state, action: PayloadAction<string>)=> {
+            state.answers.fontColor = action.payload;
+        },
         submitPoemAnswers: (state: state,) => {
             state.page = 5
+        },
+        setView: (state: state) => {
+            state.view = !state.view
         },
         resetState: (state:state) => {
             state.page = 1;
@@ -96,6 +106,7 @@ const formSlice = createSlice ({
                 "residence": "",
                 "lastName": "",
                 "backgroundTheme": "",
+                "fontColor": "#000000"
             }
             state.status = 'null'
         }
@@ -123,5 +134,5 @@ export const submitAnswers = createAsyncThunk<void, finishedPoem, {}>("answers/s
         throw error
     }
 })
-export const { forward, back, updateAnswers, selectTheme, submitPoemAnswers, resetState } = formSlice.actions
+export const { forward, back, updateAnswers, selectTheme, submitPoemAnswers, resetState, selectFontColor, setView } = formSlice.actions
 export default formSlice.reducer;
