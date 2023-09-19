@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import poem from '../model/create.model';
 
+
 const recentPoems = async (req: Request, res: Response) => {
   // Default values for page and limit if not provided or not valid numbers
   const currentPage = parseInt(req.query.page as string, 10) || 1;
@@ -8,11 +9,9 @@ const recentPoems = async (req: Request, res: Response) => {
 
   const skip = (currentPage - 1) * itemsPerPage;
 
-  let allPoems;
-
   try {
     // Find recent poems and populate the user data
-    allPoems = await poem
+    let allPoems = await poem
       .find({})
       .sort({ createdAt: -1 })
       .populate({
@@ -20,6 +19,8 @@ const recentPoems = async (req: Request, res: Response) => {
         select: 'profileImage username', // Select the fields you want to include
       })
       .exec();
+      console.log(allPoems);
+      
 
     const total = allPoems.length;
     const recentPoems = allPoems.slice(skip, skip + itemsPerPage);

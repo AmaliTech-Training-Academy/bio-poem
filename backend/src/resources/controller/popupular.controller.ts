@@ -28,6 +28,7 @@ const getPopularPoems = async (req: Request, res: Response) => {
       residence: p.residence,
       lastName: p.lastName,
       backgroundTheme: p.backgroundTheme,
+      fontColor: p.fontColor,
       upvotes: p.upvotes,
       downvotes: p.downvotes,
       user: {

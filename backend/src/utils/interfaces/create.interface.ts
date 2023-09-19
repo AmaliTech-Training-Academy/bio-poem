@@ -10,6 +10,7 @@ interface CreatePoem {
     residence: string;
     lastName: string;
     backgroundTheme: string;
+    fontColor: string,
     profileImage: string;
     upvotes: number
     downvotes: number
