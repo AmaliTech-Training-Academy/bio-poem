@@ -3,7 +3,11 @@ import poem from '../model/create.model'
 
 const fetchAllPoems = async (req: Request, res: Response) => {
     try {
-        const fetchedPoems = await poem.find({});
+        const fetchedPoems = await poem.find({}).populate({
+            path: 'user',
+            select: 'profileImage username'
+        });
+        
         res.status(200).json({ success: true, poems: fetchedPoems });
     } catch (error) {
         console.error('Error fetching poems:', error);
