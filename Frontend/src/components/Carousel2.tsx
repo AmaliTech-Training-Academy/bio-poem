@@ -23,6 +23,7 @@ export interface Poem {
   downvotes: number;
   backgroundTheme: string;
   profileImage: string;
+  fontColor: string;
   user: User
 }
 

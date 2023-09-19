@@ -54,6 +54,7 @@ const initialState: poemState = {
   downvotes: 0,
   backgroundTheme: "",
   profileImage: "",
+  fontColor: "",
   user: {
     _id:"",
     username:"",
@@ -127,10 +128,10 @@ const poemSlice = createSlice({
         },
         setPoemData: (state, action) => {
             state.poemData = action.payload;
-          },
-          setPoemSingleData:(state,{payload})=>{
+        },
+        setPoemSingleData:(state,{payload})=>{
             state.singlePoem = payload
-          }
+        }
     },
     extraReducers(builder) {
         builder
@@ -174,5 +175,3 @@ const poemSlice = createSlice({
 
 export const {setShowModal, setPoemData,setPoemSingleData}  = poemSlice.actions
 export default poemSlice.reducer
-// export const selectRecentPoems = (state: RootState) => state.poem.recentPoems
-// export const selectPopularPoems = (state: RootState) => state.poem.popularPoem

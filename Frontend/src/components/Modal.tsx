@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProps> = () => {
   const visible = useAppSelector((state) => state.poem.showModal);
   const singlePoem = useAppSelector((state) => state.poem.singlePoem);
 
-  const [upvoted, setUpVoted] = useState(false)
+  const [upvoted, setUpVoted] = useState(false);
   const [downvoted, setDownvoted] = useState(false);
  
   const upvotePoem = async () => {
@@ -73,7 +73,7 @@ const Modal: React.FC<ModalProps> = () => {
       id="container"
       onClick={handleClose}
       className="h-full absolute inset-0 flex justify-center z-20 pt-4"
-      style={{backgroundColor: 'rgba(0,0,0, 0.45)'}}
+      style={{backgroundColor: 'rgba(0,0,0, 0.45)', color: singlePoem.fontColor}}
     >
       <div className="rounded-3xl w-4/12 fixed"
       style={{ background: singlePoem.backgroundTheme ? singlePoem.backgroundTheme : "#ffffff" }}>
@@ -101,7 +101,7 @@ const Modal: React.FC<ModalProps> = () => {
               />
             </div>
           )}
-            <p className="ml-5 font-medium text-2xl text-black">
+            <p className="ml-5 font-medium text-2xl">
               {singlePoem.firstName} {singlePoem.lastName}
             </p>
           </div>
@@ -114,9 +114,9 @@ const Modal: React.FC<ModalProps> = () => {
 
         <div className="flex my-5">
           <div className="flex flex-col items-center ml-7 pt-1">
-            <div className="w-2 h-2 rounded-full bg-black"></div>
-            <div className="bg-black w-[2px] h-full"></div>
-            <div className="w-2 h-2 rounded-full bg-black"></div>
+            <div className="w-2 h-2 rounded-full" style={{background:singlePoem.fontColor}}></div>
+            <div className="w-[2px] h-full" style={{background:singlePoem.fontColor}}></div>
+            <div className="w-2 h-2 rounded-full" style={{background:singlePoem.fontColor}}></div>
           </div>
   
             <ul className="ml-16">

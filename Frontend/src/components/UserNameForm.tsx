@@ -6,6 +6,7 @@ import { useAppSelector } from '../store/store'
 import { resetStatus, resetUser, submitUserName, updateUsername } from '../store/userSlice'
 import { useNavigate } from 'react-router-dom'
 import  { toast } from 'react-toastify'
+import error from '../assets/error.png'
 
 
 export type Payload = {
@@ -59,14 +60,18 @@ return (
                     className='w-full px-4 py-5 outline-none'/>
                     <div 
                         className='flex items-center justify-center gap-4 bg-customOrange text-white rounded-lg px-3 h-10 cursor-pointer'
-                        onClick={()=>dispatch(submitUserName({username:value}))}>
+                        onClick={()=>dispatch(submitUserName({username:value}))}
+                        style={errorMessage ? {
+                            background: '#D9D9D9',} : undefined}>
                         <div className='text-sm'>Submit</div>
                         <div 
                             style={{
                             background: 'rgba(252, 255, 252, 0.4)', 
                             borderRadius: '50%'}}
                             className='w-7 h-7 flex items-center justify-center'>
-                            <BsArrowRight/>
+                            { errorMessage ? <img src={error} alt="error"/> :
+                                <BsArrowRight/>
+                            }
                         </div>
                     </div>
             </div>

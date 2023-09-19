@@ -27,6 +27,7 @@ export type propsObject = {
   downvotes: number;
   backgroundTheme: string;
   profileImage: string;
+  fontColor: string;
   user: User
 }
 
