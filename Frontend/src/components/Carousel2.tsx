@@ -138,7 +138,7 @@ const Carousel2: React.FC = () => {
               <div className="inset-0 transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="bg-white">
                   <img
-                    className="object-cover w-[100%] h-[250px]"
+                    className="object-cover w-[] h-[250px]"
                     src={user}
                     alt=""
                   />
