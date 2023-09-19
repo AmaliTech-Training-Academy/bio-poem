@@ -1,53 +1,33 @@
 import { useEffect, useState } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { MdClose } from 'react-icons/md';
-import person from '../assets/searchImage.png';
 import { searchPoem } from '../store/searchSlice';
 import { useAppDispatch, useAppSelector  } from '../store/store';
 import { setPoemSingleData, setShowModal } from '../store/poemSlice'
 import { addRecentSearch } from '../store/recentSearchSlice';
-import { data } from '../store/formSlice'
+import { data } from '../store/searchSlice';
+import { PoemData } from '../store/searchSlice';
+import profile from '../assets/user.png'
 
-interface usersId {
-  "_id":  string
-  "username": string
-  "profileImage": string
-}
-export type poem = {
-  "_id": string  
-  "firstName":string,
-  "adjectives": string,
-  "importantRelation": string,
-  "loves": string,
-  "feelings": string,
-  "fears": string,
-  "accomplishments": string,
-  "expectations": string,
-  "residence": string,
-  "lastName": string,
-  "backgroundTheme": string,
-  "user": usersId
-  "userName": string,
-    
-}
 export interface poemArr {
-    poems: poem[]
+    poems: data[]
 }
 
 const SearchPoem = () => {
   const [searchedPoem, setSearchedPoem] = useState<string>('')
   const [searchResults, setSearchResults] = useState<any>([])
-  const [fetchPoems, setFetchPoems] = useState<poemArr[]>([])
+  const [fetchPoems, setFetchPoems] = useState<data[]>([])
   const [displayedDivs, setDisplayedDivs] = useState(5)
   const [showMore, setShowMore] = useState<boolean>(true)
 
-  const searchResponse = useAppSelector((state) => state.search.response);
+  const searchResponse:PoemData = useAppSelector((state) => state.search.response);
   const darkMode = useAppSelector((state) => state.darkMode.toggle)
 
   const dispatch = useAppDispatch()
 
  
-
+  console.log(searchResponse);
+  
   const handleShowSinglePoem = (data: any) => {
     dispatch(setPoemSingleData(data)) 
     dispatch(setShowModal());
@@ -93,7 +73,7 @@ const SearchPoem = () => {
   };
 
   const removeSearchItem = (id:string) => {
-    const updatedPoems = searchResults.filter((poem:poem)=>poem._id !==id)
+    const updatedPoems = searchResults.filter((poem:data)=>poem._id !==id)
     setSearchResults(updatedPoems)
     setDisplayedDivs(displayedDivs - 1)
   };
@@ -138,10 +118,10 @@ const SearchPoem = () => {
       ) : (
         <>
           {searchResults.length !== 0 ? (<>
-            {searchResults.slice(0,displayedDivs).map((ele:poem) => (
+            {searchResults.slice(0,displayedDivs).map((ele:data) => (
             <div className="flex gap-x-28 mb-[30px] px-3.5 w-full justify-between" key={ele._id}>
               <div className="flex items-center">
-                <img src={ele.user.profileImage} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
+                <img src={ele.user.profileImage? ele.user.profileImage : profile} alt="profile" className="rounded-[50%] w-[55px] h-[55px]" />
                 <p className={`ml-5 font-medium ${darkMode ? 'text-[#fff]' : ''}`}>
                   {ele.firstName} {ele.lastName}
                 </p>
@@ -162,10 +142,10 @@ const SearchPoem = () => {
           )
           :(
             <>
-              {searchResults.slice(0,displayedDivs).map((ele:poem) => (
+              {searchResults.slice(0,displayedDivs).map((ele:data) => (
             <div className="flex gap-x-28 mb-[30px] px-3.5 w-full justify-between" key={ele._id}>
               <div className="flex items-center">
-                <img src={person} alt="person" className="rounded-[50%] w-[55px] h-[55px]" />
+                <img src={ele.user.profileImage ? ele.user.profileImage : profile} alt="profile" className="rounded-[50%] w-[55px] h-[55px]" />
                 <p className={`ml-5 font-medium ${darkMode ? 'text-[#fff]' : ''}`}>
                   {ele.firstName} {ele.lastName}
                 </p>
