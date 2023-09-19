@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import poem from '../model/create.model'
-import usersModel from "resources/model/users.model";
 
 const fetchAllPoems = async (req: Request, res: Response) => {
     try {
@@ -8,6 +7,7 @@ const fetchAllPoems = async (req: Request, res: Response) => {
             path: 'user',
             select: 'profileImage username'
         });
+        
         res.status(200).json({ success: true, poems: fetchedPoems });
     } catch (error) {
         console.error('Error fetching poems:', error);
