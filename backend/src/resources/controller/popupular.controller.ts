@@ -39,13 +39,14 @@ const getPopularPoems = async (req: Request, res: Response) => {
       popularity: calculatePopularity(p.upvotes, p.downvotes),
     }));
 
-    // Sort poems by popularity in descending order
-    popularPoems.sort((a: any, b: any) => b.popularity - a.popularity);
-
+    
     const popuPoems = popularPoems.map((p: any) => {
       const { popularity, ...poemWithoutPopularity } = p;
       return poemWithoutPopularity;
     });
+
+    // Sort poems by popularity in descending order
+    popuPoems.sort((a: any, b: any) => b.popularity - a.popularity);
 
     res.status(200).json({ success: true, popuPoems });
   } catch (error) {
