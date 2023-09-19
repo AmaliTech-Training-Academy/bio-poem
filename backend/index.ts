@@ -5,17 +5,17 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import morgan = require('morgan');
 import fileUpload from 'express-fileupload';
-import createQuestionnaireRouter from './resources/router/create.router';
-import upvote from './resources/router/upvote.router';
-import downvote from './resources/router/downvote.route';
-import popularPoemRouter from './resources/router/popular.router';
-import errorMiddleware from './middleware/errorMiddleware';
-import validateEnv from './utils/validateEnv';
-import fetchAllPoems from './resources/router/getAll.router';
-import recentPoems from './resources/router/recentPoem.router';
-import uploadImage from './resources/router/upload.router';
-import username from './resources/router/user.router';
-import backgroundImage from './resources/router/background';
+import createQuestionnaireRouter from './src/resources/router/create.router';
+import upvote from './src/resources/router/upvote.router';
+import downvote from './src/resources/router/downvote.route';
+import popularPoemRouter from './src/resources/router/popular.router';
+import errorMiddleware from './src/middleware/errorMiddleware';
+import validateEnv from './src/utils/validateEnv';
+import fetchAllPoems from './src/resources/router/getAll.router';
+import recentPoems from './src/resources/router/recentPoem.router';
+import uploadImage from './src/resources/router/upload.router';
+import username from './src/resources/router/user.router';
+import backgroundImage from './src/resources/router/background';
 
 
 validateEnv();

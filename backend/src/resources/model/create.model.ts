@@ -46,9 +46,6 @@ const createPoemSchema = new Schema(
     backgroundTheme: {
       type: String,
     },
-    fontColor: {
-      type: String,
-    },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'users',
@@ -60,6 +57,9 @@ const createPoemSchema = new Schema(
     downvotes: {
       type: Number,
       default: 0,
+    },
+    fontColor: {
+      type: String,
     },
   },
   { timestamps: true },
