@@ -3,6 +3,6 @@ import image from '../controller/background'
 
 const router = express.Router();
 
-router.post('/background', image);
+router.get('/:image/background', image);
 
 export default router;
