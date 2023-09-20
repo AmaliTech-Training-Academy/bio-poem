@@ -61,6 +61,9 @@ const createPoemSchema = new Schema(
     fontColor: {
       type: String,
     },
+    popularity: {
+      type: Number
+    }
   },
   { timestamps: true },
 );

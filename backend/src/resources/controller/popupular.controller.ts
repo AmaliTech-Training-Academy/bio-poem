@@ -5,7 +5,7 @@ import calculatePopularity from '../../utils/calculatePopularity';
 const getPopularPoems = async (req: Request, res: Response) => {
   try {
     // Retrieve all poems from the database with upvotes greater than one
-    const poems: any = await poem
+    const poems = await poem
       .find({ upvotes: { $gt: 1 } })
       .sort({ popularity: -1 })
       .limit(10)
@@ -15,7 +15,7 @@ const getPopularPoems = async (req: Request, res: Response) => {
       })
       .exec();
 
-    const popularPoems = poems.map((p: any) => ({
+    const popularPoems = poems.map((p) => ({
       _id: p._id,
       firstName: p.firstName,
       adjectives: p.adjectives,
@@ -39,16 +39,14 @@ const getPopularPoems = async (req: Request, res: Response) => {
       popularity: calculatePopularity(p.upvotes, p.downvotes),
     }));
 
-    
-    const popuPoems = popularPoems.map((p: any) => {
-      const { popularity, ...poemWithoutPopularity } = p;
-      return poemWithoutPopularity;
+    // Sort poems by popularity in descending order
+    popularPoems.sort((a, b) => {
+      return (b.popularity - a.popularity);
     });
 
-    // Sort poems by popularity in descending order
-    popuPoems.sort((a: any, b: any) => b.popularity - a.popularity);
+    
+    res.status(200).json({ success: true, popularPoems });
 
-    res.status(200).json({ success: true, popuPoems });
   } catch (error) {
     console.error('Error fetching popular poems:', error);
     res
