@@ -11,6 +11,7 @@ interface CreatePoem {
   lastName: string;
   backgroundTheme?: string;
   fontColor?: string;
+  fontFamily?: string;
   profileImage: string;
   user: {
     _id: string;

@@ -15,7 +15,6 @@ import fetchAllPoems from './src/resources/router/getAll.router';
 import recentPoems from './src/resources/router/recentPoem.router';
 import uploadImage from './src/resources/router/upload.router';
 import username from './src/resources/router/user.router';
-import backgroundImage from './src/resources/router/background';
 import getAllImage from './src/resources/router/image.router'
 
 
@@ -76,7 +75,6 @@ class App {
       recentPoems,
       uploadImage,
       username,
-      backgroundImage,
       getAllImage
     );
   }

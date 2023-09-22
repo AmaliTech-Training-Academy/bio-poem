@@ -15,7 +15,8 @@ const createQuestionnaire = async (req: Request, res: Response) => {
     residence,
     lastName,
     backgroundTheme,
-    fontColor
+    fontColor,
+    fontFamily
   } = req.body;
 
   try {
@@ -53,7 +54,8 @@ const createQuestionnaire = async (req: Request, res: Response) => {
       residence,
       lastName,
       backgroundTheme,
-      fontColor
+      fontColor,
+      fontFamily,
     });
 
     res.status(201).json({
