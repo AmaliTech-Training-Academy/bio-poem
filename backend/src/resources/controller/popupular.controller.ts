@@ -29,13 +29,14 @@ const getPopularPoems = async (req: Request, res: Response) => {
       lastName: p.lastName,
       backgroundTheme: p.backgroundTheme,
       fontColor: p.fontColor,
-      upvotes: p.upvotes,
-      downvotes: p.downvotes,
+      fontFamily: p.fontFamily,
       user: {
         id: p.user._id,
         profileImage: p.user.profileImage,
         username: p.user.username,
       },
+      upvotes: p.upvotes,
+      downvotes: p.downvotes,
       popularity: calculatePopularity(p.upvotes, p.downvotes),
     }));
 
