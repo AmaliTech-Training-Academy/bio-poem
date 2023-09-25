@@ -28,6 +28,7 @@ export type propsObject = {
   backgroundTheme: string;
   profileImage: string;
   fontColor: string;
+  fontFamily: string
   user: User
 }
 

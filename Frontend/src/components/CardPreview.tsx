@@ -1,15 +1,9 @@
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5'
 import {BiDownvote, BiUpvote } from 'react-icons/bi'
 import { IoClose } from 'react-icons/io5'
-// import { Themes } from './Themes'
 import { useAppSelector } from '../store/store'
 import { useState } from 'react'
-// import profile from '../assets/searchImage.png'
 
-
-// type themeProps = {
-//     currentOption: string,
-// }
 
 
 export const CardPreview: React.FC = () => {
@@ -18,6 +12,7 @@ export const CardPreview: React.FC = () => {
     const userPoem = useAppSelector((state)=> state.form.answers);
     const profileImg = useAppSelector(state=> state.userProfile.userImage)  
     const selectedFontColor = useAppSelector(state => state.form.answers.fontColor);
+    const chosenFont = useAppSelector(state=> state.form.answers.fontFamily);
 
 
 
@@ -32,7 +27,7 @@ return (
                     </div>
                     {/* Preview */}
                     {view ?
-                        <div className='border border-customGrey1 rounded-lg p-4 lg:w-full'>
+                        <div className='border border-customGrey1 rounded-lg p-4 lg:w-full' style={{fontFamily: chosenFont}}>
                             <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden mx-auto lg:w-full' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
                                 {userPoem.backgroundTheme.length > 9 ?
                                     <img 
