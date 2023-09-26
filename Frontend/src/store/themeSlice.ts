@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 type pattern = {
-    id: string
-    image: string
+    _id: string
+    "image-url": string
 }
 export type state = {
 theme: string,
@@ -39,7 +39,7 @@ const themeSlice = createSlice({
         .addCase(getPatterns.pending, (state)=> {
             state.status = "Pending"
         })
-        .addCase(getPatterns.fulfilled, (state, action)=> {
+        .addCase(getPatterns.fulfilled, (state, action: PayloadAction<pattern[]>)=> {
             state.patterns = action.payload;
             state.status = "Fulfilled"
         })
@@ -53,8 +53,8 @@ export const getPatterns = createAsyncThunk<pattern[], void, {}>("patterns/getPa
     const baseUrl = "https://bio-poem.onrender.com/api/v1/poems/all-images";
     try {
         const response = await axios.get(baseUrl);
-        console.log(response);
-        return response;
+        // console.log(response);
+        return response.data;
     } catch (error) {
         throw error
     }

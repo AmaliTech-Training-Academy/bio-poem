@@ -20,13 +20,16 @@ const Homepage = () => {
   
   
   return (
-    <div className='flex overflow-x-hidden'>
+    <div className='flex h-full overflow-clip'>
         <SideBar/>
         {openSearch && <SearchPoem/>}
-        <div className={`w-9/12 md:px-5  ${openSearch ? 'lg:ml-[34rem] xl:ml-34 2xl:ml-[38rem]' :'xl:ml-34 2xl:ml-80 ml-auto'}`}>
+        <div style={openSearch ? {width: '65%'} : {width: '85%', overflow: 'hidden'}}>
         <MainContent/>
         </div>
       </div>
     )
-}
-export default Homepage
+  }
+  export default Homepage
+
+
+  {/* <div className={`w-9/12 md:px-5  ${openSearch ? 'lg:ml-[34rem] xl:ml-34 2xl:ml-[38rem]' :undefined}`}> */}

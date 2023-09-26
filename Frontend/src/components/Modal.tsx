@@ -74,12 +74,13 @@ const Modal: React.FC<ModalProps> = () => {
   if (!visible || !singlePoem ) return null;
 
   return (
+    <>
     <div
       id="container"
-      // onClick={handleClose}
       className="h-full absolute inset-0 flex justify-center z-20 pt-4"
       style={{backgroundColor: 'rgba(0,0,0, 0.45)', color: singlePoem.fontColor, fontFamily: singlePoem.fontFamily}}
-    >
+      >
+    <div className='top-0 absolute w-full h-full z-0' onClick={handleClose}></div>
       <div className="rounded-3xl w-4/12 fixed"
       style={{ background: singlePoem.backgroundTheme ? singlePoem.backgroundTheme : "#ffffff" }}>
       {singlePoem.backgroundTheme.length > 8 ? (
@@ -88,22 +89,22 @@ const Modal: React.FC<ModalProps> = () => {
           className="absolute h-full w-full -z-30 rounded-3xl"
           style={singlePoem.backgroundTheme.length <= 8 ? {display: 'none'}: undefined}
           alt=""
-        />
-      ): undefined}
+          />
+          ): undefined}
         <div className="flex items-center justify-between px-12 py-2">
           <div className="flex items-center">
           {singlePoem.user.profileImage ? (
             <img
               className="rounded-full w-[65px] h-[65px]"
               src={singlePoem.user.profileImage}
-            />
-          ) : (
-            <div className='bg-white rounded-full'>
+              />
+              ) : (
+                <div className='bg-white rounded-full'>
               <img
                 className="rounded-full w-[65px] h-[65px]"
                 src={GridImage}
                 alt="GridImage"
-              />
+                />
             </div>
           )}
             <p className="ml-5 font-medium text-2xl">
@@ -114,7 +115,7 @@ const Modal: React.FC<ModalProps> = () => {
           <VscClose
             className="text-xl hover:text-gray-400 cursor-pointer"
             onClick={handleClose}
-          />
+            />
         </div>
 
         <div className="flex my-5">
@@ -146,6 +147,7 @@ const Modal: React.FC<ModalProps> = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

@@ -23,7 +23,7 @@ export const PoemFont: React.FC = () => {
 
   return (
     <>
-    <div className="mt-8 w-full border">
+    <div className="mt-8 w-full">
       <div className="text-customOrange flex w-[48px] justify-between items-center cursor-pointer text-sm mb-4"  
       onClick={handleColorSelection}>Font{view ? <IoChevronUp/> 
         : <IoChevronDown/>}

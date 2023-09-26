@@ -10,14 +10,10 @@ export const Complete = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
-    const handleCompletion = (): void => {
         dispatch(resetState())
         dispatch(resetUser())
         dispatch(resetProfile())
-        navigate('/')
-    };
     
-
   return (
     <div className='mt-16 flex mx-auto w-9/12 flex-col items-center'>
       <img className='w-2/4' src={medal}/>
@@ -25,7 +21,7 @@ export const Complete = () => {
       <div className='text-[#646363] mt-5 font-medium'>Bio poem created successfully</div>
       <button 
         className='mt-3 bg-customOrange font-bold text-white w-full py-3 rounded-lg'
-        onClick={handleCompletion}>Back To Home</button>
+        onClick={()=>navigate('/')}>Back To Home</button>
     </div>
     ) 
 }

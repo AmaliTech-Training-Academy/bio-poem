@@ -2,60 +2,48 @@ import none from '../assets/null.png'
 import defaultPattern from '../assets/default-pattern.png'
 import { CardPreview } from './CardPreview'
 import { useAppDispatch, useAppSelector } from '../store/store'
-import { changeThemeOption, getPatterns } from '../store/themeSlice'
+import { changeThemeOption } from '../store/themeSlice'
 import { selectTheme, setView } from '../store/formSlice'
-// import { RotatingLines } from 'react-loader-spinner'
+import { RotatingLines } from 'react-loader-spinner'
 import { PoemFont } from './PoemFont'
 import { Themes } from './Themes'
-import { useEffect } from 'react'
 
 export type load = {
-    loading: string
+    loading: boolean
 }
 
-// type Props = {
-//     currentPage: number,
-//     }
-
-export const CardTheme: React.FC = () => {
+export const CardTheme: React.FC<load> = ({loading}) => {
     const dispatch = useAppDispatch()
+
     const currentOption = useAppSelector((state) => state.theme.theme)
     const view = useAppSelector(state=> state.form.view);
-    const patterns = useAppSelector(state=> state.theme.patterns)
-    console.log(patterns.data);
     
-    // const status = useAppSelector(state=> state.form.status);
-
-
     if(currentOption != 'none' && view){
         dispatch(setView())
     };
+
+    if(loading){
+        return (
+        <div className='mx-auto flex justify-center items-center mt-28'>
+        <RotatingLines
+            strokeColor="#F06A30"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="130"
+            visible={true}
+        />
+        </div> )
+    }
 
     const handleNoneTheme = () => {
         dispatch(changeThemeOption('none'))
         dispatch(selectTheme({theme:'#FFFFFF'}))
     }
-
-    useEffect(() => {
-        dispatch(getPatterns())
-    }, [dispatch])
     
 
     return (
-        <>
-            {/* { currentPage === 4 && status === 'Loading...' ? 
-            <div className='mx-auto flex justify-center items-center mt-6'>
-            <RotatingLines
-                strokeColor="#F06A30"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="130"
-                visible={true}
-            />
-            </div> 
-            : */}
-                <div className="mt-10">
-                    <div className="font-semibold text-xl mb-6">11. Choose a background or theme for your card</div>
+            <div className="mt-10">
+                <div className="font-semibold text-xl mb-6">11. Choose a background or theme for your card</div>
                     {/* Select theme */}
                     <div className='flex'>
                         {/* None */}
@@ -87,9 +75,7 @@ export const CardTheme: React.FC = () => {
                     </div>
                     <Themes currentOption={currentOption} />
                     <PoemFont/>
-                    <CardPreview/>
+                    <CardPreview currentOption={currentOption}/>
                 </div>
-            {/* } */}
-        </>
     )
 }

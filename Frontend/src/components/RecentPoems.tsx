@@ -6,7 +6,9 @@ import { useAppSelector } from '../store/store';
 
 const RecentPoems = () => {
 
-    const  recentPoems = useAppSelector(state=> state.poem.recentPoems);
+    const recentPoems = useAppSelector(state=> state.poem.recentPoems);
+    const openSearch = useAppSelector((state)=>state.search.openSearch);
+
     // const dispatch = useAppDispatch()
     console.log(recentPoems);
     
@@ -17,7 +19,7 @@ const RecentPoems = () => {
     
     
   return (
-    <div className='mx-auto mt-5 font-Inter'>
+    <div className='mx-auto mt-5 font-Inter' style={openSearch ? undefined : {paddingLeft: 56}}>
       <div>
         <h1 className="text-2xl font-medium py-7">Recent Poems</h1>
         <Poems data={recentPoems}/>

@@ -9,6 +9,7 @@ import { useAppSelector } from './store/store'
 import { GetStarted } from "./pages/GetStarted"
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { TourGuide } from "./pages/TourGuide";
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='/' element={<Homepage/>}/>
           <Route path='/create' element={<CreatePoem/>}/>
           <Route path='/get-started' element={<GetStarted/>}/>
+          <Route path='/guide' element={<TourGuide/>}/>
         </Routes>
         <ToastContainer/>
       </BrowserRouter>

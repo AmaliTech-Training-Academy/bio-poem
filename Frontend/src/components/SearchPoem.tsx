@@ -24,6 +24,8 @@ const SearchPoem = () => {
 
   const searchResponse:PoemData = useAppSelector((state) => state.search.response);
   const darkMode = useAppSelector((state) => state.darkMode.toggle)
+  const openSearch = useAppSelector((state)=>state.search.openSearch)
+  
 
   const dispatch = useAppDispatch()
 
@@ -89,11 +91,15 @@ const SearchPoem = () => {
 
   const  clearAll = () => setDisplayedDivs(0);
 
+
+  // lg:ml-[7rem] xl:ml-[7rem] 2xl:ml-[7rem]
+
   
   return (
-    <div className="fixed top-0 h-screen overflow-y-auto overflow-x-hidden lg:ml-[7rem] xl:ml-[7rem] 2xl:ml-[7rem] border-[#D9D9D9] border-r-[0.5px] flex flex-col items-center text-[#343434] z-10">
+    <div className="top-0 h-screen border-r-[0.5px] flex flex-col items-center text-[#343434] z-10 pt-14"
+    style={openSearch ? {width: '25%'} : {width: 0}}>
       <div
-        className={`flex items-center border border-[#D9D9D9] rounded-lg py-3 pl-3.5 w-[23.438rem] mt-[53px] mb-[40px] mr-3.5  ml-4 ${
+        className={`flex items-center border border-[#D9D9D9] w-11/12 rounded-lg py-3 pl-3.5 mb-9 ${
           darkMode ? 'bg-[#fff]' : ''
         }`}
       >
@@ -101,7 +107,7 @@ const SearchPoem = () => {
         <input
           type="text"
           placeholder="Search..."
-          className="focus:outline-none"
+          className="focus:outline-none "
           value={searchedPoem}
           onChange={handleSearch}
         />

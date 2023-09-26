@@ -1,7 +1,10 @@
 import { colors } from '../colorData';
-import { patterns } from '../patternData';
+// import { patterns } from '../patternData';
 import { selectTheme } from '../store/formSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
+import { getPatterns } from '../store/themeSlice';
+import { useEffect } from 'react'
+
 
 type themeProps = {
   currentOption: string,
@@ -10,7 +13,14 @@ type themeProps = {
 export const Themes: React.FC<themeProps> = ({currentOption}) => {
 
   const dispatch = useAppDispatch()
-  const selectedTheme = useAppSelector((state)=> state.form.answers.backgroundTheme)
+  const selectedTheme = useAppSelector((state)=> state.form.answers.backgroundTheme);
+  const patterns = useAppSelector(state=> state.theme.patterns);
+  // console.log(patterns);
+  
+
+  useEffect(() => {
+    dispatch(getPatterns())
+}, [dispatch])
 
     if(currentOption === 'none'){
         return null
@@ -34,10 +44,10 @@ export const Themes: React.FC<themeProps> = ({currentOption}) => {
         {currentOption === 'pattern' ? patterns.map((pattern)=> 
         <img 
           className='w-16 h-14 rounded-lg border border-customGrey1 cursor-pointer' 
-          src={pattern.pattern} 
-          key={pattern.id}
-          onClick={()=> handleSelectedTheme(pattern.pattern)}
-          style={{ border: pattern.pattern === selectedTheme ? '1px solid #F06A30' : '1px solid #D1D5DB'}}
+          src={pattern['image-url']} 
+          key={pattern._id}
+          onClick={()=> handleSelectedTheme(pattern['image-url'])}
+          style={{ border: pattern['image-url'] === selectedTheme ? '1px solid #F06A30' : '1px solid #D1D5DB'}}
         />
         )
         : undefined

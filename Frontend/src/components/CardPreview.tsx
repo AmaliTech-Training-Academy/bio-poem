@@ -4,17 +4,19 @@ import { IoClose } from 'react-icons/io5'
 import { useAppSelector } from '../store/store'
 import { useState } from 'react'
 
+type themeProps = {
+    currentOption: string,
+}
 
 
-export const CardPreview: React.FC = () => {
+export const CardPreview: React.FC<themeProps> = ({currentOption}) => {
     const [view, setView] = useState<boolean>(false);
 
     const userPoem = useAppSelector((state)=> state.form.answers);
     const profileImg = useAppSelector(state=> state.userProfile.userImage)  
     const selectedFontColor = useAppSelector(state => state.form.answers.fontColor);
     const chosenFont = useAppSelector(state=> state.form.answers.fontFamily);
-
-
+    
 
     const poemData = Object.values(userPoem);
         
@@ -28,6 +30,7 @@ return (
                     {/* Preview */}
                     {view ?
                         <div className='border border-customGrey1 rounded-lg p-4 lg:w-full' style={{fontFamily: chosenFont}}>
+                            {/* Poem */}
                             <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden mx-auto lg:w-full' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
                                 {userPoem.backgroundTheme.length > 9 ?
                                     <img 
@@ -61,6 +64,8 @@ return (
                                         {/* <span></span> */}
                                     </div>
                                 </div>
+                                { currentOption === 'pattern' || currentOption === 'none' ? <div className='absolute w-full h-full z-20 bg-[#1F3994B0] top-0'></div>
+                                : undefined}
                             </div>
                         </div>
                         : undefined

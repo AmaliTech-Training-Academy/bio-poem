@@ -126,7 +126,7 @@ const formSlice = createSlice ({
             })
             .addCase(submitAnswers.fulfilled, (state)=> {
                 state.status = 'Fulfilled'
-                // state.page = 5
+                state.page = 5
             })
             .addCase(submitAnswers.rejected, (state)=>{
                 state.status = 'Error'

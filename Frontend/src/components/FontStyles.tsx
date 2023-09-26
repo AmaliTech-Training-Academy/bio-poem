@@ -2,6 +2,7 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import { useState } from 'react'
 import { useAppDispatch } from '../store/store';
 import { selectFontFamily } from '../store/formSlice';
+import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 
 
 const fonts = [
@@ -43,6 +44,7 @@ export const FontStyles = () => {
     const dispatch = useAppDispatch();
 
     const [searchInput, setSearchInput] = useState<string>(''); 
+    const [view, setView] = useState<boolean>(true);
 
     const filteredFonts = fonts.filter((font) =>
     font.toLowerCase().includes(searchInput.toLowerCase())
@@ -64,22 +66,28 @@ return (
                 onChange={(e)=> setSearchInput(e.target.value)}/>
         </div>
         {/* Font Options */}
-        <div className='mt-4'>
-            <div className='border border-r-0 border-t-0 border-b-1 border-l-0'>All fonts</div>
-            <ul className='h-[650px] overflow-scroll scrollbar-hide flex flex-col justify-between gap-y-2 mt-3'>
+        <div className='mt-4 h-[650px] overflow-hidden'>
+            <div className='border border-r-0 border-t-0 border-b-1 border-l-0 flex justify-between'
+            onClick={()=> setView(!view)}>All fonts 
+                <span className='cursor-pointer'>{view ? <IoChevronDown/> : <IoChevronUp/>}</span>
+            </div>
+            {
+                view ? 
+                <ul className='overflow-scroll h-full scrollbar-hide flex flex-col justify-between gap-y-2 mt-3'>
                 {
                     filteredFonts.map((font, index) => 
-                        <li 
-                            style={{fontFamily: font, padding: index === 0 ? ' 0  0 4px 0 ' : '4px 0' }}
-                            className='text-2xl cursor-pointer hover:bg-customGrey1'
-                            onMouseOver={()=>selectFont(font)}
-                            onClick={()=>selectFont(font)}
-                            key={index}>
+                    <li 
+                    style={{fontFamily: font, padding: index === 0 ? ' 0  0 4px 0 ' : '4px 0' }}
+                    className='text-2xl cursor-pointer hover:bg-customGrey1'
+                    onMouseOver={()=>selectFont(font)}
+                    onClick={()=> {selectFont(font), setView(false)}}
+                    key={index}>
                             {font}
                         </li>
                         )
                 }
             </ul>
+                : undefined}
         </div>
     </div>
     )

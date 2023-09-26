@@ -92,8 +92,8 @@ const Carousel2: React.FC = () => {
       {
         breakpoint: 1444,
         settings: {
-          slidesToShow: openSearch ? 2 : 3,
-          slidesToScroll: openSearch ? 2 : 3,
+          slidesToShow: openSearch ? 3 : 4,
+          slidesToScroll: openSearch ? 3 : 4,
           infinite: true,
           dots: true,
         },
@@ -127,11 +127,11 @@ const Carousel2: React.FC = () => {
 
   const toggle = useAppSelector((state)=>state.darkMode.toggle)
   return (
-    <div className="h-[400px] w-[1017px] mt-5 mr-auto">
+    <div className="h-[400px] mt-5" style={ openSearch ? {width: '89%', padding: '0 28px'} : {width: '95%', padding: '0 56px'}}>
       <h1 className="text-2xl font-medium py-7">Popular Poems</h1>
       <Slider {...settings} className="relative left-12">
         {popularPoems?.map((ele) => (
-          <div className="h-[193px] overflow-hidden border-4 border-[#F06A30] rounded-md"
+          <div className="h-[193px] w-fit overflow-hidden border-4 border-[#F06A30] rounded-md"
             key={ele._id}
           >
             <div className={`group [perspective:1000px] ${toggle ? 'bg-black' : ''}`}>

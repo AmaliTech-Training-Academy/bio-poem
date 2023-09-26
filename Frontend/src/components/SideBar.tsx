@@ -10,6 +10,7 @@ import { resetSearchState, setOpenSearch } from '../store/searchSlice'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { setDarkMode} from '../store/darkModeSlice'
 import bio from '../assets/bio.png'
+import guide from '../assets/guide.png'
 
 
 const SideBar = () => {
@@ -27,7 +28,6 @@ const SideBar = () => {
       }, [window.location.pathname]);
 
     const handleSectionClick = (section:any) => {
-        
         setActiveSection(section)
         if(section==='search'){
             if(!openSearch){
@@ -42,12 +42,16 @@ const SideBar = () => {
             navigate('/create')
             dispatch(resetSearchState())
         }
+        else if(section === '/guide'){
+            navigate('/guide')
+        }
+        }
         
-      };
-      
+    ;
 
-  return (
-    <div className={`fixed flex flex-col justify-between top-0 left-0 h-screen md:px-4 pl-6 pt-10 pb-4  overflow-y-auto border-r border-gray-400 z-10 scrollbar-hide ${toggle ? 'scroll-hide' : '' } `}>
+return (
+    <div className={`sticky flex flex-col justify-between float-left top-0 left-0 h-screen md:px-4 pl-6 pt-10 pb-4 border-r border-gray-400 z-10 scrollbar-hide ${toggle ? 'scroll-hide' : '' } `}
+    style={openSearch ? {width: '10%'} : {width: '20%'}}>
         {/* logo */}
         
         <div className='flex items-center h-8 mx-auto'>
@@ -69,10 +73,16 @@ const SideBar = () => {
                     {!openSearch && <p className='lg:ml-5 ml-11'>Search</p>}
                 </div>
 
-                <div className={`flex items-center cursor-pointer py-2.5 ${activeSection === '/create' && !openSearch? `border-l-4 border-${initialBorderColor}-500` : ''}`}
+                <div className={`flex items-center mb-9 cursor-pointer py-2.5 ${activeSection === '/create' && !openSearch? `border-l-4 border-${initialBorderColor}-500` : ''}`}
                 onClick={() => handleSectionClick('/create')}>
                     <BiFolderPlus className='lg:ml-3 ml-5'/>
                 {!openSearch && <p className='lg:ml-5 ml-11 w-max'>Create Poem</p >}
+                </div>
+
+                <div className={`flex items-center cursor-pointer py-2.5 ${activeSection === '/guide' && !openSearch? `border-l-4 border-${initialBorderColor}-500` : ''}`}
+                onClick={() => handleSectionClick('/guide')}>
+                    <img src={guide} className='lg:ml-3 ml-5'/>
+                {!openSearch && <p className='lg:ml-5 ml-11 w-max'>Poem Guide</p >}
                 </div>
         </div>
 

@@ -1,12 +1,13 @@
 import { Questions } from './Questions'
 import { useState } from 'react'
 import camera from '../assets/camera-icon.png'
-import dummyProfile from '../assets/searchImage.png'
+// import dummyProfile from '../assets/searchImage.png'
 import axios from 'axios'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { setProfile } from '../store/userProfile'
 import { toast } from 'react-toastify'
 import { RotatingLines } from 'react-loader-spinner'
+import user from '../assets/user.png'
 
 
 
@@ -66,11 +67,11 @@ export const UserInput: React.FC<Props> = ({currentPage}) => {
 }
 
   return (
-    <div className='md:w-5/6 xl:w-3/6 my-4 mx-auto'>
+    <div className='md:w-5/6 xl:w-4/6 2xl:w-3/6 my-4 mx-auto'>
         {currentPage ===  1 ?
         <label htmlFor='fileInput' className='flex flex-col justify-center'>
           <div className='relative w-20 mx-auto cursor-pointer'>
-            <img className='w-20 h-20 rounded-full mx-auto' src={previewUrl ? previewUrl : profileImg ? profileImg : dummyProfile}/>
+            <img className='w-20 h-20 rounded-full mx-auto' src={previewUrl ? previewUrl : profileImg ? profileImg : user}/>
             { profileImg ? undefined :
               <div className='absolute w-8 h-8 border bg-white flex items-center justify-center border-black rounded-full top-10 -right-2'>
                   <img className='' src={camera} />

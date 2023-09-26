@@ -17,7 +17,7 @@ export const fontColors = [
     },
     {
         id: 5,
-        color: "#FFFFFF75"
+        color: "#FFFFFF"
     },
     {
         id: 6,

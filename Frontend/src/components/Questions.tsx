@@ -7,6 +7,7 @@ import { CardTheme } from "./CardTheme"
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { Complete } from "./Complete"
 import { toast } from 'react-toastify'
+import { useState, useEffect } from 'react'
 
 
 
@@ -16,13 +17,14 @@ type Props = {
 
 export const Questions: React.FC<Props> = ({currentPage}) => {
     const dispatch = useAppDispatch()
-    console.log(currentPage);
+    // console.log(currentPage);
     
-    
+    const [loading, setLoading] = useState<boolean>(false);
+
     const answers = useAppSelector((state)=> state.form.answers);
     const userId = useAppSelector((state)=> state.user.userId);
-
     const values = Object.values(answers);
+    const status = useAppSelector(state => state.form.status);
     // console.log(values);
     
 
@@ -31,12 +33,24 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
         if(allAreEmpty){
             toast.warn("Answer all questions")
         } else {
+            setLoading(true)
         const data : finishedPoem = {data: answers, id: userId}
         console.log(data);
         dispatch(submitAnswers(data))
-        dispatch(submitPoemAnswers())
     }
 }
+
+useEffect(() => {
+    if (status === 'Fulfilled') {
+      setLoading(false);
+      toast.success('Success!');
+      dispatch(submitPoemAnswers())
+    }
+  }, [status]);
+    // if(status === 'Fulfilled'){
+    //     setLoading(false)
+    //     toast.success("Success!")
+    // }
     
 
     const firstPage = questions.slice(0, 4);
@@ -63,9 +77,9 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
         currentData = thirdPage;
         currentValues = thirdPageValues; 
     } 
-    
-    if(status === 'Fulfilled'){
-        toast.success("Success!")
+
+    if(status === 'Fuflilled'){
+        return (<Complete/>)
     }
 
     return (
@@ -83,13 +97,13 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
             />         
         )}
 
-        { currentPage === 4 ? <CardTheme /> : undefined }
+        { currentPage === 4 ? <CardTheme loading={loading} /> : undefined }
 
         { currentPage === 5 ? <Complete/> : undefined}
 
         {/* Navigation */}
         { 
-        currentPage === 5 ? undefined : status !== 'Fulfilled' ?   
+        currentPage === 5 ? undefined : loading ? undefined :   
         <div className="flex justify-between mt-4 mb-8">
             <div className="flex items-center p-[10px] cursor-pointer"
                 onClick={()=>{dispatch(back())}}
@@ -112,8 +126,6 @@ export const Questions: React.FC<Props> = ({currentPage}) => {
                 </div>
             }
             </div>
-            : 
-            undefined 
         }
     </form>
     )
