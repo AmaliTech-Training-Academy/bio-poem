@@ -7,7 +7,7 @@ export const CreatePoemContent = () => {
   const currentPage = useAppSelector((state)=> state.form.page);
 
   return (
-    <div className='my-4'>
+    <div className='mt-4 h-fit overflow-hidden'>
         <ProgressStepper currentPage={currentPage}/>
         <UserInput currentPage={currentPage}/>
     </div>

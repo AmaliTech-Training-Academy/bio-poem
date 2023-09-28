@@ -52,7 +52,8 @@ export const FontStyles = () => {
 
     const selectFont = (font: string): void => {
         dispatch(selectFontFamily(font))
-        }
+    };
+
 return (
     <div className="border border-r-2 border-t-0 border-b-0 border-l-0 pr-4 pt-0 pl-0 h-full">
         {/* Search bar */}
@@ -77,11 +78,11 @@ return (
                 {
                     filteredFonts.map((font, index) => 
                     <li 
-                    style={{fontFamily: font, padding: index === 0 ? ' 0  0 4px 0 ' : '4px 0' }}
-                    className='text-2xl cursor-pointer hover:bg-customGrey1'
-                    onMouseOver={()=>selectFont(font)}
-                    onClick={()=> {selectFont(font), setView(false)}}
-                    key={index}>
+                        style={{fontFamily: font, padding: index === 0 ? ' 0  0 4px 0 ' : '4px 0' }}
+                        className='text-2xl cursor-pointer hover:bg-customGrey1'
+                        onMouseOver={()=>selectFont(font)}
+                        onClick={()=> {selectFont(font), setView(false)}}
+                        key={index}>
                             {font}
                         </li>
                         )

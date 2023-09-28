@@ -48,13 +48,14 @@ const Poems: React.FC<propsArray> = ({ data }) => {
   const toggle = useAppSelector((state)=>state.darkMode.toggle)
   const openSearch = useAppSelector((state)=>state.search.openSearch)
 
+  // xl:grid-cols-2 grid-cols-1
   return (
     <>
-      <div className={`grid  gap-y-9 mb-10 ${openSearch ? 'xl:grid-cols-2 grid-cols-1' : 'md:grid-cols-2 xl:grid-cols-3  '}`}>
+      <div className={`grid gap-x-12 gap-y-7 pr-2 mb-10 ${openSearch ? 'gap-x-3 xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3  '}`}>
         {data?.map((poem: propsObject) => {
           return (
-            <div key={poem._id} >
-              <div className={`flex justify-between w-[299px] h-[140px] border-2 rounded-md p-5 items-center ${toggle ? 'bg-black border-[#646363]' : ''}`}>
+              <div className={`flex justify-between w-full h-[140px] border-2 rounded-md p-5 items-center ${toggle ? 'bg-black border-[#646363]' : ''}`} 
+              key={poem._id}>
                 <div>
                   {poem.user.profileImage ? (
                   <img
@@ -84,8 +85,6 @@ const Poems: React.FC<propsArray> = ({ data }) => {
                   </p>
                 </div>
               </div>
-              {/* <Modal /> */}
-            </div>
           );
         })}
       </div>

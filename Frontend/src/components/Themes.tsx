@@ -15,6 +15,7 @@ export const Themes: React.FC<themeProps> = ({currentOption}) => {
   const dispatch = useAppDispatch()
   const selectedTheme = useAppSelector((state)=> state.form.answers.backgroundTheme);
   const patterns = useAppSelector(state=> state.theme.patterns);
+  const view = useAppSelector(state => state.form.view);
   // console.log(patterns);
   
 
@@ -41,7 +42,7 @@ export const Themes: React.FC<themeProps> = ({currentOption}) => {
         </div>
         ) 
         : undefined}
-        {currentOption === 'pattern' ? patterns.map((pattern)=> 
+        {currentOption === 'pattern' && !view ? patterns.map((pattern)=> 
         <img 
           className='w-16 h-14 rounded-lg border border-customGrey1 cursor-pointer' 
           src={pattern['image-url']} 

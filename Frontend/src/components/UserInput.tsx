@@ -66,8 +66,10 @@ export const UserInput: React.FC<Props> = ({currentPage}) => {
   }
 }
 
+// xl:w-3/6 2xl:w-3/6
+
   return (
-    <div className='md:w-5/6 xl:w-4/6 2xl:w-3/6 my-4 mx-auto'>
+    <div className='lg:w-4/6 2xl:w-3/6 mt-4 mx-auto overflow-hidden'>
         {currentPage ===  1 ?
         <label htmlFor='fileInput' className='flex flex-col justify-center'>
           <div className='relative w-20 mx-auto cursor-pointer'>

@@ -62,7 +62,7 @@ return (
         <div className='text-2xl font-normal w-fit mx-auto md:mt-14 xl:mt-20' >
                 <div className={`flex items-center mb-9  cursor-pointer py-2.5 ${activeSection === '/' && !openSearch ? `border-l-4 border-${initialBorderColor}-500` : ''}`}
                     onClick={() => handleSectionClick('/')}>
-                    <LiaHomeSolid className='lg:ml-3 xl:ml-5'/>
+                    <LiaHomeSolid className='lg:ml-2 xl:ml-3'/>
                 {!openSearch && <p className='lg:ml-5 ml-11'>Home</p>}
                 
                 </div>

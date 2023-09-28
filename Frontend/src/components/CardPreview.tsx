@@ -29,9 +29,9 @@ return (
                     </div>
                     {/* Preview */}
                     {view ?
-                        <div className='border border-customGrey1 rounded-lg p-4 lg:w-full' style={{fontFamily: chosenFont}}>
+                        <div className='border border-customGrey1 rounded-lg p-4 lg:w-10/12' style={{fontFamily: chosenFont}}>
                             {/* Poem */}
-                            <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden mx-auto lg:w-full' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
+                            <div className='rounded-lg border border-black bg-contain h-72 relative overflow-hidden mx-auto lg:w-10/12' style={{background: userPoem.backgroundTheme.length <= 9 ? userPoem.backgroundTheme: 'none'}}>
                                 {userPoem.backgroundTheme.length > 9 ?
                                     <img 
                                         src={ userPoem.backgroundTheme} 
@@ -64,7 +64,7 @@ return (
                                         {/* <span></span> */}
                                     </div>
                                 </div>
-                                { currentOption === 'pattern' || currentOption === 'none' ? <div className='absolute w-full h-full z-20 bg-[#1F3994B0] top-0'></div>
+                                { currentOption === 'pattern' ? <div className='absolute w-full h-full z-20 bg-[#1F3994B0] top-0'></div>
                                 : undefined}
                             </div>
                         </div>

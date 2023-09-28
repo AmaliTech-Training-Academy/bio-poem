@@ -30,8 +30,8 @@ const themeSlice = createSlice({
                 state.theme = payload
             }
         },
-        resetTheme: (state: state) => {
-            state.theme = 'none'
+        resetTheme: (state: state, ) => {
+            state.theme = 'none';
         }
     },
     extraReducers: (builder)=> {
@@ -53,7 +53,7 @@ export const getPatterns = createAsyncThunk<pattern[], void, {}>("patterns/getPa
     const baseUrl = "https://bio-poem.onrender.com/api/v1/poems/all-images";
     try {
         const response = await axios.get(baseUrl);
-        // console.log(response);
+        console.log(response);
         return response.data;
     } catch (error) {
         throw error

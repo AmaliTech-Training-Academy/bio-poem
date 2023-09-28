@@ -8,9 +8,9 @@ const MainContent = () => {
   // const openSearch = useAppSelector((state)=>state.search.openSearch)
   
   return (
-    <div className='overflow-hidden pl-1 pr-5'>
+    <div className='overflow-hidden pl-1 pr-5 relative '>
         <Header text1='Bio Poem'/>
-        <div className='relative overflow-hidden'>
+        <div className='relative overflow-clip'>
           <Carousel2/>
           <RecentPoems/>
           <Modal/>

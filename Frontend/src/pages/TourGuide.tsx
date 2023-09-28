@@ -9,6 +9,8 @@ import choice2 from '../assets/color-pattern11.png'
 import choice3 from '../assets/preview11.png'
 import submit from '../assets/Submit11.png'
 import SearchPoem from "../components/SearchPoem"
+import highlight from '../assets/highlight.png'
+import pointer from '../assets/pointer.png'
 
 
 export const TourGuide = () => {
@@ -34,19 +36,23 @@ export const TourGuide = () => {
                 {/* Steps */}
                 <div className="flex flex-col">
                     {/* Step 1 */}
-                    <div style={guideStyle} className="px-16 py-4">
+                    <div style={guideStyle} className="px-16 py-4 relative">
                         <div className="2xl:w-8/12 2xl:mx-auto">
                             <div className="mb-6">1. Click on the create poem tab on the homepage</div>
                             <img src={homepage1} className="m-0" />
                         </div>
+                        <img src={highlight} className="absolute top-52 left-20"/>
+                        <img src={pointer} className="absolute top-56 left-36" alt="" />
                     </div>
                     
                     {/* Step 2 */}
-                    <div style={guideStyle} className="px-16 py-4 mt-24">
+                    <div style={guideStyle} className="px-16 py-4 mt-24 relative">
                         <div className="2xl:w-8/12 2xl:mx-auto">
                             <div className="mb-6">2. Fill out the question on the create poem  and click on next for the follow up questions</div>
                             <img src={create1} className="m-0" />
                         </div>
+                        <img src={highlight} className="absolute bottom-7 left-[550px] w-9"/>
+                        <img src={pointer} className="absolute bottom-1 left-[560px] w-8 h-8" alt="" />
                     </div>
 
                     {/* Section */}
@@ -56,18 +62,20 @@ export const TourGuide = () => {
                     </div>
 
                     {/* step 3 */}
-                <div style={guideStyle} className="px-16 py-4 mt-10">
+                <div style={guideStyle} className="px-16 py-4 mt-10 relative">
                     <div className="2xl:w-8/12 2xl:mx-auto">
                         <div className="mb-6">3. Select a font type from the font styles</div>
                         <img src={create2} className="m-0" />
                     </div>
+                    <img src={pointer} className="absolute bottom-40 left-80 w-14 h-14" />
                 </div>
 
                 {/* Step 4 */}
                 <div style={guideStyle} className="px-16 py-4 mt-14">
-                    <div className="2xl:w-8/12 2xl:mx-auto">
+                    <div className="2xl:w-8/12 2xl:mx-auto relative">
                         <div className="mb-6">4. Select a color from the color pallet to apply to text.</div>
-                        <img src={choice1} className="m-0" />
+                        <img src={choice1} className="m-0 mx-auto" />
+                        <img src={pointer} className="absolute bottom-14 left-[382px] w-14 h-14" />
                     </div>
                 </div>
                 
@@ -76,11 +84,13 @@ export const TourGuide = () => {
                     <div className="font-semibold text-3xl">Background theme for poem cards</div>
                     <div className="mb-8 text-[#667085] mt-4">From this section you get to choose from wide range of colors and patterns to apply to your poem cards.</div>
                 </div>
+
                 {/* Step 5 */}
                 <div style={guideStyle} className="px-16 py-4 mt-10">
-                    <div className="2xl:w-8/12 2xl:mx-auto">
+                    <div className="2xl:w-8/12 2xl:mx-auto relative">
                         <div className="mb-6">5. Select a solid color or pattern for your poem card</div>
-                        <img src={choice2} className="m-0" />
+                        <img src={choice2} className="m-0 mx-auto" />
+                        <img src={pointer} className="absolute top-[140px] left-64 w-14 h-14" />
                     </div>
                 </div>
 
@@ -92,9 +102,11 @@ export const TourGuide = () => {
 
                 {/* Step 6 */}
                 <div style={guideStyle} className="px-16 py-4 mt-10">
-                    <div className="2xl:w-8/12 2xl:mx-auto">
+                    <div className="2xl:w-8/12 2xl:mx-auto relative">
                         <div className="mb-6">6. Select a solid color or pattern for your poem card.</div>
-                        <img src={choice3} className="m-0" />
+                        <img src={choice3} className="m-0 mx-auto" />
+                        <img src={highlight} className="absolute bottom-[140px] left-60 w-12"/>
+                        <img src={pointer} className="absolute bottom-[105px] left-[235px]" alt="" />
                     </div>
                 </div>
 
@@ -104,11 +116,13 @@ export const TourGuide = () => {
                     <div className="mb-8 text-[#667085] mt-4">This is the final step to share your poem to the world, congratulations.</div>
                 </div>
 
-                <div style={guideStyle} className="px-16 py-4 mt-10">
+                {/* Step 7 */}
+                <div style={guideStyle} className="px-16 py-4 mt-10 relative">
                     <div className="2xl:w-8/12 2xl:mx-auto">
                         <div className="mb-6">7. Click on the submit button to create a poem</div>
-                        <img src={submit} className="m-0" />
+                        <img src={submit} className="m-0 mx-auto" />
                     </div>
+                    <img src={pointer} className="absolute bottom-0 right-[274px] w-9 h-9" />
                 </div>
                 </div>
             </div>

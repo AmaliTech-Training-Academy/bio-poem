@@ -14,6 +14,7 @@ export const PoemFont: React.FC = () => {
   const selectedFontColor = useAppSelector(state => state.form.answers.fontColor);
   const view = useAppSelector(state=> state.form.view);
   const chosenFont = useAppSelector(state=> state.form.answers.fontFamily);
+      // const currentOption = useAppSelector((state) => state.theme.theme)
 
 
   const handleColorSelection = () => {

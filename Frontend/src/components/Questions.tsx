@@ -104,7 +104,7 @@ useEffect(() => {
         {/* Navigation */}
         { 
         currentPage === 5 ? undefined : loading ? undefined :   
-        <div className="flex justify-between mt-4 mb-8">
+        <div className="flex justify-between mt-7 mb-4 w-10/12">
             <div className="flex items-center p-[10px] cursor-pointer"
                 onClick={()=>{dispatch(back())}}
                 style={currentPage > 1 ? {color: '#F06A30'} : undefined}>

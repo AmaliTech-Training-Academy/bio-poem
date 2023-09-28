@@ -19,13 +19,13 @@ export const CreatePoem = () => {
 
   const openSearch = useAppSelector((state)=>state.search.openSearch)
   return (
-    <div className='flex overflow-x-hidden'>
+    <div className='flex overflow-clip'>
         <SideBar/>
         {openSearch && <SearchPoem/>}
         {/* Main Content */}
-        <div className={`pt-4 w-9/12  md:px-5 xl:pl-10 xl:pr-14 ${openSearch ? 'lg:ml-[34rem] xl:ml-34 2xl:ml-[38rem]' : '2xl:ml-72  ml-64'}`}>
-            <CreatePoemHeader/>
-            <CreatePoemContent/>
+        <div style={openSearch ? {width: '65%'} : {width: '85%', overflow: 'hidden', padding:'1rem 2rem 0 2rem'}}>            
+          <CreatePoemHeader/>
+          <CreatePoemContent/>
         </div>
     </div>
   )

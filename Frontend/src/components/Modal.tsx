@@ -77,11 +77,11 @@ const Modal: React.FC<ModalProps> = () => {
     <>
     <div
       id="container"
-      className="h-full absolute inset-0 flex justify-center z-20 pt-4"
+      className="absolute inset-0 flex justify-center z-20 pt-4 "
       style={{backgroundColor: 'rgba(0,0,0, 0.45)', color: singlePoem.fontColor, fontFamily: singlePoem.fontFamily}}
       >
-    <div className='top-0 absolute w-full h-full z-0' onClick={handleClose}></div>
-      <div className="rounded-3xl w-4/12 fixed"
+    <div className='top-0 absolute w-full h-full z-0 overflow-clip' onClick={handleClose}></div>
+      <div className="rounded-3xl w-6/12 fixed"
       style={{ background: singlePoem.backgroundTheme ? singlePoem.backgroundTheme : "#ffffff" }}>
       {singlePoem.backgroundTheme.length > 8 ? (
         <img
